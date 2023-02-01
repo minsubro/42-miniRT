@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/01/31 15:23:52 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:19:39 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "object.h"
 
 typedef struct s_obj_list t_obj_list;
+typedef struct s_viewport t_viewport;
 
 typedef struct s_pixel
 {
@@ -49,6 +50,13 @@ struct s_obj_list
 	e_type		type;
 	void		*obj;
 	t_obj_list	*next;
+};
+
+struct s_viewport
+{
+	double width;
+	double height;
+	double aspect_ratio;
 };
 
 typedef struct s_scene
