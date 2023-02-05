@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 11:38:42 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:24:56 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "minirt.h"
 #include "object.h"
 
+typedef int bool;
+
 typedef struct s_obj_list t_obj_list;
 typedef struct s_viewport t_viewport;
 
@@ -24,14 +26,15 @@ typedef struct s_pixel
 
 }				t_pixel;
 
-typedef struct s_scene
-{
-	t_pixel	**map;
-	void	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}				t_scene;
+//	확인후 삭제
+// typedef struct s_scene 
+// {
+// 	t_pixel	**map;
+// 	void	*addr;
+// 	int		bits_per_pixel;
+// 	int		size_line;
+// 	int		endian;
+// }				t_scene;
 
 typedef struct s_ray
 {
@@ -47,7 +50,7 @@ typedef struct s_mlx_info
 
 struct s_obj_list
 {
-	e_type		type;
+	o_type		type;
 	void		*obj;
 	t_obj_list	*next;
 };

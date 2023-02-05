@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunbison <eunbison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:21:27 by eunbison          #+#    #+#             */
-/*   Updated: 2023/01/29 19:23:36 by eunbison         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:25:12 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,8 @@ enum	e_key {
 
 # define HOOK_KEY_EVENT 2
 # define HOOK_MOUSE_EVENT 17
+
+# define TRUE 1
+# define FALSE 0
 
 #endif

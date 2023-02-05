@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:07:19 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 13:17:53 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/05 13:35:33 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/05 13:56:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "utils.h"
 
-void	print_error_with_exit(char *msg)
+int	ft_strcmp(char *s1, char *s2)
 {
-	printf("Error");
-	printf(":: %s", msg);
-	exit (EXIT_FAILURE);
-}
+	int i;
 
-// error case 정리
-// 1. 파일이 rt file 형식이 아닌경우
-// 2. 권한에러 같은경우는 open에서 perror로 잡아줄듯.
-// 3. 파싱 과정에서의 에러처리
+	if (!s1 || !s2)
+		return (1);
+	i = 0;
+	while (1)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		if (s1[i] == 0 && s2[i] == 0)
+			return (0);
+		i++;
+	}
+	
+}

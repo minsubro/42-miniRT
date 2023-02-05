@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"__config": "cpp",
-		"object.h": "c"
+		"object.h": "c",
+		"minirt.h": "c",
+		"error.h": "c"
 	}
 }
