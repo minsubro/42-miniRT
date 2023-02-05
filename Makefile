@@ -45,11 +45,13 @@ $(NAME) : $(OBJS)
 clean :
 	@echo "$(RED) *** Deleting objects ... *** $(DEFAULT)"
 	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 	$(RM) $(OBJS) $(B_OBJS)
 
 fclean : clean
 	@echo "$(RED) *** Deleeting executable ... *** $(DEFAULT)"
 	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
 	$(RM) $(NAME)
 
 re :
