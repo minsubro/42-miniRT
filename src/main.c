@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:39 by eunbison          #+#    #+#             */
-/*   Updated: 2023/01/30 15:32:35 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/05 11:38:49 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	draw_scene(&ptr); 
 	// (일단 픽셀 찍고 -> 표면에 색 입히고 -> diffuse인지, specular인지)
 	// just color -> diffuse light -> indirect light -> specular light
-	int key_hook(int keycode, void *ptr)
+	int key_hook(int keycode, void *ptr);
 	mlx_hook(ptr.win_ptr, HOOK_KEY_EVENT, 0, key_hook, &ptr);
 	mlx_hook(ptr.win_ptr, HOOK_MOUSE_EVENT, 0, mouse_hook, &ptr);
 	mlx_loop(ptr.mlx_ptr);

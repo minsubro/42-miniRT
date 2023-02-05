@@ -6,14 +6,14 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/01/31 14:41:15 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/05 11:37:18 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-enum e_type
+typedef enum e_type
 {
 	AMBIENT_LIGHTNING,
 	CAMERA,
