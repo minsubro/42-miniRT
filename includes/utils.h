@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 13:35:49 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/05 13:43:51 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:29:37 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "minirt.h"
 
-bool	ft_strcmp(char *s1, char *s2);
+int	ft_strcmp(char *s1, char *s2);
 
 # endif

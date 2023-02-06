@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 11:49:46 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:29:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef enum e_type
 {
+	NONE,
 	AMBIENT_LIGHTNING,
 	CAMERA,
 	LIGHT,

@@ -1,15 +1,17 @@
 NAME = tinyRT
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 LFLAGS =  -L mlx -l mlx -framework OpenGL -framework Appkit
 
 RM = rm -rf
 
-# FDF
-SRCS = main.c	\
-	   error.c	\
-	   utils.c
+SRCS = main.c		\
+	   error.c		\
+	   utils.c		\
+	   init_scene.c	\
+	   list.c		\
+	   test.c
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))
 

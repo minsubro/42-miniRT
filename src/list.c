@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/06 10:22:51 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/06 11:14:39 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/06 12:07:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	validated_keycode(int key)
+t_list	*create_list(void *value, o_type type)
 {
-	
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		print_error_with_exit("malloc fail...");
+	new->obj = value;
+	new->type = type;
+	new->next = NULL;
+	return (new);
 }
 
-int	key_hook(int keycode, t_mlx *ptr)
+void	list_add_back(t_list **list, t_list *new)
 {
-	if (validated_keycode(keycode))
+	t_list	*start;
+
+	start = *list;
+	if (!start)
+		*list = new;
+	else
 	{
-
+		while (start->next)
+			start = start->next;
+		start->next = new;
 	}
-	return (0);
 }
 
-int	mouse_hook(t_mlx *ptr)
-{
-	mlx_destroy_image(ptr->mlx_ptr, ptr->win_ptr);
-	free_scene();
-	exit(EXIT_SUCCESS);
-	return (0);
-}

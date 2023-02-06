@@ -3,6 +3,7 @@
 		"__config": "cpp",
 		"object.h": "c",
 		"minirt.h": "c",
-		"error.h": "c"
+		"error.h": "c",
+		"get_next_line.h": "c"
 	}
 }

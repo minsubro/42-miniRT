@@ -4,7 +4,10 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/library/libft"
+                "${workspaceFolder}/includes/**",
+                "${workspaceFolder}/includes",
+                "${workspaceFolder}/library/libft",
+                "${workspaceFolder}/library/gnl"
             ],
             "defines": [],
             "macFrameworkPath": [

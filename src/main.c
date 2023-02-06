@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:39 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 13:58:24 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:10:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_mlx_info	init_mlx_info(void)
 	return (new);
 }
 
-bool	file_name_scan(char *file_name)
+int	check_file_name(char *file_name)
 {
 	if (ft_strcmp(ft_strrchr(file_name, '.'), ".rt") == 0)
-		return TRUE;
-	return FALSE;
+		return 1;
+	return 0;
 }
 
 // void	draw_scene(t_mlx_info *mlx_info)
@@ -34,15 +34,27 @@ bool	file_name_scan(char *file_name)
 	
 // }
 
+void	check_arguments(int argc, char *file_name)
+{
+	if (argc != 2 || !check_file_name(file_name)) // check_arguments 로
+		print_error_with_exit(CHECK_ARGC);
+}
+
+t_info	init_info(char *file_name)
+{
+	t_info new_info;
+
+	new_info.mlx_info = init_mlx_info();
+	new_info.scene = init_scene(file_name);
+	return (new_info);
+}
+
 int main(int argc, char **argv)
 {
-	t_mlx_info	mlx_info;
+	t_info		info;
 
-	if (argc != 2 || !file_name_scan(argv[1]))
-		print_error_with_exit(CHECK_ARGC);
-	printf("check");
-	
-	mlx_info = init_mlx_info();
+	check_arguments(argc, argv[1]);
+	info = init_info(argv[1]);
 	
  	// .rt file을 초기화 (문제 있으면 뭐 안에서 종료되겠고 == 파싱)
 	//init_scene(&mlx_info, argv[1]);
