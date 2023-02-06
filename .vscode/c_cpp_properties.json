@@ -3,7 +3,11 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/includes/**",
+                "${workspaceFolder}/includes",
+                "${workspaceFolder}/library/libft",
+                "${workspaceFolder}/library/gnl"
             ],
             "defines": [],
             "macFrameworkPath": [

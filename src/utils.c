@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:16:40 by eunson            #+#    #+#             */
-/*   Updated: 2022/07/24 20:12:12 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/05 13:35:33 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/05 13:56:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!lst)
-		return (0);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	int i;
+
+	if (!s1 || !s2)
+		return (1);
+	i = 0;
+	while (1)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		if (s1[i] == 0 && s2[i] == 0)
+			return (0);
+		i++;
+	}
+	
 }

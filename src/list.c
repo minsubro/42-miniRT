@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:07:19 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 13:17:53 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/06 11:14:39 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/06 12:07:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_error_with_exit(char *msg)
+t_list	*create_list(void *value, o_type type)
 {
-	printf("Error");
-	printf(":: %s", msg);
-	exit (EXIT_FAILURE);
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		print_error_with_exit("malloc fail...");
+	new->obj = value;
+	new->type = type;
+	new->next = NULL;
+	return (new);
 }
 
-// error case 정리
-// 1. 파일이 rt file 형식이 아닌경우
-// 2. 권한에러 같은경우는 open에서 perror로 잡아줄듯.
-// 3. 파싱 과정에서의 에러처리
+void	list_add_back(t_list **list, t_list *new)
+{
+	t_list	*start;
+
+	start = *list;
+	if (!start)
+		*list = new;
+	else
+	{
+		while (start->next)
+			start = start->next;
+		start->next = new;
+	}
+}
+

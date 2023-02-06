@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 16:17:24 by eunson            #+#    #+#             */
-/*   Updated: 2022/07/24 20:36:21 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/05 13:35:49 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/06 11:29:37 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*tmp_lst;
+# include "minirt.h"
 
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp_lst = ft_lstlast(*lst);
-	tmp_lst->next = new;
-}
+int	ft_strcmp(char *s1, char *s2);
+
+# endif

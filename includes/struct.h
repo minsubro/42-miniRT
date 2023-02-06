@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 11:38:42 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:30:58 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@
 #include "minirt.h"
 #include "object.h"
 
-typedef struct s_obj_list t_obj_list;
+
 typedef struct s_viewport t_viewport;
+typedef struct s_list t_list;
 
 typedef struct s_pixel
 {
 
 }				t_pixel;
 
-typedef struct s_scene
-{
-	t_pixel	**map;
-	void	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}				t_scene;
+//	확인후 삭제
+// typedef struct s_scene 
+// {
+// 	t_pixel	**map;
+// 	void	*addr;
+// 	int		bits_per_pixel;
+// 	int		size_line;
+// 	int		endian;
+// }				t_scene;
 
 typedef struct s_ray
 {
@@ -45,29 +47,31 @@ typedef struct s_mlx_info
 	void	*img_ptr;
 }			t_mlx_info;
 
-struct s_obj_list
+struct s_list
 {
-	e_type		type;
-	void		*obj;
-	t_obj_list	*next;
+	o_type	type;
+	void	*obj;
+	t_list	*next;
 };
 
 struct s_viewport
 {
 	double width;
 	double height;
-	double aspect_ratio;
+	const double aspect_ratio;
 };
 
 typedef struct s_scene
 {
-	t_camera	camera;
-	t_obj_list	lights;
-	t_obj_list	figures;
+	t_ambient	*ambient;
+	t_camera	*camera;
+	t_list		*lights;
+	t_list		*figures;
 }				t_scene;
 
 typedef struct s_canvas
 {
+	
 	// #define 영역 구분.
 }			t_canvas;
 
