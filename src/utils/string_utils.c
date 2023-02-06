@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/06 17:07:25 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/06 18:11:04 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/06 19:52:20 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	validated_keycode(int key)
+int	ft_strcmp(char *s1, char *s2)
 {
-	
-}
+	int idx;
 
-int	key_hook(int keycode, t_mlx *ptr)
-{
-	if (validated_keycode(keycode))
+	if (!s1 || !s2)
+		return (1);
+	idx = 0;
+	while (1)
 	{
-
+		if (s1[idx] != s2[idx])
+			return (s1[idx] - s2[idx]);
+		if (s1[idx] == 0 && s2[idx] == 0)
+			return (0);
+		idx++;
 	}
-	return (0);
-}
-
-int	mouse_hook(t_mlx *ptr)
-{
-	mlx_destroy_image(ptr->mlx_ptr, ptr->win_ptr);
-	free_scene();
-	exit(EXIT_SUCCESS);
-	return (0);
 }

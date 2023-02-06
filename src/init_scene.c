@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:20:22 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 12:09:11 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:30:32 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	check_all_white_space(char *data)
-{
-	
-	while((*data >= 9 && *data <= 13) || *data == 32)
-		data++;
-	if (*data)
-		return (0);
-	return (1);
-}
-
-t_list	*parse_file(char *file_name)
+static t_list	*parse_file(char *file_name)
 {
 	const int 	fd = open(file_name, O_RDONLY);
 	t_list		*data_list;
@@ -39,20 +29,34 @@ t_list	*parse_file(char *file_name)
 		else
 			list_add_back(&data_list, create_list(data, NONE));
 	}
-	
-	print_list(data_list);
-		
-
 	return	(data_list);
 }
 
 t_scene	init_scene(char *file_name)
 {
-	t_scene	new;
+	t_scene	scene;
+	t_list	*tmp;
 	t_list	*data_list;
+	char	**splited_data;
 
+	scene.ambient = NULL;
+	scene.camera = NULL;
+	scene.lights = NULL;
+	scene.figures = NULL;
 	data_list = parse_file(file_name);
-	
-	new.ambient = 0;
-	return (new);
+	while (data_list)
+	{
+		printf("%s\n", (char *)data_list->obj);
+		splited_data = ft_split((char *)data_list->obj, ' ');
+		
+		//print_arr(splited_data);
+		
+		object_constructor(&scene, splited_data);
+		tmp = data_list;
+		data_list = data_list->next;
+		free_list(tmp);
+		free_dimarr(splited_data);
+	}
+	print_scene(scene);
+	return (scene);
 }

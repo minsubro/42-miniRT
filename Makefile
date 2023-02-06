@@ -6,12 +6,22 @@ LFLAGS =  -L mlx -l mlx -framework OpenGL -framework Appkit
 
 RM = rm -rf
 
-SRCS = main.c		\
-	   error.c		\
-	   utils.c		\
-	   init_scene.c	\
-	   list.c		\
-	   test.c
+SRCS = main.c								\
+	   check_condition.c					\
+	   check_range.c						\
+	   error.c								\
+	   free.c								\
+	   init_info.c							\
+	   init_scene.c							\
+	   list.c								\
+	   test.c								\
+	   constructor/figure_constructor.c		\
+	   constructor/object_constructor.c		\
+	   constructor/point3_constructor.c		\
+	   utils/array_utils.c					\
+	   utils/atod.c							\
+	   utils/string_utils.c
+
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))
 

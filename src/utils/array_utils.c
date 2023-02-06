@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 13:35:33 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/05 13:56:09 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/06 18:10:52 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/06 18:11:59 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "minirt.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	count_array(char **array)
 {
-	int i;
+	int	idx;
 
-	if (!s1 || !s2)
-		return (1);
-	i = 0;
-	while (1)
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		if (s1[i] == 0 && s2[i] == 0)
-			return (0);
-		i++;
-	}
-	
+	idx = 0;
+	while (array[idx])
+		idx++;
+	return (idx);
 }
