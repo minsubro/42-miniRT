@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:25:50 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 11:32:40 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:11:48 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static char	*ft_read_line(int fd, t_nodes **start_node)
 				start_node = &((*start_node)->next);
 		}
 	}
+	if (return_line[return_len - 1] == '\n')
+		return_line[return_len - 1] = '\0';
 	return_line[return_len] = '\0';
 	return (return_line);
 }

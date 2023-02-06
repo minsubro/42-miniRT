@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/06 11:29:01 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:01:06 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_point3	point;
-	double		ratio;
+	double		brightness_ratio;
 	t_rgb		rgb;
 }				t_light;
 
@@ -70,14 +70,14 @@ typedef struct s_plane
 	t_rgb		rgb;
 }				t_plane;
 
-typedef struct s_cylindar
+typedef struct s_cylinder
 {
 	t_point3	point;
-	t_vector3	vector;
+	t_vector3	normal_vector;
 	double		diameter;
 	double		height;
 	t_rgb		rgb;
-}				t_cylindar;
+}				t_cylinder;
 
 typedef struct s_cone
 {
