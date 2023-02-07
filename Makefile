@@ -2,7 +2,7 @@ NAME = tinyRT
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS =  -L mlx -l mlx -framework OpenGL -framework Appkit
+LFLAGS =  -L $(MLX_DIR) -l mlx -framework OpenGL -framework Appkit
 
 RM = rm -rf
 
@@ -42,7 +42,7 @@ endif
 
 %.o : %.c
 	@echo "$(YELLOW) *** Generating object files ... *** $(DEFAULT)"
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS) -I$(LIBFT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 all : $(NAME)
 	@echo "$(GREEN) *** Project Ready! *** $(DEFAULT)"
