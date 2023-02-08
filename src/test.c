@@ -87,8 +87,6 @@ void	print_obj(t_list *obj_list)
 		obj_list = obj_list->next;
 	}
 	
-
-	
 }
 
 void	print_scene(t_scene scene)

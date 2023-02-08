@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/06 20:23:20 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:37:05 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 /* src */
 
@@ -82,6 +83,10 @@ void		list_add_back(t_list **list, t_list *new);
 
 /* main.c */
 int 		main(int argc, char *argv[]);
+
+/* hook.c */
+int			key_hook(int keycode, t_info *info);
+int			mouse_hook(t_info *info);
 
 /* test.c */
 void		print_list(t_list *s);

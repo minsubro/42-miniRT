@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:20:22 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 20:30:32 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:08:23 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static t_list	*parse_file(char *file_name)
 	return	(data_list);
 }
 
+void	check_scene(t_scene scene)
+{
+	if (!scene.ambient || !scene.camera || !scene.lights)
+		print_error_with_exit(INVALID_DATA);
+}
+
 t_scene	init_scene(char *file_name)
 {
 	t_scene	scene;
@@ -43,20 +49,17 @@ t_scene	init_scene(char *file_name)
 	scene.camera = NULL;
 	scene.lights = NULL;
 	scene.figures = NULL;
+	scene.view_port = init_viewport();
 	data_list = parse_file(file_name);
 	while (data_list)
 	{
-		printf("%s\n", (char *)data_list->obj);
 		splited_data = ft_split((char *)data_list->obj, ' ');
-		
-		//print_arr(splited_data);
-		
 		object_constructor(&scene, splited_data);
 		tmp = data_list;
 		data_list = data_list->next;
 		free_list(tmp);
 		free_dimarr(splited_data);
 	}
-	print_scene(scene);
+	check_scene(scene);
 	return (scene);
 }

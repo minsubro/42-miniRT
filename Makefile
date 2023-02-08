@@ -1,4 +1,4 @@
-NAME = tinyRT
+NAME = miniRT
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
@@ -20,7 +20,9 @@ SRCS = main.c								\
 	   constructor/point3_constructor.c		\
 	   utils/array_utils.c					\
 	   utils/atod.c							\
-	   utils/string_utils.c
+	   utils/string_utils.c					\
+	   vec3.c								\
+	   hook.c
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))
@@ -48,7 +50,7 @@ all : $(NAME)
 	@echo "$(GREEN) *** Project Ready! *** $(DEFAULT)"
 
 $(NAME) : $(OBJS)
-	@echo "$(GREEN) *** Compiling tinyRT ... *** $(DEFAULT)"
+	@echo "$(GREEN) *** Compiling miniRT ... *** $(DEFAULT)"
 	make -C $(LIBFT_DIR)
 	make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT_A)

@@ -69,9 +69,17 @@ void	object_constructor(t_scene *scene, char **data)
 
 	check_attribute_cnt(type,  count_array(data) - 1);
 	if (type == AMBIENT_LIGHTNING)
+	{
+		if (scene->ambient)
+			print_error_with_exit(INVALID_DATA);
 		scene->ambient = c_ambient(data);
+	}
 	else if (type == CAMERA)
+	{
+		if (scene->camera)
+			print_error_with_exit(INVALID_DATA);
 		scene->camera = c_camera(data);
+	}
 	else if (type == LIGHT)
 		list_add_back(&scene->lights, create_list(c_light(data), type));
 	else

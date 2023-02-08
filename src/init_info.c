@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 17:33:59 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:38:46 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_info	init_info(char *file_name)
 
 	new_info.mlx_info = init_mlx_info();
 	new_info.scene = init_scene(file_name);
-	//test
+	//print_scene(new_info.scene);
+
 	return (new_info);
 }
 
