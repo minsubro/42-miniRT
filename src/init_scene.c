@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:20:22 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/07 17:08:23 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:18:39 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_scene	init_scene(char *file_name)
 	scene.camera = NULL;
 	scene.lights = NULL;
 	scene.figures = NULL;
-	scene.view_port = init_viewport();
 	data_list = parse_file(file_name);
 	while (data_list)
 	{
@@ -60,6 +59,6 @@ t_scene	init_scene(char *file_name)
 		free_list(tmp);
 		free_dimarr(splited_data);
 	}
-	check_scene(scene);
+	//check_scene(scene);
 	return (scene);
 }

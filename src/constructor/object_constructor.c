@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 20:35:57 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ static void	*c_camera(char **data)
 	t_camera	*camera;
 
 	camera = (t_camera *)malloc(sizeof(t_camera));
-	camera->view_point = c_point3_by_data(data[1]);
-	camera->vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
+	camera->point = c_point3_by_data(data[1]);
+	camera->dir_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	camera->fov = check_range(atod(data[3]), 0, 180);
+	camera->viewport = c_viewport(camera->point, camera->dir_vector, camera->fov);
 	return (camera);
 }
 
@@ -45,7 +46,7 @@ static void	*c_light(char **data)
 	return (light);
 }
 
-static o_type	find_type(char *data)
+static t_object	find_type(char *data)
 {
 	const char *type[8] = {"A", "C", "L", "sp", "pl", "cy", "co", NULL};
 	int	idx;
@@ -63,10 +64,9 @@ static o_type	find_type(char *data)
 
 void	object_constructor(t_scene *scene, char **data)
 {
-	o_type	type;
+	t_object	type;
 
 	type = find_type(data[0]);
-
 	check_attribute_cnt(type,  count_array(data) - 1);
 	if (type == AMBIENT_LIGHTNING)
 	{

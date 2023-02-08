@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   ray_construcotr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/07 16:37:17 by minsukan         ###   ########.fr       */
+/*   Created: 2023/02/08 15:11:20 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/08 17:35:38 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// static int	validated_keycode(int key)
-// {
-	
-// }
-
-int	key_hook(int keycode, t_info *info)
+t_ray	c_ray(t_camera *camera, double u, double v)
 {
-	(void)info;
-	if (keycode == KEY_ESC)
-		exit(0);
-	// if (validated_keycode(keycode))
-	// {
+	t_ray	ray;
+	t_viewport	viewport;
 
-	// }
-	return (0);
-}
-
-int	mouse_hook(t_info *info)
-{
-	(void)info;
-	//mlx_destroy_image(ptr->mlx_ptr, ptr->win_ptr);
-	//free_scene();
-	exit(EXIT_SUCCESS);
-	return (0);
+	viewport = camera->viewport;
+	ray.orig = camera->point;
+	ray.dir_vector = v_unit(v_minus(v_plus(v_plus(viewport.left_bottom, v_mult(viewport.h_vector, u)), v_mult(viewport.v_vector, v)), camera->point));
+	return (ray);
 }

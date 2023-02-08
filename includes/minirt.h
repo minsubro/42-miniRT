@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/07 16:37:05 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:28:02 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /* includes */
 # include "const.h"
+# include "enum.h"
 # include "error.h"
 # include "minirt.h"
 # include "object.h"
@@ -35,13 +36,20 @@
 /* src */
 
 /* [constructor] figure_constructor.c */
-void		*c_figures(o_type type, char **data);
+void		*c_figures(t_object type, char **data);
 
 /* [constructor] object_constructor.c */
 void		object_constructor(t_scene *scene, char **data);
 
 /* [constructor] point3_constructor.c */
 t_point3	c_point3_by_data(char *data);
+
+/* [constructor] viewport_constructor.c */
+t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov);
+
+/* [constructor] ray_constructor.c */
+t_ray	c_ray(t_camera *camera, double u, double v);
+
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -53,7 +61,7 @@ double		atod(char *str);
 int			ft_strcmp(char *s1, char *s2);
 
 /* check_condition.c */
-void		check_attribute_cnt(o_type type, int cnt);
+void		check_attribute_cnt(t_object type, int cnt);
 int			check_all_white_space(char *data);
 void		check_arguments(int argc, char *file_name);
 int			check_file_name(char *file_name);
@@ -78,15 +86,44 @@ t_info		init_info(char *file_name);
 t_scene		init_scene(char *file_name);
 
 /* list.c */
-t_list		*create_list(void *value, o_type type);
+t_list		*create_list(void *value, t_object type);
 void		list_add_back(t_list **list, t_list *new);
 
 /* main.c */
 int 		main(int argc, char *argv[]);
 
-/* hook.c */
+/* hook_event.c */
 int			key_hook(int keycode, t_info *info);
 int			mouse_hook(t_info *info);
+
+/* draw_scene.c */
+void		draw_scene(t_info *info);
+
+/* ray.c */
+
+t_point3	ray_at(t_ray *ray, double t);
+t_rgb		ray_color(t_scene *scene);
+
+/* hit.c */
+t_bool hit(t_list *object, t_ray *ray);
+
+
+/* vec3.c */ // 분할 필요
+t_vector3	c_vector3(double x, double y, double z);
+t_point3	c_point3(double x, double y, double z);
+t_rgb		c_rgb(double x, double y, double z);
+void		set_vec3(t_vector3 *vec3, double x, double y, double z);
+double		v_len_square(t_vector3 v1);
+double		v_len(t_vector3 v1);
+t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
+t_vector3	v_minus(t_vector3 v1, t_vector3 v2);
+t_vector3	v_mult(t_vector3 v1, double s);
+t_vector3	v_mult_(t_vector3 v1, t_vector3 v2);
+t_vector3	v_divide(t_vector3 v1, double s);
+double      v_dot(t_vector3 v1, t_vector3 v2);
+t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
+t_vector3	v_unit(t_vector3 v1);
+t_vector3	v_min(t_vector3 v1, t_vector3 v2);
 
 /* test.c */
 void		print_list(t_list *s);

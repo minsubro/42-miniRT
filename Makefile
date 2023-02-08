@@ -11,6 +11,7 @@ SRCS = main.c								\
 	   check_range.c						\
 	   error.c								\
 	   free.c								\
+	   hook_event.c							\
 	   init_info.c							\
 	   init_scene.c							\
 	   list.c								\
@@ -18,11 +19,15 @@ SRCS = main.c								\
 	   constructor/figure_constructor.c		\
 	   constructor/object_constructor.c		\
 	   constructor/point3_constructor.c		\
+	   constructor/ray_construcotr.c		\
+	   constructor/viewport_construcotr.c	\
 	   utils/array_utils.c					\
 	   utils/atod.c							\
 	   utils/string_utils.c					\
 	   vec3.c								\
-	   hook.c
+	   draw_scene.c							\
+	   ray.c								\
+	   hit_sphere.c
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))

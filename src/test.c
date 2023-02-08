@@ -21,8 +21,8 @@ void	print_ambient(t_ambient *ambient)
 void	print_camera(t_camera *camera)
 {
 	printf("-----camera-----\n");
-	printf("view_point : %f, %f, %f\n", camera->view_point.x, camera->view_point.y, camera->view_point.z);
-	printf("vector : %f, %f, %f\n", camera->vector.x, camera->vector.y, camera->vector.z);
+	printf("point : %f, %f, %f\n", camera->point.x, camera->point.y, camera->point.z);
+	printf("dir_vector : %f, %f, %f\n", camera->dir_vector.x, camera->dir_vector.y, camera->dir_vector.z);
 	printf("fov : %f\n", camera->fov);
 	printf("-----------------\n");
 }

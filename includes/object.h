@@ -6,24 +6,12 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/06 17:01:06 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:13:48 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
-
-typedef enum e_type
-{
-	NONE,
-	AMBIENT_LIGHTNING,
-	CAMERA,
-	LIGHT,
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CORN,
-}	o_type;
 
 typedef struct s_point3 t_point3;
 typedef struct s_point3 t_rgb;
@@ -42,10 +30,21 @@ typedef struct s_ambient
 	t_rgb	rgb;
 }				t_ambient;
 
+typedef struct s_viewport
+{
+	t_point3	left_bottom;
+	t_vector3	v_vector;
+	t_vector3	h_vector;
+	double		focal_len;
+	double		width;
+	double		height;
+}			t_viewport;
+
 typedef struct s_camera
 {
-	t_point3	view_point;
-	t_vector3	vector;
+	t_point3	point;
+	t_vector3	dir_vector;
+	t_viewport	viewport;
 	double		fov;
 }				t_camera;
 

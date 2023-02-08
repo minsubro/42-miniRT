@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 18:19:02 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	*c_cylinder(char **data)
 	
 // }
 
-void	*c_figures(o_type type, char **data)
+void	*c_figures(t_object type, char **data)
 {
 	if (type == SPHERE)
 		return (c_sphere(data));
