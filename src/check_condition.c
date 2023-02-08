@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_condition.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:08:40 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 20:00:50 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	check_attribute_cnt(o_type type, int cnt)
+void	check_attribute_cnt(t_object type, int cnt)
 {
 	const int	attribute_cnt[7] = {2, 3, 3, 3, 3, 5, 10};
 	if (attribute_cnt[type - 1] != cnt)

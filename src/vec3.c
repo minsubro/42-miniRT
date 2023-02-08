@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:33 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/07 16:22:18 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:52:41 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ void	set_vec3(t_vector3 *vec3, double x, double y, double z)
 	vec3->z = z;
 }
 
-double vlen_square(t_vector3 v1)
+double v_len_square(t_vector3 v1)
 {
 	return (pow(v1.x, 2) + pow(v1.y, 2) + pow(v1.z, 2));
 }
 
-double vlen(t_vector3 v1)
+double v_len(t_vector3 v1)
 {
-	return (sqrt(vlen_square(v1))); 
+	return (sqrt(v_len_square(v1))); 
 }
 
-t_vector3	vplus(t_vector3 v1, t_vector3 v2)
+t_vector3	v_plus(t_vector3 v1, t_vector3 v2)
 {
 	v1.x += v2.x;
 	v1.y += v2.y;
@@ -67,7 +67,7 @@ t_vector3	vplus(t_vector3 v1, t_vector3 v2)
 	return (v1);
 }
 
-t_vector3 vminus(t_vector3 v1, t_vector3 v2)
+t_vector3 v_minus(t_vector3 v1, t_vector3 v2)
 {
 	v1.x -= v2.x;
 	v1.y -= v2.y;
@@ -75,7 +75,7 @@ t_vector3 vminus(t_vector3 v1, t_vector3 v2)
 	return (v1);
 }
 
-t_vector3	vmult(t_vector3 v1, double s)
+t_vector3	v_mult(t_vector3 v1, double s)
 {
 	v1.x *= s;
 	v1.y *= s;
@@ -83,7 +83,7 @@ t_vector3	vmult(t_vector3 v1, double s)
 	return (v1);
 }
 
-t_vector3	vmult_(t_vector3 v1, t_vector3 v2)
+t_vector3	v_mult_(t_vector3 v1, t_vector3 v2)
 {
 	v1.x *= v2.x;
 	v1.y *= v2.y;
@@ -91,7 +91,7 @@ t_vector3	vmult_(t_vector3 v1, t_vector3 v2)
 	return (v1);
 }
 
-t_vector3	vdivide(t_vector3 v1, double s)
+t_vector3	v_divide(t_vector3 v1, double s)
 {
 	v1.x *= 1 / s;
 	v1.y *= 1 / s;
@@ -99,12 +99,12 @@ t_vector3	vdivide(t_vector3 v1, double s)
 	return (v1);
 }
 
-double      vdot(t_vector3 v1, t_vector3 v2)
+double      v_dot(t_vector3 v1, t_vector3 v2)
 {
     return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
-t_vector3	vcross(t_vector3 v1, t_vector3 v2)
+t_vector3	v_cross(t_vector3 v1, t_vector3 v2)
 {
     t_vector3 v3;
 
@@ -114,9 +114,9 @@ t_vector3	vcross(t_vector3 v1, t_vector3 v2)
     return (v3);
 }
 
-t_vector3	vunit(t_vector3 v1)
+t_vector3	v_unit(t_vector3 v1)
 {
-    double len = vlen(v1);
+    double len = v_len(v1);
     if (len == 0)
 		print_error_with_exit("Error\n:Devider is 0");
     v1.x /= len;
@@ -125,7 +125,7 @@ t_vector3	vunit(t_vector3 v1)
     return (v1);
 }
 
-t_vector3	vmin(t_vector3 v1, t_vector3 v2)
+t_vector3	v_min(t_vector3 v1, t_vector3 v2)
 {
     if (v1.x > v2.x)
         v1.x = v2.x;
