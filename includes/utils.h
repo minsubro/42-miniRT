@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 13:35:49 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 11:29:37 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:46:15 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 
 # include "minirt.h"
 
-int	ft_strcmp(char *s1, char *s2);
 
 # endif

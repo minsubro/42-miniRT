@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 16:44:09 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:50:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 
 typedef struct s_viewport t_viewport;
 typedef struct s_list t_list;
+
+typedef struct	s_discriminant
+{
+	double	a;
+	double	b;
+	double	c;
+	double	value;
+}			t_discriminant;
 
 typedef struct s_ray
 {

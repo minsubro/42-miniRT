@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 11:19:15 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:45:48 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ double      v_dot(t_vector3 v1, t_vector3 v2);
 t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
 t_vector3	v_unit(t_vector3 v1);
 t_vector3	v_min(t_vector3 v1, t_vector3 v2);
+
+/* utils */
+int			ft_strcmp(char *s1, char *s2);
 
 /* test.c */
 void		print_list(t_list *s);
