@@ -6,16 +6,40 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 22:29:48 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 00:21:42 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+t_ray	ray(t_point3 origin, t_vector3 dir)
+{
+	t_ray ray;
+	ray.orig = origin;
+	ray.dir_vector =  v_unit(dir);
+	return (ray);
+}
+
 t_vector3	reflect(t_vector3 v, t_vector3 n)
 {
 	return (v_minus(v, v_mult(n, v_dot(v, n) * 2)));
 }
+
+t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
+{
+	t_hit_record	rec;
+	t_ray		light_ray;
+	double		light_len;
+
+	light_len = v_len(light_dir);
+	light_ray = ray(v_plus(scene->record.p, v_mult(scene->record.normal, EPSILON)), light_dir);
+	rec.tmin = 0;
+	rec.tmax = light_len;
+	if (hit(scene, &light_ray, &rec))
+		return (True);
+	return (False);
+}
+
 
 t_rgb	point_light_get(t_scene *scene, t_light *light)
 {
@@ -24,7 +48,11 @@ t_rgb	point_light_get(t_scene *scene, t_light *light)
 	t_vector3	light_dir;
 	double		kd;
 
-	light_dir = v_unit(v_minus(light->point, scene->record.p));
+	light_dir = v_minus(light->point, scene->record.p);
+	
+	if (in_shadow(scene, light_dir))
+		return (c_rgb(0, 0, 0));
+	light_dir = v_unit(light_dir);
 	kd = fmax(v_dot(scene->record.normal, light_dir), 0.0);
 	diffuse = v_mult(light->rgb, kd);
 	//return (diffuse);
@@ -46,6 +74,7 @@ t_rgb	point_light_get(t_scene *scene, t_light *light)
 
 	double	brightness;
 	brightness = light->brightness_ratio * LUMEN;
+
 
 	return (v_mult(v_plus(v_plus(scene->ambient->rgb, diffuse), specular), brightness));
 	
@@ -79,16 +108,13 @@ t_point3	ray_at(t_ray *ray, double t)
 t_rgb	ray_color(t_scene *scene)
 {
 	scene->record = c_hit_record();
-	if (hit(scene, &scene->record))
+	if (hit(scene, &scene->ray, &scene->record))
 	{
 		return (phong_lightting(scene));
 	}
 	else
 	{
 		double t = 0.5 * (scene->ray.dir_vector.y + 1.0);
-        // (1-t) * 흰색 + t * 하늘색
         return (v_plus(v_mult(c_rgb(1, 1, 1), 1.0 - t), v_mult(c_rgb(0.5, 0.7, 1.0), t)));
-	}
-	return (v_mult(c_rgb(scene->record.normal.x + 1, scene->record.normal.y + 1, scene->record.normal.z + 1), 0.5));
-	
+	}	
 }

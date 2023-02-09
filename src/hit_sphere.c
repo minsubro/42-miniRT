@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 22:02:33 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 00:20:25 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record)
 	return (update_record(sphere, ray, record, discriminant));
 }
 
-t_bool	hit(t_scene *scene, t_hit_record *record) //record 추가 // double로 변경
+t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record) //record 추가 // double로 변경
 {
 	t_bool		hit_anything;
 	t_list		*figure_list;
@@ -74,7 +74,7 @@ t_bool	hit(t_scene *scene, t_hit_record *record) //record 추가 // double로 �
 	while (figure_list)
 	{
 		if (figure_list->type == SPHERE)
-			if (hit_sphere((t_sphere *)figure_list->obj, &scene->ray, record))
+			if (hit_sphere((t_sphere *)figure_list->obj, ray, record))
 				hit_anything = True;
 		figure_list = figure_list->next;
 	}
