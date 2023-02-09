@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 23:45:10 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 01:34:02 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ double		v_dot(t_vector3 v1, t_vector3 v2);
 t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
 t_vector3	v_unit(t_vector3 v1);
 t_vector3	v_min(t_vector3 v1, t_vector3 v2);
+void		v_plus_(t_vector3 *v1, t_vector3 v2);
 
 /* [constructor] figure_constructor.c */
 void		*c_figures(t_object type, char **data);
@@ -128,10 +129,13 @@ t_point3	ray_at(t_ray *ray, double t);
 t_rgb		ray_color(t_scene *scene);
 
 /* hit.c */
-t_bool		hit(t_scene *scene, t_hit_record *record);
+t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
 
 /* utils */
 int			ft_strcmp(char *s1, char *s2);
+
+/* utils */
+double		maths_random_double(double min, double max);
 
 /* test.c */
 void		print_list(t_list *s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 23:26:00 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 01:35:17 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void	draw_scene(t_info *info)
 {
 	int		width;
 	int		height;
+	int		samples_per_pixel;
 	double	u;
 	double	v;
+	
+	t_rgb	color;
 	
 	height = IMG_HEIGHT - 1;
 	while (height >= 0)
@@ -42,12 +45,20 @@ void	draw_scene(t_info *info)
 		width = 0;
 		while (width < IMG_WIDTH)
 		{
-			u = (double)width / (IMG_WIDTH - 1);
-			v = (double)height / (IMG_HEIGHT - 1);
-			info->scene.ray = c_ray(info->scene.camera, u, v);
-			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(ray_color(&info->scene)));
+			samples_per_pixel = 500;
+			color = c_rgb(0, 0, 0);
+			while (samples_per_pixel >= 0)
+			{
+				u = (double)(width + maths_random_double(0, 1)) / (IMG_WIDTH - 1);
+				v = (double)(height + maths_random_double(0, 1)) / (IMG_HEIGHT - 1);
+				info->scene.ray = c_ray(info->scene.camera, u, v);
+				v_plus_(&color, ray_color(&info->scene));
+				samples_per_pixel--;
+			}
+			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(color));
 			width++;
 		}
+		printf("%d\n", height);
 		height--;
 	}
 	mlx_put_image_to_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr, info->mlx_info.img_ptr, 0, 0);

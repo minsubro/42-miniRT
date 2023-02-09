@@ -9,12 +9,9 @@ RM = rm -rf
 SRCS = main.c								\
 	   check_condition.c					\
 	   check_range.c						\
-	   error.c								\
-	   free.c								\
 	   hook_event.c							\
 	   init_info.c							\
 	   init_scene.c							\
-	   list.c								\
 	   test.c								\
 	   constructor/figure_constructor.c		\
 	   constructor/object_constructor.c		\
@@ -22,13 +19,19 @@ SRCS = main.c								\
 	   constructor/vec3_constructor.c		\
 	   constructor/viewport_construcotr.c	\
 	   constructor/hit_record_constructor.c	\
+	   calculation/vec3_operation.c			\
+	   calculation/vec3_operation2.c		\
+	   calculation/vec3_operation3.c		\
 	   utils/array_utils.c					\
 	   utils/atod.c							\
+	   utils/error.c						\
+	   utils/free.c							\
+	   utils/list.c							\
 	   utils/string_utils.c					\
-	   vec3.c								\
+	   utils/random.c						\
 	   draw_scene.c							\
 	   ray.c								\
-	   hit_sphere.c
+	   hit_sphere.c							
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))
