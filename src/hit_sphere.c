@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 22:02:33 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 00:13:11 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record)
 	return (update_record(sphere, ray, record, discriminant));
 }
 
-t_bool	hit(t_scene *scene, t_hit_record *record) //record 추가 // double로 변경
+t_bool	hit(t_scene *scene, t_hit_record *record)
 {
 	t_bool		hit_anything;
 	t_list		*figure_list;
@@ -76,15 +76,16 @@ t_bool	hit(t_scene *scene, t_hit_record *record) //record 추가 // double로 �
 		if (figure_list->type == SPHERE)
 			if (hit_sphere((t_sphere *)figure_list->obj, &scene->ray, record))
 				hit_anything = True;
+		else if (figure_list->type == PLANE)
+			if (hit_plane((t_plane *)figure_list->obj, &scene->ray, record))
+				hit_anything = True;
+		else if (figure_list->type == CYLINDER)
+			if (hit_cylinder((t_cylinder *)figure_list->obj, &scene->ray, record))
+				hit_anything = True;
+		// else if (figure_list->type == CORN)
+		// 	if (hit_corn((t_corn *)figure_list->obj, &scene->ray, record))
+		// 		hit_anything = True;	
 		figure_list = figure_list->next;
 	}
 	return (hit_anything);
-
-	// else if (list->type == PLANE)
-	// 	return (hit_plane());
-	// else if (list->type == CYLINDER)
-	// 	return (hit_cylinder());
-	// else
-	// 	return (hit_corn());
-	//return (False);
 }
