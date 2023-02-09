@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:59:55 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 01:36:19 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 02:01:20 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	is_intersection(t_plane *plane, t_ray *ray)
 	return (True);
 }
 
-t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, t_point3 intersection)
+static t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, t_point3 intersection)
 {
 	double	root;
 
@@ -37,7 +37,9 @@ t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, t_point3 
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->normal = plane->normal_vector;
+	record->albedo = plane->rgb;
 	set_face_normal(ray, record);
+	return (True);
 }
 
 t_point3	find_intersection(t_plane *plane, t_ray *ray)
@@ -49,6 +51,8 @@ t_point3	find_intersection(t_plane *plane, t_ray *ray)
 	double		weight;
 
 	dir = ray->dir_vector;
+	normal = plane->normal_vector;
+	point = plane->point;
 	weight = (normal.x * point.x + normal.y * point.y + normal.z + point.z) / \
 				(normal.x * dir.x + normal.y * dir.y + normal.z + dir.z);
 	intersection.x = weight * dir.x;

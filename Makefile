@@ -31,7 +31,8 @@ SRCS = main.c								\
 	   utils/random.c						\
 	   draw_scene.c							\
 	   ray.c								\
-	   hit_sphere.c							
+	   hit_sphere.c							\
+	   hit_plane.c
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))

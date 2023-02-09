@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 01:34:02 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 01:47:45 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ t_rgb		ray_color(t_scene *scene);
 
 /* hit.c */
 t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
+
+/* hit_plane.c */
+t_bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
 
 /* utils */
 int			ft_strcmp(char *s1, char *s2);
