@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 17:50:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/09 19:22:23 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ struct s_list
 
 typedef struct s_hit_record
 {
-	t_point3	p; //교점
+	t_point3	p;
 	t_vector3	normal;
+	t_rgb		albedo;
 	double		t;
 	double		tmin;
 	double		tmax;

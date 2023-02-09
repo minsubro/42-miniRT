@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 19:14:20 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:02:33 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,19 @@ t_bool	update_record(t_sphere *sphere, t_ray *ray, t_hit_record *record, t_discr
 	double	sqrted;
 	double	root;
 
-	sqrted = data.value;
+	sqrted = sqrt(data.value);
 	root = (-data.b - sqrted) / data.a;
 	if (root < record->tmin || record->tmax < root)
 	{
 		root = (-data.b + sqrted) / data.a;
-		if (root < record->tmin || record->tmax <root)
+		if (root < record->tmin || record->tmax < root)
 			return (False);
 	}
 	record->t = root;
 	record->tmax = root;
 	record->p = ray_at(ray, root);
-	record->normal = v_divide(v_minus(record->p, sphere->center), (sphere->diameter / 2));
+	record->albedo = sphere->rgb;
+	record->normal = v_unit(v_divide(v_minus(record->p, sphere->center), (sphere->diameter / 2)));
 	set_face_normal(ray, record);
 	return (True);
 }

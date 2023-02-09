@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:25:52 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	*c_ambient(char **data)
 
 	ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	ambient->ratio = check_range(atod(data[1]), 0, 1);
-	
 	ambient->rgb = check_object_range(c_point3_by_data(data[2]), 0, 255);
+	ambient->rgb = v_mult(ambient->rgb, ambient->ratio);
 	return (ambient);
 }
 

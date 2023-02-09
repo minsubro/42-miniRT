@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atod.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:35:33 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 20:27:35 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/09 22:23:22 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static double	fractional_part(char **str)
 			fractional_part = fractional_part * 10 + (**str - '0');
 			(*str)++;
 		}
-		while (fractional_part > 1)
+		while (fractional_part >= 1)
 			fractional_part *= 0.1;
 	}
 	return (fractional_part);
