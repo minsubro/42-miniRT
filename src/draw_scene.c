@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 21:21:59 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:38:51 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	draw_scene(t_info *info)
 	int		height;
 	double	u;
 	double	v;
-	//t_ray	ray;
-
 	
 	height = IMG_HEIGHT - 1;
 	while (height >= 0)
@@ -52,7 +50,7 @@ void	draw_scene(t_info *info)
 		}
 		height--;
 	}
-	mlx_put_image_to_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr, info->mlx_info.img_ptr, INTERFACE_WIDTH, 0);
+	mlx_put_image_to_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr, info->mlx_info.img_ptr, 0, 0);
 	// 퐁 모델 (ambient -> diffuse -> specular)
 }
 

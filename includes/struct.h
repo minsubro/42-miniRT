@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:44:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,28 @@ typedef struct s_mlx_info
 struct s_list
 {
 	t_object	type;
-	void	*obj;
-	t_list	*next;
+	void		*obj;
+	t_list		*next;
 };
+
+typedef struct s_hit_record
+{
+	t_point3	p; //교점
+	t_vector3	normal;
+	double		t;
+	double		tmin;
+	double		tmax;
+	t_bool		front_face;
+}	t_hit_record;	
 
 typedef struct s_scene
 {
-	t_ambient	*ambient;
-	t_camera	*camera;
-	t_list		*lights;
-	t_list		*figures;
-	t_ray		ray;
+	t_ambient		*ambient;
+	t_camera		*camera;
+	t_list			*lights;
+	t_list			*figures;
+	t_hit_record	record;
+	t_ray			ray;
 }				t_scene;
 
 typedef struct s_image

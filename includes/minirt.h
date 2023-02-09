@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/08 21:28:02 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:19:15 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov);
 
 /* [constructor] ray_constructor.c */
 t_ray	c_ray(t_camera *camera, double u, double v);
+
+/* [constructor] hit_record_constructor.c */
+t_hit_record	c_hit_record(void);
 
 
 /* [utils] array_utils.c */
@@ -105,7 +108,7 @@ t_point3	ray_at(t_ray *ray, double t);
 t_rgb		ray_color(t_scene *scene);
 
 /* hit.c */
-t_bool hit(t_list *object, t_ray *ray);
+t_bool		hit(t_scene *scene, t_hit_record *record);
 
 
 /* vec3.c */ // 분할 필요

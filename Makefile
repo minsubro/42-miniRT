@@ -21,6 +21,7 @@ SRCS = main.c								\
 	   constructor/point3_constructor.c		\
 	   constructor/ray_construcotr.c		\
 	   constructor/viewport_construcotr.c	\
+	   constructor/hit_record_constructor.c	\
 	   utils/array_utils.c					\
 	   utils/atod.c							\
 	   utils/string_utils.c					\
