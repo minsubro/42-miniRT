@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 17:34:18 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 19:04:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_rgb	phong_lightting(t_scene *scene)
 		light_list = light_list->next;
 	}
 	light_color = v_plus(light_color, v_mult(scene->ambient->rgb, scene->ambient->ratio));
-	return (v_min(v_mult_(light_color, c_rgb(0.25, 0.25, 0.25)), c_rgb(1, 1, 1)));
+	return (v_min(v_mult_(light_color, c_rgb(1, 1, 1)), c_rgb(1, 1, 1)));
 }
 
 t_point3	ray_at(t_ray *ray, double t)
@@ -81,5 +81,5 @@ t_rgb	ray_color(t_scene *scene)
 	{
 		return (phong_lightting(scene));
 	}
-	return (c_rgb(0,0,0));
+	return (c_rgb(1,1,1));
 }
