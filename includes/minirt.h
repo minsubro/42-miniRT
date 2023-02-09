@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 17:45:48 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/09 23:45:10 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,35 @@
 
 /* src */
 
+/* [calculation] vec3_operation.c */
+double		v_len_square(t_vector3 v1);
+double		v_len(t_vector3 v1);
+
+/* [calculation] vec3_operation2.c */
+t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
+t_vector3	v_minus(t_vector3 v1, t_vector3 v2);
+t_vector3	v_mult(t_vector3 v1, double s);
+t_vector3	v_mult_(t_vector3 v1, t_vector3 v2);
+t_vector3	v_divide(t_vector3 v1, double s);
+
+/* [calculation] vec3_operation3.c */
+double		v_dot(t_vector3 v1, t_vector3 v2);
+t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
+t_vector3	v_unit(t_vector3 v1);
+t_vector3	v_min(t_vector3 v1, t_vector3 v2);
+
 /* [constructor] figure_constructor.c */
 void		*c_figures(t_object type, char **data);
 
 /* [constructor] object_constructor.c */
 void		object_constructor(t_scene *scene, char **data);
 
-/* [constructor] point3_constructor.c */
+/* [constructor] vector3_constructor.c */
 t_point3	c_point3_by_data(char *data);
-
-/* [constructor] viewport_constructor.c */
-t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov);
+t_vector3	c_vector3(double x, double y, double z);
+t_point3	c_point3(double x, double y, double z);
+t_rgb		c_rgb(double x, double y, double z);
+void		set_vec3(t_vector3 *vec3, double x, double y, double z);
 
 /* [constructor] ray_constructor.c */
 t_ray	c_ray(t_camera *camera, double u, double v);
@@ -53,6 +71,8 @@ t_ray	c_ray(t_camera *camera, double u, double v);
 /* [constructor] hit_record_constructor.c */
 t_hit_record	c_hit_record(void);
 
+/* [constructor] viewport_constructor.c */
+t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov);
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -109,24 +129,6 @@ t_rgb		ray_color(t_scene *scene);
 
 /* hit.c */
 t_bool		hit(t_scene *scene, t_hit_record *record);
-
-
-/* vec3.c */ // 분할 필요
-t_vector3	c_vector3(double x, double y, double z);
-t_point3	c_point3(double x, double y, double z);
-t_rgb		c_rgb(double x, double y, double z);
-void		set_vec3(t_vector3 *vec3, double x, double y, double z);
-double		v_len_square(t_vector3 v1);
-double		v_len(t_vector3 v1);
-t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
-t_vector3	v_minus(t_vector3 v1, t_vector3 v2);
-t_vector3	v_mult(t_vector3 v1, double s);
-t_vector3	v_mult_(t_vector3 v1, t_vector3 v2);
-t_vector3	v_divide(t_vector3 v1, double s);
-double      v_dot(t_vector3 v1, t_vector3 v2);
-t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
-t_vector3	v_unit(t_vector3 v1);
-t_vector3	v_min(t_vector3 v1, t_vector3 v2);
 
 /* utils */
 int			ft_strcmp(char *s1, char *s2);

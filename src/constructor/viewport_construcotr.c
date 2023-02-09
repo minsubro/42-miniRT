@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viewport_construcotr.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:30:24 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 11:52:47 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:27:22 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov)
 			v_minus(v_minus(v_minus(point, v_divide(viewport.h_vector, 2)), \
 			v_divide(viewport.v_vector, 2)), \
 			c_vector3(0, 0, viewport.focal_len));
-
 	///////////////////////////
 	(void)fov;
 	(void)dir_vector;

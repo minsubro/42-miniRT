@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 18:13:01 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:26:00 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_scene(t_info *info)
 			u = (double)width / (IMG_WIDTH - 1);
 			v = (double)height / (IMG_HEIGHT - 1);
 			info->scene.ray = c_ray(info->scene.camera, u, v);
-			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(ray_color(&info->scene)));// << apply_pong();
+			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(ray_color(&info->scene)));
 			width++;
 		}
 		height--;

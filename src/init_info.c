@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/09 16:25:48 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:46:32 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_mlx_info	init_mlx_info(void)
 	return (new);
 }
 
-t_image	init_image(t_mlx_info mlx)
+static t_image	init_image(t_mlx_info mlx)
 {
 	t_image	image;
 

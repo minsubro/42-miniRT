@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atod.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:35:33 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/09 22:23:22 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:26:26 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_sign(char **str)
 static double	integer_part(char **str)
 {
 	double	integer_part;
-	
+
 	integer_part = 0;
 	while (**str && (**str >= '0' && **str <= '9'))
 	{

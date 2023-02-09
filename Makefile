@@ -18,8 +18,8 @@ SRCS = main.c								\
 	   test.c								\
 	   constructor/figure_constructor.c		\
 	   constructor/object_constructor.c		\
-	   constructor/point3_constructor.c		\
 	   constructor/ray_construcotr.c		\
+	   constructor/vec3_constructor.c		\
 	   constructor/viewport_construcotr.c	\
 	   constructor/hit_record_constructor.c	\
 	   utils/array_utils.c					\
