@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 11:31:09 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 14:58:19 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_ray		c_ray(t_camera *camera, double u, double v);
 t_hit_record	c_hit_record(void);
 
 /* [constructor] viewport_constructor.c */
-t_viewport	c_viewport(t_point3	point, t_vector3 dir_vector, double fov);
+t_viewport	c_viewport(t_camera *camera);
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -152,4 +152,10 @@ void	set_face_normal(t_ray *ray, t_hit_record *record);
 
 t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
 //t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
+
+//임시
+t_viewport update_viewport(t_camera *camera);
+
 #endif
+
+

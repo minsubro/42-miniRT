@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:13:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 21:18:44 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:57:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef enum	e_key {
 	KEY_F = 3,
 	KEY_H = 4,
 	KEY_G = 5,
+	KEY_Q = 12,
+	KEY_W = 13,
+	KEY_E = 14,
 	KEY_PLUS = 24,
 	KEY_MINUS = 27,
 	KEY_ESC = 53,

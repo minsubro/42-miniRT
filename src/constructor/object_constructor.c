@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/09 22:25:52 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:26:13 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*c_camera(char **data)
 	camera->point = c_point3_by_data(data[1]);
 	camera->dir_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	camera->fov = check_range(atod(data[3]), 0, 180);
-	camera->viewport = c_viewport(camera->point, camera->dir_vector, camera->fov);
+	camera->viewport = c_viewport(camera);
 	return (camera);
 }
 

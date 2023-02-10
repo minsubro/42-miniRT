@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 10:36:58 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 14:12:49 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void	draw_scene(t_info *info)
 			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(ray_color(&info->scene)));
 			width++;
 		}
-		printf("%d\n", height);
 		height--;
 	}
+	printf("camera %f %f %f\n", info->scene.camera->point.x, info->scene.camera->point.y, info->scene.camera->point.z);
 	mlx_put_image_to_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr, info->mlx_info.img_ptr, 0, 0);
 	// 퐁 모델 (ambient -> diffuse -> specular)
 }
+
+
 
 // ray_color()
 // {
