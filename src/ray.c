@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 10:35:56 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:27:08 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_rgb	point_light_get(t_scene *scene, t_light *light)
 
 	light_dir = v_minus(light->point, scene->record.p);
 	
-	// if (in_shadow(scene, light_dir))
-	// 	return (c_rgb(0, 0, 0));
+	if (in_shadow(scene, light_dir))
+		return (c_rgb(0, 0, 0));
 	light_dir = v_unit(light_dir);
 	kd = fmax(v_dot(scene->record.normal, light_dir), 0.0);
 	diffuse = v_mult(light->rgb, kd);
