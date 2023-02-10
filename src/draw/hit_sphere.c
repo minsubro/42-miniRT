@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 11:30:46 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:38:28 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_discriminant	cal_discriminant(t_sphere *sphere, t_ray *ray)
 {
-	t_vector3	oc;
+	t_vector3		oc;
 	t_discriminant	disc;
 	
 	oc = v_minus(ray->orig, sphere->center);
@@ -25,7 +25,8 @@ static t_discriminant	cal_discriminant(t_sphere *sphere, t_ray *ray)
 	return (disc);
 }
 
-static t_bool	update_record(t_sphere *sphere, t_ray *ray, t_hit_record *record, t_discriminant data)
+static t_bool	update_record \
+	(t_sphere *sphere, t_ray *ray, t_hit_record *record, t_discriminant data)
 {
 	double	root;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 14:58:19 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:40:47 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # include <math.h>
 
 /* src */
+
+/* [calculation] ray_operation.c */
+t_point3	ray_at(t_ray *ray, double t);
+t_vector3	get_reflect(t_vector3 v, t_vector3 n);
 
 /* [calculation] vec3_operation.c */
 double		v_len(t_vector3 v1);
@@ -67,11 +71,22 @@ t_bool		check_file_name(char *file_name);
 double		check_range(double value, double min, double max);
 t_point3	check_object_range(t_point3 value, double min, double max);
 
+
 /* [constructor] figure_constructor.c */
 void		*c_figures(t_object type, char **data);
 
+/* [constructor] hit_record_constructor.c */
+t_hit_record	c_hit_record(void);
+
+/* [constructor] initializer.c */
+t_info		initializer(char *file_name);
+
 /* [constructor] object_constructor.c */
 void		object_constructor(t_scene *scene, char **data);
+
+/* [constructor] ray_constructor.c */
+t_ray		c_ray(t_camera *camera, double u, double v);
+t_ray		c_ray_direction(t_point3 origin, t_vector3 dir);
 
 /* [constructor] vector3_constructor.c */
 t_point3	c_point3_by_data(char *data);
@@ -80,14 +95,15 @@ t_point3	c_point3(double x, double y, double z);
 t_rgb		c_rgb(double x, double y, double z);
 void		set_vec3(t_vector3 *vec3, double x, double y, double z);
 
-/* [constructor] ray_constructor.c */
-t_ray		c_ray(t_camera *camera, double u, double v);
-
-/* [constructor] hit_record_constructor.c */
-t_hit_record	c_hit_record(void);
-
 /* [constructor] viewport_constructor.c */
 t_viewport	c_viewport(t_camera *camera);
+
+/* [draw] color.c */
+
+/* [draw] ray.c */
+t_bool		in_shadow(t_scene *scene, t_vector3 light_dir);
+t_rgb		point_light_get(t_scene *scene, t_light *light);
+t_rgb		phong_lightting(t_scene *scene);
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -107,11 +123,6 @@ void		free_list(t_list *list);
 
 /* hook.c */
 
-/* init_info.c */
-t_info		init_info(char *file_name);
-
-/* init_scene.c */
-t_scene		init_scene(char *file_name);
 
 /* list.c */
 t_list		*create_list(void *value, t_object type);
@@ -129,7 +140,7 @@ void		draw_scene(t_info *info);
 
 /* ray.c */
 t_point3	ray_at(t_ray *ray, double t);
-t_rgb		ray_color(t_scene *scene);
+t_rgb		get_color(t_scene *scene);
 
 /* hit.c */
 t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);

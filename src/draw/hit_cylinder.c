@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:29 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 11:29:51 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:40:29 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static t_vector3	cal_cylinder_normal_vector(t_cylinder *cylinder, t_point3 p, do
 	t_vector3	circle_vector;
 
 	//circle_vector = v_plus(cylinder->center, v_mult(cylinder->normal_vector, hit_height);
-	
 }
 
 static t_bool	update_record(t_cylinder *cylinder, t_ray *ray, t_hit_record *record, t_discriminant data)
