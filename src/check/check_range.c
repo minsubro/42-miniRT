@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:07:19 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 10:28:38 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/06 16:53:50 by minsukan          #+#    #+#             */
+/*   Updated: 2023/02/10 10:35:03 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_error_with_exit(char *msg)
+double	check_range(double value, double min, double max)
 {
-	printf("ERROR :: %s\n", msg);
-	exit (EXIT_FAILURE);
+	if (!(min <= value && value <= max))
+		print_error_with_exit(INVALID_RANGE);
+	return (value);
+}
+
+t_point3	check_object_range(t_point3 value, double min, double max)
+{
+	if (!(min <= value.x && value.x <= max) || \
+			!(min <= value.y && value.y <= max) || \
+			!(min <= value.z && value.z <= max))
+		print_error_with_exit(INVALID_RANGE);
+	return (value);
 }

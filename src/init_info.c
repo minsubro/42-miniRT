@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/09 23:46:32 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 10:45:09 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_mlx_info	init_mlx_info(void)
 {
-	t_mlx_info new;
+	t_mlx_info	new;
 
 	new.mlx_ptr = mlx_init();
 	new.win_ptr = mlx_new_window(new.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, TITLE);
@@ -40,4 +40,3 @@ t_info	init_info(char *file_name)
 	//print_scene(info.scene);
 	return (info);
 }
-

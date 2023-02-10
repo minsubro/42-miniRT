@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 01:47:45 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:31:09 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 /* src */
 
 /* [calculation] vec3_operation.c */
-double		v_len_square(t_vector3 v1);
 double		v_len(t_vector3 v1);
+double		v_len_square(t_vector3 v1);
 
 /* [calculation] vec3_operation2.c */
 t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
@@ -53,6 +53,20 @@ t_vector3	v_unit(t_vector3 v1);
 t_vector3	v_min(t_vector3 v1, t_vector3 v2);
 void		v_plus_(t_vector3 *v1, t_vector3 v2);
 
+/* [check] check_condition.c*/
+t_bool		check_min_len(t_discriminant data, t_hit_record *record, double *len);
+
+/* [check] check_file_condition.c*/
+void		check_attribute_cnt(t_object type, int cnt);
+void		check_arguments(int argc, char *file_name);
+void		check_scene(t_scene scene);
+t_bool		check_all_white_space(char *data);
+t_bool		check_file_name(char *file_name);
+
+/* [check] check_range.c */
+double		check_range(double value, double min, double max);
+t_point3	check_object_range(t_point3 value, double min, double max);
+
 /* [constructor] figure_constructor.c */
 void		*c_figures(t_object type, char **data);
 
@@ -67,7 +81,7 @@ t_rgb		c_rgb(double x, double y, double z);
 void		set_vec3(t_vector3 *vec3, double x, double y, double z);
 
 /* [constructor] ray_constructor.c */
-t_ray	c_ray(t_camera *camera, double u, double v);
+t_ray		c_ray(t_camera *camera, double u, double v);
 
 /* [constructor] hit_record_constructor.c */
 t_hit_record	c_hit_record(void);
@@ -83,16 +97,6 @@ double		atod(char *str);
 
 /* [utils] string_utils.c */
 int			ft_strcmp(char *s1, char *s2);
-
-/* check_condition.c */
-void		check_attribute_cnt(t_object type, int cnt);
-int			check_all_white_space(char *data);
-void		check_arguments(int argc, char *file_name);
-int			check_file_name(char *file_name);
-
-/* check_range.c */
-double		check_range(double value, double min, double max);
-t_point3	check_object_range(t_point3 value, double min, double max);
 
 /* error.c */
 void		print_error_with_exit(char *msg);
@@ -124,7 +128,6 @@ int			mouse_hook(t_info *info);
 void		draw_scene(t_info *info);
 
 /* ray.c */
-
 t_point3	ray_at(t_ray *ray, double t);
 t_rgb		ray_color(t_scene *scene);
 
@@ -132,7 +135,7 @@ t_rgb		ray_color(t_scene *scene);
 t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
 
 /* hit_plane.c */
-t_bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
+t_bool		hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
 
 /* utils */
 int			ft_strcmp(char *s1, char *s2);
@@ -145,4 +148,8 @@ void		print_list(t_list *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
 
+void	set_face_normal(t_ray *ray, t_hit_record *record);
+
+t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
+//t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
 #endif
