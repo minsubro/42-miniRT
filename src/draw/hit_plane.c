@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:59:55 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 17:26:42 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:40:19 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,4 @@ t_bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record)
 	if (discriminant == 0)
 		return (False);
 	return (update_record(plane, ray, record, discriminant));
-}	
+}

@@ -7,6 +7,7 @@ LFLAGS =  -L $(MLX_DIR) -l mlx -framework OpenGL -framework Appkit
 RM = rm -rf
 
 SRCS = main.c								\
+	   calculation/ray_operation.c			\
 	   calculation/vec3_operation.c			\
 	   calculation/vec3_operation2.c		\
 	   calculation/vec3_operation3.c		\
@@ -14,13 +15,24 @@ SRCS = main.c								\
 	   check/check_condition.c				\
 	   check/check_file_condition.c			\
 	   check/check_range.c					\
+\
 	   constructor/figure_constructor.c		\
 	   constructor/object_constructor.c		\
 	   constructor/ray_construcotr.c		\
 	   constructor/vec3_constructor.c		\
 	   constructor/viewport_construcotr.c	\
 	   constructor/hit_record_constructor.c	\
+	   constructor/initializer.c			\
+\
+	   draw/color.c							\
+	   draw/ray.c							\
+	   draw/draw_scene.c					\
+	   draw/hit_sphere.c					\
+	   draw/hit_plane.c						\
+	   draw/hit.c							\
+\
 	   event/hook_event.c					\
+\
 	   utils/array_utils.c					\
 	   utils/atod.c							\
 	   utils/error.c						\
@@ -28,14 +40,7 @@ SRCS = main.c								\
 	   utils/list.c							\
 	   utils/string_utils.c					\
 	   utils/random.c						\
-	   init_info.c							\
-	   init_scene.c							\
-	   test.c								\
-	   draw_scene.c							\
-	   ray.c								\
-	   hit_sphere.c							\
-	   hit_plane.c							\
-	   hit.c
+	   test.c								
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))

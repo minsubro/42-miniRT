@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:39 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 17:35:35 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:11:10 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 
 	atexit(leaks);
 	check_arguments(argc, argv[1]);
-	info = init_info(argv[1]);
+	info = initializer(argv[1]);
 	draw_scene(&info);
 	hook_mlx_event(&info);
 	mlx_loop(info.mlx_info.mlx_ptr);

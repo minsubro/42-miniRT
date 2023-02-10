@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   ray_operation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 17:21:27 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 18:34:26 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/10 18:23:13 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/10 18:24:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#include "minirt.h"
 
-# define TITLE "miniRT"
+t_point3	ray_at(t_ray *ray, double t)
+{
+	t_point3	at;
 
-# define IMG_WIDTH 1280
-# define IMG_HEIGHT 720
+	at = v_plus(ray->orig, v_mult(ray->dir_vector, t));
+	return (at);
+}
 
-# define INTERFACE_WIDTH 320
-
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
-
-# define CENTER_X 640
-# define CENTER_Y 512
-
-# define HOOK_KEY_EVENT 2
-# define HOOK_MOUSE_EVENT 17
-
-# define ASPECT_RATIO 16.0/9.0
-
-# define EPSILON 1e-6
-# define LUMEN 3
-
-# define KSN 64.0
-# define KS 0.5
-
-#endif
+t_vector3	get_reflect(t_vector3 v, t_vector3 n)
+{
+	return (v_minus(v, v_mult(n, v_dot(v, n) * 2)));
+}

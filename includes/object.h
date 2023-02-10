@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 09:33:58 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:42:52 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,11 @@ typedef struct s_cylinder
 
 typedef struct s_cone
 {
-
+	t_point3	center;
+	t_vector3	normal_vector;
+	double		diameter;
+	double		height;
+	t_rgb		rgb;
 }				t_cone;
 
 #endif
