@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:29:51 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/09 23:32:28 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 10:42:49 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	set_vec3(t_vector3 *vec3, double x, double y, double z)
 t_point3	c_point3_by_data(char *data)
 {
 	t_point3	point3;
-	char	**splitted_data;
+	char		**splitted_data;
 
 	splitted_data = ft_split(data, ',');
 	if (count_array(splitted_data) != 3)
-		print_error_with_exit(INVALID_DATA);
+		print_error_with_exit(INVALID_ATTR);
 	point3.x = atod(splitted_data[0]);
 	point3.y = atod(splitted_data[1]);
 	point3.z = atod(splitted_data[2]);

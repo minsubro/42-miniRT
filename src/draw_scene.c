@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 01:53:36 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:36:58 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	img_pix_put(t_image *img, int x, int y, int color)
 
 int	convert_rgb(t_rgb rgb)
 {
-	int color;
+	int	color;
 
 	color = 0;
 	color = ((int)(255.999 * rgb.x) << 16) + ((int)(255.999 * rgb.y) << 8) + ((int)(255.999 * rgb.z));
@@ -36,9 +36,8 @@ void	draw_scene(t_info *info)
 	//int		samples_per_pixel;
 	double	u;
 	double	v;
-	
+
 	//t_rgb	color;
-	
 	height = IMG_HEIGHT - 1;
 	while (height >= 0)
 	{
@@ -54,8 +53,8 @@ void	draw_scene(t_info *info)
 			// 	samples_per_pixel--;
 			// }
 			// img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(color));
-				u = (double)width / (IMG_WIDTH - 1);
-				v = (double)height / (IMG_HEIGHT - 1);
+			u = (double)width / (IMG_WIDTH - 1);
+			v = (double)height / (IMG_HEIGHT - 1);
 			info->scene.ray = c_ray(info->scene.camera, u, v);
 			img_pix_put(&info->image, width, IMG_HEIGHT - 1 - height, convert_rgb(ray_color(&info->scene)));
 			width++;

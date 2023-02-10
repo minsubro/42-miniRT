@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:20:22 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 16:18:39 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:44:40 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 static t_list	*parse_file(char *file_name)
 {
-	const int 	fd = open(file_name, O_RDONLY);
-	t_list		*data_list;
 	char		*data;
+	t_list		*data_list;
+	const int	fd = open(file_name, O_RDONLY);
 
 	data_list = NULL;
 	while (1)
 	{
 		data = get_next_line(fd);
-		if (!data) 
+		if (!data)
 			break ;
-		if (check_all_white_space(data))		
+		if (check_all_white_space(data))
 			free(data);
 		else
 			list_add_back(&data_list, create_list(data, NONE));
 	}
-	return	(data_list);
-}
-
-void	check_scene(t_scene scene)
-{
-	if (!scene.ambient || !scene.camera || !scene.lights)
-		print_error_with_exit(INVALID_DATA);
+	return (data_list);
 }
 
 t_scene	init_scene(char *file_name)

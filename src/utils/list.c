@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:14:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:33:41 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ void	list_add_back(t_list **list, t_list *new)
 		start->next = new;
 	}
 }
-

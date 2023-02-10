@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   set_face_normal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:07:19 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 10:28:38 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/10 09:07:11 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/10 10:35:08 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_error_with_exit(char *msg)
+void	set_face_normal(t_ray *ray, t_hit_record *record)
 {
-	printf("ERROR :: %s\n", msg);
-	exit (EXIT_FAILURE);
+	record->front_face = v_dot(ray->dir_vector, record->normal) < 0;
+	if (record->front_face == False)
+		record->normal = v_mult(record->normal, -1);
 }

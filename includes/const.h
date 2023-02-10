@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:21:27 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 19:05:41 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 09:14:58 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@
 
 # define EPSILON 1e-6
 # define LUMEN 3
+
+# define KSN 64
+# define KS 0.5
 
 #endif

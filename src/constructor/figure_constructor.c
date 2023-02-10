@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/08 21:16:59 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/10 09:34:17 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	*c_cylinder(char **data)
 	t_cylinder	*cylinder;
 
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	cylinder->point = c_point3_by_data(data[1]);
+	cylinder->center = c_point3_by_data(data[1]);
 	cylinder->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	cylinder->diameter = atod(data[3]);
 	cylinder->height = atod(data[4]);

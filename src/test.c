@@ -65,7 +65,7 @@ void	print_plane(t_plane *plane)
 void	print_cylinder(t_cylinder *cylinder)
 {
 	printf("-----cylinder-----\n");
-	printf("point : %f, %f, %f\n", cylinder->point.x, cylinder->point.y, cylinder->point.z);
+	printf("center : %f, %f, %f\n", cylinder->center.x, cylinder->center.y, cylinder->center.z);
 	printf("normal_vector : %f, %f, %f\n", cylinder->normal_vector.x, cylinder->normal_vector.y, cylinder->normal_vector.z);
 	printf("diameter : %f\n", cylinder->diameter);
 	printf("height : %f\n", cylinder->height);
