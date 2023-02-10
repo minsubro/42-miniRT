@@ -6,13 +6,13 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 17:27:08 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:57:17 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_ray	ray(t_point3 origin, t_vector3 dir)
+t_ray	c_ray_direction(t_point3 origin, t_vector3 dir)
 {
 	t_ray	ray;
 
@@ -33,7 +33,7 @@ t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
 	double			light_len;
 
 	light_len = v_len(light_dir);
-	light_ray = ray(v_plus(scene->record.p, v_mult(scene->record.normal, EPSILON)), light_dir);
+	light_ray = c_ray_direction(v_plus(scene->record.p, v_mult(scene->record.normal, EPSILON)), light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
 	if (hit(scene, &light_ray, &rec))

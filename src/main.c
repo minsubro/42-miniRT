@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:39 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 10:43:46 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:35:35 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,9 @@ int	main(int argc, char *argv[])
 	mlx_loop(info.mlx_info.mlx_ptr);
 	return (0);
 }
+
+// (완성 - 기능) phong-modeling, shadow
+// (완성 - 도형) sphere, plane
+
+// (미완성 - 기능) checkboard, texture
+// (미완성 - 도형) cylinder, corn
