@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 14:26:13 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:14:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	*c_ambient(char **data)
 
 	ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	ambient->ratio = check_range(atod(data[1]), 0, 1);
-	ambient->rgb = check_object_range(c_point3_by_data(data[2]), 0, 255);
+	ambient->rgb = check_object_range(c_rgb_by_data(data[2]), 0, 255);
 	ambient->rgb = v_mult(ambient->rgb, ambient->ratio);
 	return (ambient);
 }
@@ -31,7 +31,7 @@ static void	*c_camera(char **data)
 	camera->point = c_point3_by_data(data[1]);
 	camera->dir_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	camera->fov = check_range(atod(data[3]), 0, 180);
-	camera->viewport = c_viewport(camera);
+	camera->viewport = update_viewport(camera);
 	return (camera);
 }
 
@@ -42,7 +42,7 @@ static void	*c_light(char **data)
 	light = (t_light *)malloc(sizeof(t_light));
 	light->point = c_point3_by_data(data[1]);
 	light->brightness_ratio = check_range(atod(data[2]), 0, 1);
-	light->rgb = check_object_range(c_point3_by_data(data[3]), 0, 255);
+	light->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
 	return (light);
 }
 

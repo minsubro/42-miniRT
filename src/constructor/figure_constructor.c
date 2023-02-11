@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 09:34:17 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 16:58:22 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	*c_sphere(char **data)
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
 	sphere->center = c_point3_by_data(data[1]);
 	sphere->diameter = atod(data[2]);
-	sphere->rgb = check_object_range(c_point3_by_data(data[3]), 0, 255);
+	sphere->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
 	return (sphere);
 }
 
@@ -30,7 +30,7 @@ static void	*c_plane(char **data)
 	plane = (t_plane *)malloc(sizeof(t_plane));
 	plane->point = c_point3_by_data(data[1]);
 	plane->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
-	plane->rgb = check_object_range(c_point3_by_data(data[3]), 0, 255);
+	plane->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
 	return (plane);
 }
 
@@ -43,7 +43,7 @@ static void	*c_cylinder(char **data)
 	cylinder->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	cylinder->diameter = atod(data[3]);
 	cylinder->height = atod(data[4]);
-	cylinder->rgb = check_object_range(c_point3_by_data(data[5]), 0, 255);
+	cylinder->rgb = check_object_range(c_rgb_by_data(data[5]), 0, 255);
 	return (cylinder);
 }
 

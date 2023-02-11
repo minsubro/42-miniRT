@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 18:11:06 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 14:24:25 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ static t_list	*parse_file(char *file_name)
 	return (data_list);
 }
 
+t_option	init_option() //init_option 파일 따로??
+{
+	t_option	option;
+
+	option.shadow = True;
+	return (option);
+}
+
 static t_scene	init_scene(char *file_name)
 {
 	t_scene	scene;
@@ -61,6 +69,7 @@ static t_scene	init_scene(char *file_name)
 	scene.camera = NULL;
 	scene.lights = NULL;
 	scene.figures = NULL;
+	scene.option = init_option();
 	data_list = parse_file(file_name);
 	while (data_list)
 	{

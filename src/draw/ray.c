@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 18:37:47 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 14:30:17 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ t_rgb	point_light_get(t_scene *scene, t_light *light)
 	double		kd;
 
 	light_dir = v_minus(light->point, scene->record.p);
-	if (in_shadow(scene, light_dir))
-		return (c_rgb(0, 0, 0));
+	if (scene->option.shadow == True)
+	{
+		if (in_shadow(scene, light_dir))
+			return (c_rgb(0, 0, 0));
+	}
 	light_dir = v_unit(light_dir);
 	kd = fmax(v_dot(scene->record.normal, light_dir), 0.0);
 	diffuse = v_mult(light->rgb, kd);

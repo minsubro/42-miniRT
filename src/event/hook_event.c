@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 15:08:43 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:33:02 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,33 @@ void	update_fov(int keycode, t_info *info)
 		info->scene.camera->fov--;
 }
 
+void	option_control(int keycode, t_info *info)
+{
+	if (keycode == KEY_1)
+	{
+		if (info->scene.option.shadow == True)
+			info->scene.option.shadow = False;
+		else
+			info->scene.option.shadow = True;
+	}
+}
+
+void	camera_dir_control(int keycode, t_info *info)
+{
+	if (keycode == KEY_O) // x 축감소
+		info->scene.camera->dir_vector.x -= 0.1;
+	else if (keycode == KEY_P) // x 축증가
+		info->scene.camera->dir_vector.x += 0.1;
+	else if (keycode == KEY_K) // z 축감소
+		info->scene.camera->dir_vector.y += 0.1;
+	else if (keycode == KEY_L) // z 축증가
+		info->scene.camera->dir_vector.y -= 0.1;
+	else if (keycode == KEY_N) // y 축증가
+		info->scene.camera->dir_vector.z += 0.1;
+	else if (keycode == KEY_M) // y 축감소
+		info->scene.camera->dir_vector.z -= 0.1;
+}
+
 int	key_hook(int keycode, t_info *info)
 {
 	(void)info;
@@ -57,8 +84,12 @@ int	key_hook(int keycode, t_info *info)
 	}
 	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_Q || keycode == KEY_E)
 		camera_move(keycode, info);
+	if (keycode == KEY_O || keycode == KEY_P || keycode == KEY_K || keycode == KEY_L || keycode == KEY_N || keycode == KEY_M)
+		camera_dir_control(keycode, info);
 	if (keycode == KEY_UP || keycode == KEY_DOWN)
 		update_fov(keycode, info);
+	if (keycode == KEY_1) // 옵션추가예정!
+		option_control(keycode, info);
 	draw_image(info);
 	// if (validated_keycode(keycode))
 	// {

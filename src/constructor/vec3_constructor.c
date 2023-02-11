@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_constructor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:29:51 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 10:42:49 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 16:55:50 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ void	set_vec3(t_vector3 *vec3, double x, double y, double z)
 	vec3->x = x;
 	vec3->y = y;
 	vec3->z = z;
+}
+
+t_rgb	c_rgb_by_data(char *data)
+{
+	t_rgb	rgb;
+	char	**splitted_data;
+
+	splitted_data = ft_split(data, ',');
+	if (count_array(splitted_data) != 3)
+		print_error_with_exit(INVALID_ATTR);
+	rgb.x = atod(splitted_data[0]) / 255;
+	rgb.y = atod(splitted_data[1]) / 255;
+	rgb.z = atod(splitted_data[2]) / 255;
+	free_dimarr(splitted_data);
+	return (rgb);
 }
 
 t_point3	c_point3_by_data(char *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 18:40:47 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 16:11:36 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ t_vector3	c_vector3(double x, double y, double z);
 t_point3	c_point3(double x, double y, double z);
 t_rgb		c_rgb(double x, double y, double z);
 void		set_vec3(t_vector3 *vec3, double x, double y, double z);
+
+t_rgb		c_rgb_by_data(char *data);
 
 /* [constructor] viewport_constructor.c */
 t_viewport	c_viewport(t_camera *camera);

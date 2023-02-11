@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/09 19:22:23 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:24:17 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ typedef struct s_hit_record
 	double		tmin;
 	double		tmax;
 	t_bool		front_face;
-}	t_hit_record;	
+}	t_hit_record;
+
+typedef struct s_option
+{
+	t_bool	shadow;
+}	t_option;
 
 typedef struct s_scene
 {
@@ -66,6 +71,7 @@ typedef struct s_scene
 	t_list			*figures;
 	t_hit_record	record;
 	t_ray			ray;
+	t_option		option;	
 }				t_scene;
 
 typedef struct s_image
