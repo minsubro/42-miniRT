@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:21:44 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 18:30:16 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/12 18:59:03 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_rgb	get_color(t_scene *scene)
 {
 	scene->record = c_hit_record();
 	if (hit(scene, &scene->ray, &scene->record))
-		return (phong_lightting(scene));
+		return (phong_modeling(scene));
 	else
 		return (get_background_color(scene));
 }

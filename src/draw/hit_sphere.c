@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 18:38:28 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 20:49:57 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static t_bool	update_record \
 	root = (-data.b - sqrt(data.value)) / data.a;
 	if (check_min_len(data, record, &root) == False)
 		return (False);
-	record->t = root;
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->albedo = sphere->rgb;
