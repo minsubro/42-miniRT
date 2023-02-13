@@ -7,11 +7,13 @@ LFLAGS =  -L $(MLX_DIR) -l mlx -framework OpenGL -framework Appkit
 RM = rm -rf
 
 SRCS = main.c								\
+	   calculation/discriminant.c			\
 	   calculation/ray_operation.c			\
+	   calculation/set_face_normal.c		\
 	   calculation/vec3_operation.c			\
 	   calculation/vec3_operation2.c		\
 	   calculation/vec3_operation3.c		\
-	   calculation/set_face_normal.c		\
+\
 	   check/check_condition.c				\
 	   check/check_file_condition.c			\
 	   check/check_range.c					\
@@ -27,9 +29,9 @@ SRCS = main.c								\
 	   draw/color.c							\
 	   draw/ray.c							\
 	   draw/draw_scene.c					\
+	   draw/hit_cylinder.c					\
 	   draw/hit_sphere.c					\
 	   draw/hit_plane.c						\
-	   draw/hit_cylinder.c					\
 	   draw/hit.c							\
 \
 	   event/hook_event.c					\

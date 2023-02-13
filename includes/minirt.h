@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/12 18:59:03 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:36:15 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,23 @@
 # include <unistd.h>
 # include <math.h>
 
-/* src */
+/*********************** [calculation] ***********************/
+
+/* [calculation] discriminant.c */
+t_discriminant	discriminant_cylinder(t_cylinder *cylinder, t_ray *ray);
+t_discriminant	discriminant_sphere(t_sphere *sphere, t_ray *ray);
 
 /* [calculation] ray_operation.c */
 t_point3	ray_at(t_ray *ray, double t);
 t_vector3	get_reflect(t_vector3 v, t_vector3 n);
 
+/* [calculation] set_face_normal.c */
+void	set_face_normal(t_ray *ray, t_hit_record *record);
+
 /* [calculation] vec3_operation.c */
 double		v_len(t_vector3 v1);
 double		v_len_square(t_vector3 v1);
+void		set_vec3(t_vector3 *vec3, double x, double y, double z);
 
 /* [calculation] vec3_operation2.c */
 t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
@@ -57,8 +65,11 @@ t_vector3	v_unit(t_vector3 v1);
 t_vector3	v_min(t_vector3 v1, t_vector3 v2);
 void		v_plus_(t_vector3 *v1, t_vector3 v2);
 
+/*********************** [check] ***********************/
+
 /* [check] check_condition.c*/
 t_bool		check_min_len(t_discriminant data, t_hit_record *record, double *len);
+t_bool		check_hit_height(t_cylinder *cy, t_point3 p, double *hit_height);
 
 /* [check] check_file_condition.c*/
 void		check_attribute_cnt(t_object type, int cnt);
@@ -71,6 +82,7 @@ t_bool		check_file_name(char *file_name);
 double		check_range(double value, double min, double max);
 t_point3	check_object_range(t_point3 value, double min, double max);
 
+/*********************** [constructor] ***********************/
 
 /* [constructor] figure_constructor.c */
 void		*c_figures(t_object type, char **data);
@@ -89,23 +101,50 @@ t_ray		c_ray(t_camera *camera, double u, double v);
 t_ray		c_ray_direction(t_point3 origin, t_vector3 dir);
 
 /* [constructor] vector3_constructor.c */
+t_rgb		c_rgb(double x, double y, double z);
+t_rgb		c_rgb_by_data(char *data);
+t_point3	c_point3(double x, double y, double z);
 t_point3	c_point3_by_data(char *data);
 t_vector3	c_vector3(double x, double y, double z);
-t_point3	c_point3(double x, double y, double z);
-t_rgb		c_rgb(double x, double y, double z);
-void		set_vec3(t_vector3 *vec3, double x, double y, double z);
-
-t_rgb		c_rgb_by_data(char *data);
 
 /* [constructor] viewport_constructor.c */
 t_viewport	c_viewport(t_camera *camera);
 
+/*********************** [draw] ***********************/
+
 /* [draw] color.c */
+t_rgb		get_color(t_scene *scene);
+
+/* [draw] draw_scene.c */
+void		draw_scene(t_info *info);
+
+/* [draw] hit_cone.c */
+t_bool		hit_cone(t_cone *cone, t_ray *ray, t_hit_record *record);
+
+/* [draw] hit_cylinder.c */
+t_bool		hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
+
+/* [draw] hit_plane.c */
+t_bool		hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
+
+/* [draw] hit_sphere.c */
+t_bool		hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
+
+/* [draw] hit.c */
+t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
 
 /* [draw] ray.c */
 t_bool		in_shadow(t_scene *scene, t_vector3 light_dir);
 t_rgb		phong_shading(t_scene *scene, t_light *light);
 t_rgb		phong_modeling(t_scene *scene);
+
+/*********************** [event] ***********************/
+
+/* [event] hook_event.c */
+int			key_hook(int keycode, t_info *info);
+int			mouse_hook(t_info *info);
+
+/*********************** [utils] ***********************/
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -113,58 +152,33 @@ int			count_array(char **array);
 /* [utils] atod.c */
 double		atod(char *str);
 
-/* [utils] string_utils.c */
-int			ft_strcmp(char *s1, char *s2);
-
-/* error.c */
+/* [utils] error.c */
 void		print_error_with_exit(char *msg);
 
-/* free.c */
+/* [utils] free.c */
 void		free_dimarr(char **str);
 void		free_list(t_list *list);
 
-/* hook.c */
-
-
-/* list.c */
+/* [utils] list.c */
 t_list		*create_list(void *value, t_object type);
 void		list_add_back(t_list **list, t_list *new);
+
+/* [utils] random.c */
+double		maths_random_double(double min, double max);
+
+/* [utils] string_utils.c */
+int			ft_strcmp(char *s1, char *s2);
+
+/*********************** [main] ***********************/
 
 /* main.c */
 int 		main(int argc, char *argv[]);
 
-/* hook_event.c */
-int			key_hook(int keycode, t_info *info);
-int			mouse_hook(t_info *info);
-
-/* draw_scene.c */
-void		draw_scene(t_info *info);
-
-/* ray.c */
-t_point3	ray_at(t_ray *ray, double t);
-t_rgb		get_color(t_scene *scene);
-
-/* hit.c */
-t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
-
-/* hit_plane.c */
-t_bool		hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
-
-/* utils */
-int			ft_strcmp(char *s1, char *s2);
-
-/* utils */
-double		maths_random_double(double min, double max);
 
 /* test.c */
 void		print_list(t_list *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
-
-void	set_face_normal(t_ray *ray, t_hit_record *record);
-
-t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
-t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
 
 //임시
 t_viewport update_viewport(t_camera *camera);
