@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_constructor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:29:51 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/11 16:55:50 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:22:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ t_rgb	c_rgb(double x, double y, double z)
 	rgb.y = y;
 	rgb.z = z;
 	return (rgb);
-}
-
-void	set_vec3(t_vector3 *vec3, double x, double y, double z)
-{
-	vec3->x = x;
-	vec3->y = y;
-	vec3->z = z;
 }
 
 t_rgb	c_rgb_by_data(char *data)
