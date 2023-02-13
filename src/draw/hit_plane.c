@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:59:55 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 18:40:19 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 20:49:51 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, do
 	root = numrator / denominator;
 	if (root < record->tmin || record->tmax < root)
 		return (False);
-	record->t = root;
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->albedo = plane->rgb;

@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:58:53 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 11:31:21 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/12 18:15:19 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record)
 		if (figure_list->type == PLANE)
 			if (hit_plane((t_plane *)figure_list->obj, ray, record))
 				hit_anything = True;
-		// if (figure_list->type == CYLINDER)
-		// 	if (hit_cylinder((t_cylinder *)figure_list->obj, ray, record))
-		// 		hit_anything = True;
+		if (figure_list->type == CYLINDER)
+			if (hit_cylinder((t_cylinder *)figure_list->obj, ray, record))
+				hit_anything = True;
 		// else if (figure_list->type == CORN)
 		// 	if (hit_corn((t_corn *)figure_list->obj, &scene->ray, record))
 		// 		hit_anything = True;	

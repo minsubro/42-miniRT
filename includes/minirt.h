@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/11 16:11:36 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:59:03 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ t_viewport	c_viewport(t_camera *camera);
 
 /* [draw] ray.c */
 t_bool		in_shadow(t_scene *scene, t_vector3 light_dir);
-t_rgb		point_light_get(t_scene *scene, t_light *light);
-t_rgb		phong_lightting(t_scene *scene);
+t_rgb		phong_shading(t_scene *scene, t_light *light);
+t_rgb		phong_modeling(t_scene *scene);
 
 /* [utils] array_utils.c */
 int			count_array(char **array);
@@ -164,7 +164,7 @@ void		print_arr(char **str);
 void	set_face_normal(t_ray *ray, t_hit_record *record);
 
 t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
-//t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
+t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
 
 //임시
 t_viewport update_viewport(t_camera *camera);
