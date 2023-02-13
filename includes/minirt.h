@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/12 18:59:03 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/13 21:01:37 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
 
 //임시
 t_viewport update_viewport(t_camera *camera);
+
+double	degress_to_radians(double degrees);
 
 #endif
 

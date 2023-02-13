@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:30:24 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/12 19:29:43 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:30:35 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,16 @@ double	degress_to_radians(double degrees)
 t_viewport update_viewport(t_camera *camera)
 {
 	t_viewport	viewport;
-	t_vector3	at;
 	double		theta;
 	double		h;
 
-	at = v_plus(camera->point, camera->dir_vector);
 	theta = degress_to_radians(camera->fov);
 	h = tan(theta / 2);
 	viewport.height = 2.0 * h;
 	viewport.width = ASPECT_RATIO * viewport.height;
 	//viewport.focal_len = 1.0;
 
+	t_vector3	at = v_plus(camera->point, camera->dir_vector);
 	t_vector3 w = v_unit(v_minus(camera->point, at));
 	t_vector3 u = v_unit(v_cross(c_vector3(0, 1, 0), w));
 	t_vector3 v = v_cross(w, u);
