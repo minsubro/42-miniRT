@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/13 21:01:37 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:07:12 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+
+// ㅃㅐ야됨
+t_info		info;
 
 /* src */
 
@@ -160,6 +163,7 @@ double		maths_random_double(double min, double max);
 void		print_list(t_list *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
+void		print_earth(t_info *info);
 
 void	set_face_normal(t_ray *ray, t_hit_record *record);
 

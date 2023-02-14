@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:13:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/11 20:19:40 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/14 20:43:37 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef enum e_type
 	CYLINDER,
 	CORN,
 }	t_object;
+
+typedef enum e_texture_type
+{
+	NORMAL,
+	EARTH,
+	CHECKER,
+}	t_texture_type;
 
 typedef enum	e_key {
 	KEY_A = 0,

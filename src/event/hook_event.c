@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/13 21:49:31 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:16:00 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,56 @@
 void	draw_image(t_info *info) //옮겨야되요!
 {
 	mlx_clear_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr);
-	//info->scene.camera->viewport = update_viewport(info->scene.camera);
+	info->scene.camera->viewport = update_viewport(info->scene.camera);
 	draw_scene(info);
+}
+
+
+
+void	move_object(t_list *object, t_vector3 dir)
+{
+	while (object)
+	{
+		if (object->type == SPHERE)
+			v_plus_(&(((t_sphere *)(object->obj))->center), dir);
+		if (object->type == PLANE)
+			v_plus_(&(((t_plane *)(object->obj))->point), dir);
+		if (object->type == CYLINDER)
+			v_plus_(&(((t_cylinder *)(object->obj))->center), dir);
+		object = object->next;
+	}
+}
+
+void	move_light(t_list *light, t_vector3 dir)
+{
+	while (light)
+	{
+		v_plus_(&(((t_light *)(light->obj))->point), dir);
+		light = light->next;
+	}
+	
+}
+
+void	move_scene(t_info *info, t_vector3 dir)
+{
+	move_object(info->scene.figures, dir);
+	move_light(info->scene.lights, dir);
 }
 
 void	camera_move(int keycode, t_info *info)
 {
 	if (keycode == KEY_A) // x 축감소
-		info->scene.camera->point.x--;
+		move_scene(info, c_vector3(1, 0, 0));
 	else if (keycode == KEY_D) // x 축증가
-		info->scene.camera->point.x++;
+		move_scene(info, c_vector3(-1, 0, 0));
 	else if (keycode == KEY_W) // z 축감소
-		info->scene.camera->point.z--;
+		move_scene(info, c_vector3(0, 0, -1));
 	else if (keycode == KEY_S) // z 축증가
-		info->scene.camera->point.z++;
+		move_scene(info, c_vector3(0, 0, 1));
 	else if (keycode == KEY_Q) // y 축증가
-		info->scene.camera->point.y++;
+		move_scene(info, c_vector3(0, 1, 0));
 	else if (keycode == KEY_E) // y 축감소
-		info->scene.camera->point.y--;
+		move_scene(info, c_vector3(0, -1, 0));
 }
 
 void	update_fov(int keycode, t_info *info)
@@ -123,7 +155,7 @@ void	camera_rotation_x(t_info *info, double radian)
 
 	dir_x = c_vector3(cos(radian), 0, sin(radian));
 	dir_y = c_vector3(0, 1, 0);
-	dir_z = c_vector3(0, -sin(radian), cos(radian));
+	dir_z = c_vector3(-sin(radian), 0, cos(radian));
 	rotation_object(info->scene.figures, dir_x, dir_y, dir_z);
 	rotation_light(info->scene.lights, dir_x, dir_y, dir_z);
 }
@@ -143,14 +175,14 @@ void	camera_rotation_y(t_info *info, double radian)
 
 void	camera_rotate(int keycode, t_info *info)
 {
-	if (keycode == KEY_O) // x 축감소
+	if (keycode == KEY_P) // right
 		camera_rotation_x(info, -degress_to_radians(15));
-	else if (keycode == KEY_P) // x 축증가
+	else if (keycode == KEY_O) // left
 		camera_rotation_x(info, degress_to_radians(15));
-	else if (keycode == KEY_K) // y 축감소
-		camera_rotation_y(info, -degress_to_radians(15));
-	else if (keycode == KEY_L) // x 축증가
+	else if (keycode == KEY_K) // up
 		camera_rotation_y(info, degress_to_radians(15));
+	else if (keycode == KEY_L) // down
+		camera_rotation_y(info, -degress_to_radians(15));
 }
 
 int	key_hook(int keycode, t_info *info)

@@ -6,11 +6,23 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/11 16:58:22 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:15:55 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_texture_type	check_texture_type(char *type)
+{
+	if (!type)
+		return (NORMAL);
+	else if (ft_strcmp(type, "earth") == 0)
+		return (EARTH);
+	else if (ft_strcmp(type, "checker") == 0)
+		return (CHECKER);
+	else
+		return (NORMAL);
+}
 
 static void	*c_sphere(char **data)
 {
@@ -20,6 +32,7 @@ static void	*c_sphere(char **data)
 	sphere->center = c_point3_by_data(data[1]);
 	sphere->diameter = atod(data[2]);
 	sphere->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
+	sphere->texture_type = check_texture_type(data[4]);
 	return (sphere);
 }
 

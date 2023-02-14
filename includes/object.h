@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/10 18:42:52 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/14 20:43:42 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
-	t_point3	center;
-	t_rgb		rgb;
-	double		diameter;
-}				t_sphere;
+	t_point3		center;
+	t_rgb			rgb;
+	double			diameter;
+	t_texture_type	texture_type;
+}					t_sphere;
 
 typedef struct s_plane
 {

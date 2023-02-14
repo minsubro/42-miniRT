@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/11 14:24:25 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:16:32 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,26 @@ t_option	init_option() //init_option 파일 따로??
 	return (option);
 }
 
-static t_scene	init_scene(char *file_name)
+t_texture	texture_init(char *file_name, t_mlx_info *info)
+{
+	t_texture	texture;
+
+	texture.mlx_image = mlx_xpm_file_to_image(info->mlx_ptr, file_name, &texture.width, &texture.height);
+	texture.image.addr = mlx_get_data_addr(texture.mlx_image, &texture.image.bpp, &texture.image.line_len, &texture.image.endian);
+	
+	return (texture);
+}
+
+t_texture_list	init_textures(t_mlx_info *mlx_info)
+{
+	t_texture_list	texture_list;
+
+	texture_list.earth = texture_init("./texture/earthmap.xpm", mlx_info);
+	
+	return (texture_list);
+}
+
+static t_scene	init_scene(char *file_name, t_mlx_info *mlx_info)
 {
 	t_scene	scene;
 	t_list	*tmp;
@@ -70,6 +89,7 @@ static t_scene	init_scene(char *file_name)
 	scene.lights = NULL;
 	scene.figures = NULL;
 	scene.option = init_option();
+	scene.texture_list = init_textures(mlx_info);
 	data_list = parse_file(file_name);
 	while (data_list)
 	{
@@ -89,6 +109,6 @@ t_info	initializer(char *file_name)
 
 	info.mlx_info = init_mlx_info();
 	info.image = init_image(info.mlx_info);
-	info.scene = init_scene(file_name);
+	info.scene = init_scene(file_name, &info.mlx_info);
 	return (info);
 }
