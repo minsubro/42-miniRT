@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_operation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:23:13 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/10 18:24:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/15 11:53:23 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_point3	ray_at(t_ray *ray, double t)
 {
 	t_point3	at;
 
-	at = v_plus(ray->orig, v_mult(ray->dir_vector, t));
+	at = v_plus(ray->orig, v_mult(ray->dir_vector, t));               
 	return (at);
 }
 

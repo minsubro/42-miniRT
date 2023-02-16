@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/14 22:07:12 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:41:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,14 @@ t_bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
 t_viewport update_viewport(t_camera *camera);
 
 double	degress_to_radians(double degrees);
+
+// 파일생성필요해요(죄송합니다ㅠㅠ)
+void	get_sphere_uv(t_vector3 normal, t_hit_record *record);
+t_rgb	get_texture_color(t_hit_record *record, t_sphere *sphere);
+void	move_object(t_list *object, t_vector3 dir);
+void	camera_move(int keycode, t_info *info);
+void	move_scene(t_info *info, t_vector3 dir);
+
 
 #endif
 

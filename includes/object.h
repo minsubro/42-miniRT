@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/14 20:43:42 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:39:11 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct s_point3 t_point3;
 typedef struct s_point3 t_rgb;
 typedef struct s_point3 t_vector3;
+typedef	struct s_texture t_texture;
 
 struct s_point3
 {
@@ -55,19 +56,26 @@ typedef struct s_light
 	t_rgb		rgb;
 }				t_light;
 
+typedef struct s_texture_info
+{
+	t_texture_type	type;
+	t_texture		*texture;
+}					t_texture_info;
+
 typedef struct s_sphere
 {
 	t_point3		center;
 	t_rgb			rgb;
 	double			diameter;
-	t_texture_type	texture_type;
+	t_texture_info	texture_info;
 }					t_sphere;
 
 typedef struct s_plane
 {
-	t_point3	point;
-	t_vector3	normal_vector;
-	t_rgb		rgb;
+	t_point3		point;
+	t_vector3		normal_vector;
+	t_rgb			rgb;
+	t_texture_info	texture_info;
 }				t_plane;
 
 typedef struct s_cylinder

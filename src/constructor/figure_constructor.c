@@ -6,22 +6,48 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/14 22:15:55 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:43:29 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_texture_type	check_texture_type(char *type)
+t_texture_info	c_texture_info(char *type)
 {
-	if (!type)
-		return (NORMAL);
-	else if (ft_strcmp(type, "earth") == 0)
-		return (EARTH);
-	else if (ft_strcmp(type, "checker") == 0)
-		return (CHECKER);
-	else
-		return (NORMAL);
+	static t_texture	*texture[12] = {
+		NULL, 
+		NULL, 
+		&info.scene.texture_list.bump,
+		&info.scene.texture_list.earth,
+		&info.scene.texture_list.jupiter,
+		&info.scene.texture_list.mars,
+		&info.scene.texture_list.mercury,
+		&info.scene.texture_list.neptune,
+		&info.scene.texture_list.saturn,
+		&info.scene.texture_list.uranus,
+		&info.scene.texture_list.venus,
+	};
+	static const char	*type_list[12] = {"normal", "check", "bump", "earth", "jupiter",
+		 "mars", "mercury", "neptune", "saturn", "uranus", "venus"};
+	int			i;
+	t_texture_info	info;
+
+	info.type = NORMAL;
+	info.texture = NULL;
+	if (!type) {
+		return (info);
+	}
+	i = 0;
+	while (type_list[i])
+	{
+		if (strcmp(type_list[i], type) == 0)
+		{
+			info.type = i;
+			info.texture = texture[i];
+		}
+		i++;
+	}
+	return (info);
 }
 
 static void	*c_sphere(char **data)
@@ -32,7 +58,7 @@ static void	*c_sphere(char **data)
 	sphere->center = c_point3_by_data(data[1]);
 	sphere->diameter = atod(data[2]);
 	sphere->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
-	sphere->texture_type = check_texture_type(data[4]);
+	sphere->texture_info = c_texture_info(data[4]);
 	return (sphere);
 }
 
@@ -44,6 +70,7 @@ static void	*c_plane(char **data)
 	plane->point = c_point3_by_data(data[1]);
 	plane->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	plane->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
+	plane->texture_info = c_texture_info(data[4]);
 	return (plane);
 }
 

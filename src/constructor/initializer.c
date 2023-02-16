@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/14 22:16:32 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:59:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,15 @@ t_texture_list	init_textures(t_mlx_info *mlx_info)
 {
 	t_texture_list	texture_list;
 
-	texture_list.earth = texture_init("./texture/earthmap.xpm", mlx_info);
-	
+	texture_list.bump = texture_init("./texture/bump.xpm", mlx_info);
+	texture_list.earth = texture_init("./texture/earth.xpm", mlx_info);
+	texture_list.jupiter = texture_init("./texture/jupiter.xpm", mlx_info);
+	texture_list.mars = texture_init("./texture/mars.xpm", mlx_info);
+	texture_list.mercury = texture_init("./texture/mercury.xpm", mlx_info);
+	texture_list.neptune = texture_init("./texture/neptune.xpm", mlx_info);
+	texture_list.saturn = texture_init("./texture/saturn.xpm", mlx_info);
+	texture_list.uranus = texture_init("./texture/uranus.xpm", mlx_info);
+	texture_list.venus = texture_init("./texture/venus.xpm", mlx_info);
 	return (texture_list);
 }
 

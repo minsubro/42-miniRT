@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/13 12:43:46 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:29:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	convert_rgb(t_rgb rgb)
 	int	color; 
 
 	color = 0;
-	color = ((int)(255.999 * rgb.x) << 16) + ((int)(255.999 * rgb.y) << 8) + ((int)(255.999 * rgb.z));
+	color = ((int)(255.0 * rgb.x) << 16) + ((int)(255.0 * rgb.y) << 8) + ((int)(255.0 * rgb.z));
 	return (color);
 }
 

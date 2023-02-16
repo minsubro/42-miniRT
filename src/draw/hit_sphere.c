@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/14 22:45:57 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:56:10 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,50 +25,56 @@ static t_discriminant	cal_discriminant(t_sphere *sphere, t_ray *ray)
 	return (disc);
 }
 
-void	get_sphere_uv(t_vector3 point, t_hit_record *record)
+void	get_sphere_uv(t_vector3 normal, t_hit_record *record)
 {
-	double theta;
-	double phi;
+	const double	theta = atan2(normal.x, normal.z);
+	const double	radius = v_len(normal);
 
-	theta = acos(-point.y);
-	phi = atan2(-point.z, point.x) + M_PI;
-
-	record->u = phi / (2 * M_PI);
-	record->v = theta / M_PI;
+	record->u = 1.0 - ((theta / (2 * M_PI)) + 0.5);
+	record->v = 1.0 - (acos(normal.y / radius)) / M_PI;	
 }
 
-t_rgb	get_texture_color(t_hit_record *record, t_sphere *sphere)
+t_rgb	get_texture_color_sphere(t_hit_record *record, t_texture *texture)
 {
-	(void)sphere;
-	if (record->u <= 0.0)
-		record->u = 0.0;
-	if (record->u >= 1.0)
-		record->u = 1.0;
-	if (record->v <= 0.0)
-		record->v = 0.0;
-	if (record->v >= 1.0)
-		record->v = 1.0;
-	record->v = 1.0 - record->v;
-
-	t_texture *earth = &(info.scene.texture_list.earth);
-
-	int i = record->u * earth->width - 1;
-	int j = record->v * earth->height - 1;
-
-	if (i >= earth->width)
-		i = earth->width - 1;
-	if (j >= earth->height)
-		j = earth->height - 1;
-
-	printf("%d %d\n", i, j);	
+	const double v = 1.0 - record->v;
+	const double x = record->u * (texture->width - 1);
+	const double y = v * (texture->height - 1);
 	
-	double color_scale = 1.0 / 255.0;
-	char *pixle = earth->image.addr + j * earth->image.line_len + i * earth->image.bpp;
-	
-	t_rgb	rgb = c_rgb(color_scale * pixle[0], color_scale * pixle[1], color_scale * pixle[2]);
-//	printf("%f %f %f\n", rgb.x, rgb.y, rgb.z);
-	return rgb;
+	int pixel = *(int *)(texture->image.addr + (int)round(y) * texture->image.line_len + (int)round(x) * (texture->image.bpp / 8)); 
 
+	int r = ((pixel >> 16) & 255);
+	int g = ((pixel >> 8) & 255);
+	int b = ((pixel >> 0) & 255);
+	
+	//double color_scale = 1.0 / 255.0;
+	
+	t_rgb	rgb = c_rgb((double)r / 255.0, (double)g / 255.0, (double)b / 255.0);
+	return (rgb);
+
+}
+
+t_rgb	get_checker_pattern(t_hit_record *record)
+{
+	const double	u2 = floor(record->u * 12);
+	const double	v2 = floor(record->v * 12);
+	int				i;
+
+	i = u2 + v2;
+	if (i % 2 == 0)
+		return (c_rgb(0, 0, 0));
+	else
+		return (c_rgb(1, 1, 1));
+}
+
+
+t_rgb	get_sphere_color(t_sphere *sphere, t_hit_record *record)
+{
+	if (sphere->texture_info.type == NORMAL)
+		return (sphere->rgb);
+	else if (sphere->texture_info.type == CHECK)
+		return (get_checker_pattern(record));
+	else
+		return (get_texture_color_sphere(record, sphere->texture_info.texture));
 }
 
 static t_bool	update_record \
@@ -83,10 +89,12 @@ static t_bool	update_record \
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->normal = v_unit(v_divide(v_minus(record->p, sphere->center), (sphere->diameter / 2)));
-	outward_normal = v_divide(v_min(record->p, sphere->center), sphere->diameter / 2);
+	outward_normal = v_divide(v_minus(record->p, sphere->center), sphere->diameter / 2);
 	get_sphere_uv(outward_normal ,record);
-	record->albedo = get_texture_color(record, sphere);
-	set_face_normal(ray, record);
+	record->albedo = get_sphere_color(sphere, record);
+	//record->albedo = get_checker_pattern(record);
+	//record->albedo = get_texture_color(record, sphere);
+	set_face_normal(ray, record);              
 	return (True);
 }
 

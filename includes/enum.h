@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:13:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/14 20:43:37 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:05:45 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,16 @@ typedef enum e_type
 typedef enum e_texture_type
 {
 	NORMAL,
+	CHECK,
+	BUMP,
 	EARTH,
-	CHECKER,
+	JUPITER,
+	MARS,
+	MERCURY,
+	NEPTUNE,
+	SATURN,
+	URANUS,
+	VENUS
 }	t_texture_type;
 
 typedef enum	e_key {
