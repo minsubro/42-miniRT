@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:59:55 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/16 18:16:28 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:37:15 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	get_plane_uv(t_hit_record *record)
 
 t_rgb	get_checker_color_plane(t_hit_record *record)
 {
-	double	u2 = floor(record->p.x * 2);
-	double	v2 = floor(record->p.y * 2);
+	double	u2 = floor(record->p.x) + floor(record->p.z);
+	double	v2 = floor(record->p.y) + floor(record->p.z);
 	int		i;
 
 	i = u2 + v2;
