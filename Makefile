@@ -29,6 +29,7 @@ SRCS = main.c								\
 	   draw/color.c							\
 	   draw/ray.c							\
 	   draw/draw_scene.c					\
+	   draw/hit_cone.c						\
 	   draw/hit_cylinder.c					\
 	   draw/hit_sphere.c					\
 	   draw/hit_plane.c						\

@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/13 12:36:15 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/15 12:55:49 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "minirt.h"
 # include "object.h"
 # include "struct.h"
-# include "utils.h"
 
 /* library */
 # include "libft.h"
@@ -36,6 +35,7 @@
 /*********************** [calculation] ***********************/
 
 /* [calculation] discriminant.c */
+t_discriminant	discriminant_cone(t_cone *cone, t_ray *ray);
 t_discriminant	discriminant_cylinder(t_cylinder *cylinder, t_ray *ray);
 t_discriminant	discriminant_sphere(t_sphere *sphere, t_ray *ray);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/11 16:58:22 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:10:58 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ static void	*c_cylinder(char **data)
 	return (cylinder);
 }
 
-// static void	*c_cone(char **data)
-// {
-	
-// }
+static void	*c_cone(char **data)
+{
+	t_cone	*cone;
+
+	cone = (t_cone *)malloc(sizeof(t_cone));
+	cone->center = c_point3_by_data(data[1]);
+	cone->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
+	cone->diameter = atod(data[3]);
+	cone->height = atod(data[4]);
+	cone->rgb = check_object_range(c_rgb_by_data(data[5]), 0, 255);
+	return (cone);
+}
 
 void	*c_figures(t_object type, char **data)
 {
@@ -60,7 +68,7 @@ void	*c_figures(t_object type, char **data)
 		return (c_plane(data));
 	else if (type == CYLINDER)
 		return (c_cylinder(data));
-	// else
-	// 	return (c_cone(data));
+	else
+		return (c_cone(data));
 	return (NULL);
 }
