@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/16 19:08:03 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/16 20:34:45 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_bool	check_height(t_cone *cn, t_point3 p, double *hit_height)
 
 	*hit_height = v_dot(v_minus(p, cn->center), cn->normal_vector);
 	max_height = cn->height;
-	if (fabs(*hit_height) > max_height)
+	if (fabs(*hit_height) > max_height || (*hit_height) < 0)
 		return (False);
 	return (True);
 }
