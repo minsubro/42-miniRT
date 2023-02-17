@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/15 12:55:49 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/17 11:50:48 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # include <unistd.h>
 # include <math.h>
 
+// ㅃㅐ야됨
+t_info		info;
+
+/* src */
 /*********************** [calculation] ***********************/
 
 /* [calculation] discriminant.c */
@@ -179,9 +183,20 @@ int 		main(int argc, char *argv[]);
 void		print_list(t_list *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
+void		print_earth(t_info *info);
 
 //임시
 t_viewport update_viewport(t_camera *camera);
+
+double	degress_to_radians(double degrees);
+
+// 파일생성필요해요(죄송합니다ㅠㅠ)
+void	get_sphere_uv(t_vector3 normal, t_hit_record *record);
+t_rgb	get_texture_color(t_hit_record *record, t_sphere *sphere);
+void	move_object(t_list *object, t_vector3 dir);
+void	camera_move(int keycode, t_info *info);
+void	move_scene(t_info *info, t_vector3 dir);
+
 
 #endif
 

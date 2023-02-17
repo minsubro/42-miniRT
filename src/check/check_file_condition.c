@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_condition.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:12:36 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/13 13:09:11 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/17 11:54:02 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_attribute_cnt(t_object type, int cnt)
 {
-	const int	attribute_cnt[7] = {2, 3, 3, 3, 3, 5, 5};
+	const int	attribute_cnt[7] = {2, 3, 3, 4, 4, 4, 5};
 
 	if (attribute_cnt[type - 1] != cnt)
 		print_error_with_exit(INVALID_ATTR);

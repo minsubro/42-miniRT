@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_condition.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:08:40 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/13 12:12:21 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/17 11:52:31 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+
 
 t_bool	check_min_len(t_discriminant data, t_hit_record *record, double *len)
 {

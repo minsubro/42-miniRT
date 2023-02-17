@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/13 09:52:00 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/15 15:29:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	convert_rgb(t_rgb rgb)
 	int	color; 
 
 	color = 0;
-	color = ((int)(255.999 * rgb.x) << 16) + ((int)(255.999 * rgb.y) << 8) + ((int)(255.999 * rgb.z));
+	color = ((int)(255.0 * rgb.x) << 16) + ((int)(255.0 * rgb.y) << 8) + ((int)(255.0 * rgb.z));
 	return (color);
 }
 
@@ -62,6 +62,6 @@ void	draw_scene(t_info *info)
 		height--;
 	}
 	printf("camera %f %f %f\n", info->scene.camera->point.x, info->scene.camera->point.y, info->scene.camera->point.z);
-	printf("dir x : %f, y : %f, z : %f\n", info->scene.camera->dir_vector.x, info->scene.camera->dir_vector.y, info->scene.camera->dir_vector.z);
+	//printf("dir x : %f, y : %f, z : %f\n", info->scene.camera->dir_vector.x, info->scene.camera->dir_vector.y, info->scene.camera->dir_vector.z);
 	mlx_put_image_to_window(info->mlx_info.mlx_ptr, info->mlx_info.win_ptr, info->mlx_info.img_ptr, 0, 0);
 }

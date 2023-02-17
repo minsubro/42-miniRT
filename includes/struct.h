@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/11 14:24:17 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:26:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,15 @@ typedef struct s_hit_record
 	double		t;
 	double		tmin;
 	double		tmax;
+	double		u;
+	double		v;
 	t_bool		front_face;
 }	t_hit_record;
 
 typedef struct s_option
 {
 	t_bool	shadow;
-}	t_option;
-
-typedef struct s_scene
-{
-	t_ambient		*ambient;
-	t_camera		*camera;
-	t_list			*lights;
-	t_list			*figures;
-	t_hit_record	record;
-	t_ray			ray;
-	t_option		option;	
-}				t_scene;
+}			t_option;
 
 typedef struct s_image
 {
@@ -82,11 +73,48 @@ typedef struct s_image
 	int		endian;
 }			t_image;
 
+typedef	struct s_texture
+{
+	t_image image;
+	void	*mlx_image;
+	int		width;
+	int		height;
+}	t_texture;
+
+typedef struct s_texture_list
+{
+	t_texture	bump;
+	t_texture	earth;
+	t_texture	jupiter;
+	t_texture	mars;
+	t_texture	mercury;
+	t_texture	neptune;
+	t_texture	saturn;
+	t_texture	uranus;
+	t_texture	venus;
+}			t_texture_list;
+
+typedef struct s_scene
+{
+	t_ambient		*ambient;
+	t_camera		*camera;
+	t_list			*lights;
+	t_list			*figures;
+	t_texture_list	texture_list;
+	t_hit_record	record;
+	t_ray			ray;
+	t_option		option;
+}				t_scene;
+
+
+
+
+
 typedef struct s_info
 {
-	t_mlx_info	mlx_info;
-	t_image		image;
-	t_scene		scene;
-}				t_info;
+	t_mlx_info		mlx_info;
+	t_image			image;
+	t_scene			scene;
+}					t_info;
 
 #endif

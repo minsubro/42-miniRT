@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_constructor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:29:51 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/13 12:22:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/17 11:54:34 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_rgb	c_rgb_by_data(char *data)
 	splitted_data = ft_split(data, ',');
 	if (count_array(splitted_data) != 3)
 		print_error_with_exit(INVALID_ATTR);
-	rgb.x = atod(splitted_data[0]) / 255;
-	rgb.y = atod(splitted_data[1]) / 255;
-	rgb.z = atod(splitted_data[2]) / 255;
+	rgb.x = atod(splitted_data[0]) / 255.0;
+	rgb.y = atod(splitted_data[1]) / 255.0;
+	rgb.z = atod(splitted_data[2]) / 255.0;
 	free_dimarr(splitted_data);
 	return (rgb);
 }
