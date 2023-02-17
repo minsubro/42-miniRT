@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/16 17:43:29 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:42:12 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_texture_info	c_texture_info(char *type)
 	};
 	static const char	*type_list[12] = {"normal", "check", "bump", "earth", "jupiter",
 		 "mars", "mercury", "neptune", "saturn", "uranus", "venus"};
-	int			i;
+	int				i;
 	t_texture_info	info;
 
 	info.type = NORMAL;
