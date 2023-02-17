@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 11:50:48 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:44:17 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # include <math.h>
 
 // ㅃㅐ야됨
-t_info		info;
 
 /* src */
 /*********************** [calculation] ***********************/
@@ -54,6 +53,7 @@ void	set_face_normal(t_ray *ray, t_hit_record *record);
 double		v_len(t_vector3 v1);
 double		v_len_square(t_vector3 v1);
 void		set_vec3(t_vector3 *vec3, double x, double y, double z);
+t_vector3	v_minus_(t_vector3 point);
 
 /* [calculation] vec3_operation2.c */
 t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
@@ -89,16 +89,17 @@ t_point3	check_object_range(t_point3 value, double min, double max);
 /*********************** [constructor] ***********************/
 
 /* [constructor] figure_constructor.c */
-void		*c_figures(t_object type, char **data);
+void	*c_figures(t_object type, char **data, t_texture_list *texture_list);
 
 /* [constructor] hit_record_constructor.c */
 t_hit_record	c_hit_record(void);
 
 /* [constructor] initializer.c */
-t_info		initializer(char *file_name);
+//t_info		initializer(char *file_name);
+t_info			initializer(char *file_name, t_texture_list *texture_list);
 
 /* [constructor] object_constructor.c */
-void		object_constructor(t_scene *scene, char **data);
+void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_list);
 
 /* [constructor] ray_constructor.c */
 t_ray		c_ray(t_camera *camera, double u, double v);
@@ -147,6 +148,7 @@ t_rgb		phong_modeling(t_scene *scene);
 /* [event] hook_event.c */
 int			key_hook(int keycode, t_info *info);
 int			mouse_hook(t_info *info);
+void		hook_mlx_event(t_info *info);
 
 /*********************** [utils] ***********************/
 

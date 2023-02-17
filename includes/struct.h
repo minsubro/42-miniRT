@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/16 13:26:01 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:38:20 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_texture_list
 	t_texture	saturn;
 	t_texture	uranus;
 	t_texture	venus;
-}			t_texture_list;
+}				t_texture_list;
 
 typedef struct s_scene
 {

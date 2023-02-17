@@ -29,13 +29,14 @@ SRCS = main.c								\
 	   draw/color.c							\
 	   draw/ray.c							\
 	   draw/draw_scene.c					\
-	   draw/hit_cone.c						\
-	   draw/hit_cylinder.c					\
-	   draw/hit_sphere.c					\
-	   draw/hit_plane.c						\
-	   draw/hit.c							\
 \
 	   event/hook_event.c					\
+\
+	   hit/hit_cone.c						\
+	   hit/hit_cylinder.c					\
+	   hit/hit_plane.c						\
+	   hit/hit_sphere.c						\
+	   hit/hit.c							\
 \
 	   utils/array_utils.c					\
 	   utils/atod.c							\
