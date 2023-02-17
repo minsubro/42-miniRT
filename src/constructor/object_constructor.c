@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/13 13:31:11 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:54:26 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	*c_light(char **data)
 
 static t_object	find_type(char *data)
 {
-	const char *type[8] = {"A", "C", "L", "sp", "pl", "cy", "co", NULL};
+	const char *type[8] = {"A", "C", "L", "sp", "pl", "cy", "cn", NULL};
 	int	idx;
 
 	idx = 0;

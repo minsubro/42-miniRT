@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/16 15:56:10 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:54:46 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_bool	hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record)
 {
 	t_discriminant	discriminant;
 
-	discriminant = cal_discriminant(sphere, ray);
+	discriminant = discriminant_sphere(sphere, ray);
 	if (discriminant.value < EPSILON)
 		return (False);
 	return (update_record(sphere, ray, record, discriminant));
