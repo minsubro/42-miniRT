@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:13:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/16 15:05:45 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:10:11 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef enum e_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	CORN,
+	CONE,
 }	t_object;
 
 typedef enum e_texture_type

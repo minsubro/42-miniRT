@@ -6,26 +6,26 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 11:54:11 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:48:24 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_texture_info	c_texture_info(char *type)
+t_texture_info	c_texture_info(char *type, t_texture_list *texture_list)
 {
-	static t_texture	*texture[12] = {
+	const t_texture	*texture[12] = {
 		NULL, 
 		NULL, 
-		&info.scene.texture_list.bump,
-		&info.scene.texture_list.earth,
-		&info.scene.texture_list.jupiter,
-		&info.scene.texture_list.mars,
-		&info.scene.texture_list.mercury,
-		&info.scene.texture_list.neptune,
-		&info.scene.texture_list.saturn,
-		&info.scene.texture_list.uranus,
-		&info.scene.texture_list.venus,
+		&(texture_list->bump),
+		&(texture_list->earth),
+		&(texture_list->jupiter),
+		&(texture_list->mars),
+		&(texture_list->mercury),
+		&(texture_list->neptune),
+		&(texture_list->saturn),
+		&(texture_list->uranus),
+		&(texture_list->venus)
 	};
 	static const char	*type_list[12] = {"normal", "check", "bump", "earth", "jupiter",
 		 "mars", "mercury", "neptune", "saturn", "uranus", "venus"};
@@ -43,14 +43,14 @@ t_texture_info	c_texture_info(char *type)
 		if (strcmp(type_list[i], type) == 0)
 		{
 			info.type = i;
-			info.texture = texture[i];
+			info.texture = (t_texture *)texture[i];
 		}
 		i++;
 	}
 	return (info);
 }
 
-static void	*c_sphere(char **data)
+static void	*c_sphere(char **data, t_texture_list *texture_list)
 {
 	t_sphere	*sphere;
 
@@ -58,11 +58,11 @@ static void	*c_sphere(char **data)
 	sphere->center = c_point3_by_data(data[1]);
 	sphere->diameter = atod(data[2]);
 	sphere->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
-	sphere->texture_info = c_texture_info(data[4]);
+	sphere->texture_info = c_texture_info(data[4], texture_list);
 	return (sphere);
 }
 
-static void	*c_plane(char **data)
+static void	*c_plane(char **data, t_texture_list *texture_list)
 {
 	t_plane	*plane;
 
@@ -70,12 +70,13 @@ static void	*c_plane(char **data)
 	plane->point = c_point3_by_data(data[1]);
 	plane->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	plane->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
-	plane->texture_info = c_texture_info(data[4]);
+	plane->texture_info = c_texture_info(data[4], texture_list);
 	return (plane);
 }
 
-static void	*c_cylinder(char **data)
+static void	*c_cylinder(char **data, t_texture_list *texture_list)
 {
+	(void)texture_list;
 	t_cylinder	*cylinder;
 
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
@@ -87,8 +88,9 @@ static void	*c_cylinder(char **data)
 	return (cylinder);
 }
 
-static void	*c_cone(char **data)
+static void	*c_cone(char **data, t_texture_list *texture_list)
 {
+	(void)texture_list;
 	t_cone	*cone;
 
 	cone = (t_cone *)malloc(sizeof(t_cone));
@@ -100,15 +102,15 @@ static void	*c_cone(char **data)
 	return (cone);
 }
 
-void	*c_figures(t_object type, char **data)
+void	*c_figures(t_object type, char **data, t_texture_list *texture_list)
 {
 	if (type == SPHERE)
-		return (c_sphere(data));
+		return (c_sphere(data, texture_list));
 	else if (type == PLANE)
-		return (c_plane(data));
+		return (c_plane(data, texture_list));
 	else if (type == CYLINDER)
-		return (c_cylinder(data));
+		return (c_cylinder(data, texture_list));
 	else
-		return (c_cone(data));
+		return (c_cone(data, texture_list));
 	return (NULL);
 }

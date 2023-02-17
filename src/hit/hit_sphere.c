@@ -6,24 +6,11 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 11:54:46 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:46:47 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-static t_discriminant	cal_discriminant(t_sphere *sphere, t_ray *ray)
-{
-	t_vector3		oc;
-	t_discriminant	disc;
-	
-	oc = v_minus(ray->orig, sphere->center);
-	disc.a = v_len_square(ray->dir_vector);
-	disc.b = v_dot(oc, ray->dir_vector);
-	disc.c = v_len_square(oc) - pow((sphere->diameter / 2), 2);
-	disc.value = pow(disc.b, 2) - disc.a * disc.c;
-	return (disc);
-}
 
 void	get_sphere_uv(t_vector3 normal, t_hit_record *record)
 {
@@ -41,13 +28,9 @@ t_rgb	get_texture_color_sphere(t_hit_record *record, t_texture *texture)
 	const double y = v * (texture->height - 1);
 	
 	int pixel = *(int *)(texture->image.addr + (int)round(y) * texture->image.line_len + (int)round(x) * (texture->image.bpp / 8)); 
-
 	int r = ((pixel >> 16) & 255);
 	int g = ((pixel >> 8) & 255);
 	int b = ((pixel >> 0) & 255);
-	
-	//double color_scale = 1.0 / 255.0;
-	
 	t_rgb	rgb = c_rgb((double)r / 255.0, (double)g / 255.0, (double)b / 255.0);
 	return (rgb);
 
@@ -92,8 +75,6 @@ static t_bool	update_record \
 	outward_normal = v_divide(v_minus(record->p, sphere->center), sphere->diameter / 2);
 	get_sphere_uv(outward_normal ,record);
 	record->albedo = get_sphere_color(sphere, record);
-	//record->albedo = get_checker_pattern(record);
-	//record->albedo = get_texture_color(record, sphere);
 	set_face_normal(ray, record);              
 	return (True);
 }

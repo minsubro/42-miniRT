@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/16 15:59:08 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:46:20 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_option	init_option() //init_option 파일 따로??
 	return (option);
 }
 
-t_texture	texture_init(char *file_name, t_mlx_info *info)
+static t_texture	get_texture(char *file_name, t_mlx_info *info)
 {
 	t_texture	texture;
 
@@ -68,23 +68,20 @@ t_texture	texture_init(char *file_name, t_mlx_info *info)
 	return (texture);
 }
 
-t_texture_list	init_textures(t_mlx_info *mlx_info)
+void	init_textures(t_texture_list *texture_list, t_mlx_info *mlx_info)
 {
-	t_texture_list	texture_list;
-
-	texture_list.bump = texture_init("./texture/bump.xpm", mlx_info);
-	texture_list.earth = texture_init("./texture/earth.xpm", mlx_info);
-	texture_list.jupiter = texture_init("./texture/jupiter.xpm", mlx_info);
-	texture_list.mars = texture_init("./texture/mars.xpm", mlx_info);
-	texture_list.mercury = texture_init("./texture/mercury.xpm", mlx_info);
-	texture_list.neptune = texture_init("./texture/neptune.xpm", mlx_info);
-	texture_list.saturn = texture_init("./texture/saturn.xpm", mlx_info);
-	texture_list.uranus = texture_init("./texture/uranus.xpm", mlx_info);
-	texture_list.venus = texture_init("./texture/venus.xpm", mlx_info);
-	return (texture_list);
+	texture_list->bump = get_texture("./texture/bump.xpm", mlx_info);
+	texture_list->earth = get_texture("./texture/earth.xpm", mlx_info);
+	texture_list->jupiter = get_texture("./texture/jupiter.xpm", mlx_info);
+	texture_list->mars = get_texture("./texture/mars.xpm", mlx_info);
+	texture_list->mercury = get_texture("./texture/mercury.xpm", mlx_info);
+	texture_list->neptune = get_texture("./texture/neptune.xpm", mlx_info);
+	texture_list->saturn = get_texture("./texture/saturn.xpm", mlx_info);
+	texture_list->uranus = get_texture("./texture/uranus.xpm", mlx_info);
+	texture_list->venus = get_texture("./texture/venus.xpm", mlx_info);
 }
 
-static t_scene	init_scene(char *file_name, t_mlx_info *mlx_info)
+static t_scene	init_scene(char *file_name, t_texture_list *texture_list)
 {
 	t_scene	scene;
 	t_list	*tmp;
@@ -96,26 +93,29 @@ static t_scene	init_scene(char *file_name, t_mlx_info *mlx_info)
 	scene.lights = NULL;
 	scene.figures = NULL;
 	scene.option = init_option();
-	scene.texture_list = init_textures(mlx_info);
 	data_list = parse_file(file_name);
 	while (data_list)
 	{
 		splited_data = ft_split((char *)data_list->obj, ' ');
-		object_constructor(&scene, splited_data);
+		object_constructor(&scene, splited_data, texture_list);
 		tmp = data_list;
 		data_list = data_list->next;
 		free_list(tmp);
 		free_dimarr(splited_data);
 	}
+	
 	return (scene);
 }
 
-t_info	initializer(char *file_name)
+
+
+t_info	initializer(char *file_name, t_texture_list *texture_list)
 {
 	t_info info;
 
 	info.mlx_info = init_mlx_info();
+	init_textures(texture_list, &info.mlx_info);
 	info.image = init_image(info.mlx_info);
-	info.scene = init_scene(file_name, &info.mlx_info);
+	info.scene = init_scene(file_name, texture_list);
 	return (info);
 }

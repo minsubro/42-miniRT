@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/14 13:16:00 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:19:49 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	draw_image(t_info *info) //옮겨야되요!
 	draw_scene(info);
 }
 
-
+void	hook_mlx_event(t_info *info)
+{
+	mlx_hook(info->mlx_info.win_ptr, HOOK_KEY_EVENT, 0, key_hook, info);
+	mlx_hook(info->mlx_info.win_ptr, HOOK_MOUSE_EVENT, 0, mouse_hook, info);
+}
 
 void	move_object(t_list *object, t_vector3 dir)
 {
@@ -32,6 +36,8 @@ void	move_object(t_list *object, t_vector3 dir)
 			v_plus_(&(((t_plane *)(object->obj))->point), dir);
 		if (object->type == CYLINDER)
 			v_plus_(&(((t_cylinder *)(object->obj))->center), dir);
+		if (object->type == CONE)
+			v_plus_(&(((t_cone *)(object->obj))->center), dir);
 		object = object->next;
 	}
 }
@@ -43,7 +49,6 @@ void	move_light(t_list *light, t_vector3 dir)
 		v_plus_(&(((t_light *)(light->obj))->point), dir);
 		light = light->next;
 	}
-	
 }
 
 void	move_scene(t_info *info, t_vector3 dir)
@@ -116,6 +121,16 @@ void	cylinder_rotation(t_cylinder *cylinder, t_vector3 dir_x, t_vector3 dir_y, t
 		vector_value(v_mult_(dir_z, cylinder->center)));
 }
 
+void	cone_rotation(t_cone *cone, t_vector3 dir_x, t_vector3 dir_y, t_vector3 dir_z)
+{
+	cone->center = c_vector3(vector_value(v_mult_(dir_x, cone->center)),
+		vector_value(v_mult_(dir_y, cone->center)),
+		vector_value(v_mult_(dir_z, cone->center)));
+	cone->normal_vector = c_vector3(vector_value(v_mult_(dir_x, cone->normal_vector)),
+		vector_value(v_mult_(dir_y, cone->normal_vector)),
+		vector_value(v_mult_(dir_z, cone->normal_vector)));
+}
+
 void	rotation_object(t_list *obj_list, t_vector3 dir_x, t_vector3 dir_y, t_vector3 dir_z)
 {
 	while (obj_list)
@@ -126,6 +141,8 @@ void	rotation_object(t_list *obj_list, t_vector3 dir_x, t_vector3 dir_y, t_vecto
 			plane_rotation((t_plane *)obj_list->obj, dir_x, dir_y, dir_z);
 		else if (obj_list->type == CYLINDER)
 			cylinder_rotation((t_cylinder *)obj_list->obj, dir_x, dir_y, dir_z);
+		else
+			cone_rotation((t_cone *)obj_list->obj, dir_x, dir_y, dir_z);
 		obj_list = obj_list->next;
 	}
 }
@@ -144,7 +161,6 @@ void	rotation_light(t_list *light, t_vector3 dir_x, t_vector3 dir_y, t_vector3 d
 		light_rotation((t_light *)light->obj, dir_x, dir_y, dir_z);
 		light = light->next;
 	}
-	
 }
 
 void	camera_rotation_x(t_info *info, double radian)
@@ -201,10 +217,6 @@ int	key_hook(int keycode, t_info *info)
 	if (keycode == KEY_1) // 옵션추가예정!
 		option_control(keycode, info);
 	draw_image(info);
-	// if (validated_keycode(keycode))
-	// {
-
-	// }
 	return (0);
 }
 
