@@ -6,11 +6,12 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/16 20:34:45 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:35:12 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
 static t_bool	check_height(t_cone *cn, t_point3 p, double *hit_height)
 {
 	double	max_height;

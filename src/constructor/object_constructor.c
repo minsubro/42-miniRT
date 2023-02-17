@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 12:28:20 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:28:24 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	*c_light(char **data)
 
 static t_object	find_type(char *data)
 {
-	const char *type[8] = {"A", "C", "L", "sp", "pl", "cy", "cn", NULL};
-	int	idx;
+	const char	*type[8] = {"A", "C", "L", "sp", "pl", "cy", "cn", NULL};
+	int			idx;
 
 	idx = 0;
 	while (type[idx])
@@ -62,7 +62,7 @@ static t_object	find_type(char *data)
 	return (0);
 }
 
-void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_list)
+void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_lst)
 {
 	t_object	type;
 
@@ -83,6 +83,5 @@ void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_lis
 	else if (type == LIGHT)
 		list_add_back(&scene->lights, create_list(c_light(data), type));
 	else
-		list_add_back(&scene->figures, create_list(c_figures(type, data, texture_list), type));
+		list_add_back(&scene->figures, create_list(c_figures(type, data, texture_lst), type));
 }
-

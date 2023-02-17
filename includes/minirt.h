@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 14:44:17 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:30:45 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "struct.h"
 
 /* library */
-# include "libft.h"
 # include "mlx.h"
+# include "libft.h"
 
 /* extern library */
 # include <fcntl.h>
@@ -37,37 +37,43 @@
 /* src */
 /*********************** [calculation] ***********************/
 
+/* [calculation] degree_to_radian.c */
+double			degree_to_radian(double degree);
+
 /* [calculation] discriminant.c */
 t_discriminant	discriminant_cone(t_cone *cone, t_ray *ray);
 t_discriminant	discriminant_cylinder(t_cylinder *cylinder, t_ray *ray);
 t_discriminant	discriminant_sphere(t_sphere *sphere, t_ray *ray);
 
 /* [calculation] ray_operation.c */
-t_point3	ray_at(t_ray *ray, double t);
-t_vector3	get_reflect(t_vector3 v, t_vector3 n);
+t_point3		ray_at(t_ray *ray, double t);
+t_vector3		get_reflect(t_vector3 v, t_vector3 n);
 
 /* [calculation] set_face_normal.c */
-void	set_face_normal(t_ray *ray, t_hit_record *record);
+void			set_face_normal(t_ray *ray, t_hit_record *record);
 
 /* [calculation] vec3_operation.c */
 double		v_len(t_vector3 v1);
 double		v_len_square(t_vector3 v1);
+double		vector_value(t_vector3 v1);
 void		set_vec3(t_vector3 *vec3, double x, double y, double z);
-t_vector3	v_minus_(t_vector3 point);
 
 /* [calculation] vec3_operation2.c */
 t_vector3	v_plus(t_vector3 v1, t_vector3 v2);
+void		v_plus_(t_vector3 *v1, t_vector3 v2);
 t_vector3	v_minus(t_vector3 v1, t_vector3 v2);
+t_vector3	v_minus_(t_vector3 point);
+
+/* [calculation] vec3_operation3.c */
 t_vector3	v_mult(t_vector3 v1, double s);
 t_vector3	v_mult_(t_vector3 v1, t_vector3 v2);
 t_vector3	v_divide(t_vector3 v1, double s);
 
-/* [calculation] vec3_operation3.c */
+/* [calculation] vec3_operation4.c */
 double		v_dot(t_vector3 v1, t_vector3 v2);
 t_vector3	v_cross(t_vector3 v1, t_vector3 v2);
 t_vector3	v_unit(t_vector3 v1);
 t_vector3	v_min(t_vector3 v1, t_vector3 v2);
-void		v_plus_(t_vector3 *v1, t_vector3 v2);
 
 /*********************** [check] ***********************/
 
@@ -94,16 +100,15 @@ void	*c_figures(t_object type, char **data, t_texture_list *texture_list);
 /* [constructor] hit_record_constructor.c */
 t_hit_record	c_hit_record(void);
 
-/* [constructor] initializer.c */
-//t_info		initializer(char *file_name);
-t_info			initializer(char *file_name, t_texture_list *texture_list);
-
 /* [constructor] object_constructor.c */
-void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_list);
+void			object_constructor(t_scene *scene, char **data, t_texture_list *texture_list);
 
 /* [constructor] ray_constructor.c */
 t_ray		c_ray(t_camera *camera, double u, double v);
 t_ray		c_ray_direction(t_point3 origin, t_vector3 dir);
+
+/* [constructor] texture_info_constructor.c */
+t_texture_info	c_texture_info(char *type, t_texture_list *texture_list);
 
 /* [constructor] vector3_constructor.c */
 t_rgb		c_rgb(double x, double y, double z);
@@ -119,36 +124,76 @@ t_viewport	c_viewport(t_camera *camera);
 
 /* [draw] color.c */
 t_rgb		get_color(t_scene *scene);
+int			convert_rgb(t_rgb rgb);
+
+/* [draw] draw_image.c */
+void		draw_image(t_info *info);
 
 /* [draw] draw_scene.c */
 void		draw_scene(t_info *info);
 
-/* [draw] hit_cone.c */
-t_bool		hit_cone(t_cone *cone, t_ray *ray, t_hit_record *record);
-
-/* [draw] hit_cylinder.c */
-t_bool		hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
-
-/* [draw] hit_plane.c */
-t_bool		hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
-
-/* [draw] hit_sphere.c */
-t_bool		hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
-
-/* [draw] hit.c */
-t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
-
 /* [draw] ray.c */
-t_bool		in_shadow(t_scene *scene, t_vector3 light_dir);
-t_rgb		phong_shading(t_scene *scene, t_light *light);
 t_rgb		phong_modeling(t_scene *scene);
 
+
 /*********************** [event] ***********************/
+
+/* [event] move_camera.c */
+void		move_camera(int keycode, t_info *info);
+
+/* [event] rotate_camera.c */
+void		rotate_camera(int keycode, t_info *info);
+
+/* [event] rotate_figure.c */
+void		rotate_figure(t_list *obj_list, t_vector3 dir_x, t_vector3 dir_y, t_vector3 dir_z);
 
 /* [event] hook_event.c */
 int			key_hook(int keycode, t_info *info);
 int			mouse_hook(t_info *info);
 void		hook_mlx_event(t_info *info);
+
+/* [event] rotate_light.c */
+void	rotate_light(t_list *light, t_vector3 dir_x, t_vector3 dir_y, t_vector3 dir_z);
+
+/* [event] move_scene.c */
+void	move_scene(t_info *info, t_vector3 dir);
+
+/* [event] move_object.c */
+void	move_figure(t_list *object, t_vector3 dir);
+void	move_light(t_list *light, t_vector3 dir);
+
+/* [event] option_control.c */
+void	option_control(int keycode, t_info *info);
+
+/* [event] update_fov.c */
+void	update_fov(int keycode, t_info *info);
+
+/*********************** [hit] ***********************/
+/* [hit] hit_cone.c */
+t_bool		hit_cone(t_cone *cone, t_ray *ray, t_hit_record *record);
+
+/* [hit] hit_cylinder.c */
+t_bool		hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit_record *record);
+
+/* [hit] hit_plane.c */
+t_bool		hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
+
+/* [hit] hit_sphere.c */
+t_bool		hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
+
+/* [hit] hit.c */
+t_bool		hit(t_scene *scene, t_ray *ray, t_hit_record *record);
+
+/*********************** [initializer] ***********************/
+
+/* [initializer] init_scene.c */
+t_scene		init_scene(char *file_name, t_texture_list *texture_list);
+
+/* [initializer] init_scene.c */
+void		init_textures(t_texture_list *texture_list, t_mlx_info *mlx_info);
+
+/* [initializer] initializer.c */
+t_info		initializer(char *file_name, t_texture_list *texture_list);
 
 /*********************** [utils] ***********************/
 
@@ -185,19 +230,12 @@ int 		main(int argc, char *argv[]);
 void		print_list(t_list *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
-void		print_earth(t_info *info);
 
 //임시
 t_viewport update_viewport(t_camera *camera);
 
-double	degress_to_radians(double degrees);
-
 // 파일생성필요해요(죄송합니다ㅠㅠ)
 void	get_sphere_uv(t_vector3 normal, t_hit_record *record);
-t_rgb	get_texture_color(t_hit_record *record, t_sphere *sphere);
-void	move_object(t_list *object, t_vector3 dir);
-void	camera_move(int keycode, t_info *info);
-void	move_scene(t_info *info, t_vector3 dir);
 
 
 #endif

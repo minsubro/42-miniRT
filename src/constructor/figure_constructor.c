@@ -3,52 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 14:48:24 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:43:31 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_texture_info	c_texture_info(char *type, t_texture_list *texture_list)
-{
-	const t_texture	*texture[12] = {
-		NULL, 
-		NULL, 
-		&(texture_list->bump),
-		&(texture_list->earth),
-		&(texture_list->jupiter),
-		&(texture_list->mars),
-		&(texture_list->mercury),
-		&(texture_list->neptune),
-		&(texture_list->saturn),
-		&(texture_list->uranus),
-		&(texture_list->venus)
-	};
-	static const char	*type_list[12] = {"normal", "check", "bump", "earth", "jupiter",
-		 "mars", "mercury", "neptune", "saturn", "uranus", "venus"};
-	int				i;
-	t_texture_info	info;
-
-	info.type = NORMAL;
-	info.texture = NULL;
-	if (!type) {
-		return (info);
-	}
-	i = 0;
-	while (type_list[i])
-	{
-		if (strcmp(type_list[i], type) == 0)
-		{
-			info.type = i;
-			info.texture = (t_texture *)texture[i];
-		}
-		i++;
-	}
-	return (info);
-}
 
 static void	*c_sphere(char **data, t_texture_list *texture_list)
 {

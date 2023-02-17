@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:21:44 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 12:20:43 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 16:18:07 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,11 @@ t_rgb	get_color(t_scene *scene)
 		return (get_background_color(scene));
 }
 
+int	convert_rgb(t_rgb rgb)
+{
+	int	color;
+
+	color = ((int)(255.0 * rgb.x) << 16) + ((int)(255.0 * rgb.y) << 8) + \
+				((int)(255.0 * rgb.z));
+	return (color);
+}
