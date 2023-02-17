@@ -6,45 +6,61 @@ LFLAGS =  -L $(MLX_DIR) -l mlx -framework OpenGL -framework Appkit
 
 RM = rm -rf
 
-SRCS = main.c								\
-	   calculation/discriminant.c			\
-	   calculation/ray_operation.c			\
-	   calculation/set_face_normal.c		\
-	   calculation/vec3_operation.c			\
-	   calculation/vec3_operation2.c		\
-	   calculation/vec3_operation3.c		\
+SRCS = main.c									\
 \
-	   check/check_condition.c				\
-	   check/check_file_condition.c			\
-	   check/check_range.c					\
+	   calculation/discriminant.c				\
+	   calculation/ray_operation.c				\
+	   calculation/set_face_normal.c			\
+	   calculation/degree_to_radian.c			\
+	   calculation/vec3_operation.c				\
+	   calculation/vec3_operation2.c			\
+	   calculation/vec3_operation3.c			\
+	   calculation/vec3_operation4.c			\
 \
-	   constructor/figure_constructor.c		\
-	   constructor/object_constructor.c		\
-	   constructor/ray_construcotr.c		\
-	   constructor/vec3_constructor.c		\
-	   constructor/viewport_construcotr.c	\
-	   constructor/hit_record_constructor.c	\
-	   constructor/initializer.c			\
+	   check/check_condition.c					\
+	   check/check_file_condition.c				\
+	   check/check_range.c						\
 \
-	   draw/color.c							\
-	   draw/ray.c							\
-	   draw/draw_scene.c					\
+	   constructor/figure_constructor.c			\
+	   constructor/object_constructor.c			\
+	   constructor/ray_construcotr.c			\
+	   constructor/texture_info_constructor.c	\
+	   constructor/vec3_constructor.c			\
+	   constructor/viewport_construcotr.c		\
+	   constructor/hit_record_constructor.c		\
 \
-	   event/hook_event.c					\
+	   draw/color.c								\
+	   draw/ray.c								\
+	   draw/draw_scene.c						\
+	   draw/draw_image.c						\
 \
-	   hit/hit_cone.c						\
-	   hit/hit_cylinder.c					\
-	   hit/hit_plane.c						\
-	   hit/hit_sphere.c						\
-	   hit/hit.c							\
+	   event/move_camera.c						\
+	   event/rotate_camera.c					\
+	   event/rotate_figure.c					\
+	   event/hook_event.c						\
+	   event/rotate_light.c						\
+	   event/move_scene.c						\
+	   event/move_object.c						\
+	   event/option_control.c					\
+	   event/update_fov.c						\
 \
-	   utils/array_utils.c					\
-	   utils/atod.c							\
-	   utils/error.c						\
-	   utils/free.c							\
-	   utils/list.c							\
-	   utils/string_utils.c					\
-	   utils/random.c						\
+	   hit/hit_cone.c							\
+	   hit/hit_cylinder.c						\
+	   hit/hit_plane.c							\
+	   hit/hit_sphere.c							\
+	   hit/hit.c								\
+\
+	   initializer/init_scene.c					\
+	   initializer/init_textures.c				\
+	   initializer/initializer.c				\
+\
+	   utils/array_utils.c						\
+	   utils/atod.c								\
+	   utils/error.c							\
+	   utils/free.c								\
+	   utils/list.c								\
+	   utils/string_utils.c						\
+	   utils/random.c							\
 	   test.c								
 
 SRCS_DIR = src/

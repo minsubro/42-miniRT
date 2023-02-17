@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/16 17:04:01 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:36:17 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
+static t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
 {
 	t_hit_record	rec;
 	t_ray			light_ray;
 	double			light_len;
 
 	light_len = v_len(light_dir);
-	light_ray = c_ray_direction(v_plus(scene->record.p, v_mult(scene->record.normal, EPSILON)), light_dir);
+	light_ray = c_ray_direction(v_plus(scene->record.p, \
+							v_mult(scene->record.normal, EPSILON)), light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
 	if (hit(scene, &light_ray, &rec))
@@ -27,7 +28,7 @@ t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
 	return (False);
 }
 
-t_rgb	get_diffuse_rgb(t_scene *scene, t_light *light)
+static t_rgb	get_diffuse(t_scene *scene, t_light *light)
 {
 	t_vector3	light_dir;
 	double		kd;
@@ -36,20 +37,20 @@ t_rgb	get_diffuse_rgb(t_scene *scene, t_light *light)
 	if (scene->option.shadow == True)
 	{
 		if (in_shadow(scene, light_dir) == True)
-			return (c_rgb(0,0,0));
+			return (c_rgb(0, 0, 0));
 	}
 	light_dir = v_unit(light_dir);
 	kd = fmax(v_dot(scene->record.normal, light_dir), 0.0);
 	return (v_mult(light->rgb, kd));
 }
 
-t_rgb	get_specular_rgb(t_scene *scene, t_light *light)
+static t_rgb	get_specular(t_scene *scene, t_light *light)
 {
 	t_vector3	view_dir;
 	t_vector3	light_dir;
 	t_vector3	reflect_dir;
 	double		spec;
-	
+
 	view_dir = v_unit(v_mult(scene->ray.dir_vector, -1));
 	light_dir = v_unit(v_minus(light->point, scene->record.p));
 	reflect_dir = get_reflect(v_mult(light_dir, -1), scene->record.normal);
@@ -57,14 +58,14 @@ t_rgb	get_specular_rgb(t_scene *scene, t_light *light)
 	return (v_mult(v_mult(light->rgb, KS), spec));
 }
 
-t_rgb	phong_shading(t_scene *scene, t_light *light)
+static t_rgb	phong_shading(t_scene *scene, t_light *light)
 {
 	t_rgb		diffuse;
 	t_rgb		specular;
 	double		brightness;
 
-	diffuse = get_diffuse_rgb(scene, light);
-	specular = get_specular_rgb(scene, light);
+	diffuse = get_diffuse(scene, light);
+	specular = get_specular(scene, light);
 	brightness = light->brightness_ratio * LUMEN;
 	return (v_mult(v_plus(v_plus(scene->ambient->rgb, diffuse), specular), brightness));
 }
