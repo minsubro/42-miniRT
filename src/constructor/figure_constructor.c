@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 15:43:31 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 19:22:30 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	*c_cylinder(char **data, t_texture_list *texture_list)
 	cylinder->diameter = atod(data[3]);
 	cylinder->height = atod(data[4]);
 	cylinder->rgb = check_object_range(c_rgb_by_data(data[5]), 0, 255);
+	cylinder->texture_info = c_texture_info(data[6], texture_list);
 	return (cylinder);
 }
 

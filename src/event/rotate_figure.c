@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_figure.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:18:04 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 21:35:19 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:37:20 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static void	cylinder_rotation(t_cylinder *cylinder, t_vector3 dir_x, t_vector3 d
 	cylinder->center = c_vector3(vector_value(v_mult_(dir_x, cylinder->center)),
 		vector_value(v_mult_(dir_y, cylinder->center)),
 		vector_value(v_mult_(dir_z, cylinder->center)));
+	cylinder->normal_vector = c_vector3(vector_value(v_mult_(dir_x, cylinder->normal_vector)),
+		vector_value(v_mult_(dir_y, cylinder->normal_vector)),
+		vector_value(v_mult_(dir_z, cylinder->normal_vector)));
 }
 
 static void	cone_rotation(t_cone *cone, t_vector3 dir_x, t_vector3 dir_y, t_vector3 dir_z)
