@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 14:38:20 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/18 16:53:04 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "minirt.h"
 #include "object.h"
+
+#include <pthread.h>
 
 typedef struct s_viewport t_viewport;
 typedef struct s_list t_list;
@@ -106,15 +108,17 @@ typedef struct s_scene
 	t_option		option;
 }				t_scene;
 
-
-
-
-
 typedef struct s_info
 {
 	t_mlx_info		mlx_info;
 	t_image			image;
 	t_scene			scene;
 }					t_info;
+
+typedef struct s_thread_data
+{
+	t_info			info;
+	int				height;
+}				t_thread_data;
 
 #endif

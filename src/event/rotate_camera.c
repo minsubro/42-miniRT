@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:31:01 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 21:34:54 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 15:56:41 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	camera_rotation_y(t_info *info, double radian)
 void	rotate_camera(int keycode, t_info *info)
 {
 	if (keycode == KEY_P)
-		camera_rotation_x(info, -degress_to_radians(15));
+		camera_rotation_x(info, -degree_to_radian(15));
 	else if (keycode == KEY_O)
-		camera_rotation_x(info, degress_to_radians(15));
+		camera_rotation_x(info, degree_to_radian(15));
 	else if (keycode == KEY_K)
-		camera_rotation_y(info, degress_to_radians(15));
+		camera_rotation_y(info, degree_to_radian(15));
 	else if (keycode == KEY_L)
-		camera_rotation_y(info, -degress_to_radians(15));
+		camera_rotation_y(info, -degree_to_radian(15));
 }

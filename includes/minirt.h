@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 21:30:45 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:11:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 
 /* extern library */
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 # include <unistd.h>
-# include <math.h>
 
-// ㅃㅐ야됨
 
 /* src */
 /*********************** [calculation] ***********************/
@@ -126,8 +126,8 @@ t_viewport	c_viewport(t_camera *camera);
 t_rgb		get_color(t_scene *scene);
 int			convert_rgb(t_rgb rgb);
 
-/* [draw] draw_image.c */
-void		draw_image(t_info *info);
+/* [draw] redraw_scene.c */
+void		redraw_scene(t_info *info);
 
 /* [draw] draw_scene.c */
 void		draw_scene(t_info *info);

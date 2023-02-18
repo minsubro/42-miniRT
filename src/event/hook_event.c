@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 21:35:36 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 02:11:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key_hook(int keycode, t_info *info)
 		update_fov(keycode, info);
 	if (keycode == KEY_1) // 옵션추가예정!
 		option_control(keycode, info);
-	draw_image(info);
+	redraw_scene(info);
 	return (0);
 }
 
