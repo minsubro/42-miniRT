@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:30:24 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 21:26:55 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/18 15:56:41 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_viewport update_viewport(t_camera *camera)
 	double		theta;
 	double		h;
 
-	theta = degress_to_radians(camera->fov);
+	theta = degree_to_radian(camera->fov);
 	h = tan(theta / 2);
 	viewport.height = 2.0 * h;
 	viewport.width = ASPECT_RATIO * viewport.height;

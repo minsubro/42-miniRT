@@ -32,7 +32,7 @@ SRCS = main.c									\
 	   draw/color.c								\
 	   draw/ray.c								\
 	   draw/draw_scene.c						\
-	   draw/draw_image.c						\
+	   draw/redraw_scene.c						\
 \
 	   event/move_camera.c						\
 	   event/rotate_camera.c					\
