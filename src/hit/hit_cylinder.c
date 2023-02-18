@@ -6,24 +6,21 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:29 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/18 21:40:33 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/18 22:00:21 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	cylinder_uv_setting(t_cylinder *cylinder ,t_hit_record *record)
-{ 
+
+t_rgb	get_cylinder_rectangle_check_color(t_cylinder *cylinder, t_hit_record *record)
+{
 	double scale = 2;
 	t_vector3	center = v_minus(cylinder->center, c_vector3(0, cylinder->height, 0));
 	record->u = (0.5 + scale * atan2(record->p.z - center.z, record->p.x - center.x)) / (2 * M_PI);
 	record->v =  (record->p.y - center.y) / cylinder->height;
-}
-
-t_rgb	get_cylinder_check_color(t_hit_record *record)
-{
 	double u = record->u * 10.0;
-	double v = record->v * 5;
+	double v = record->v * 6;
 	int s = (int)u % 2;
 	int t = (int)v % 2;
 	if (s == t)
@@ -37,7 +34,7 @@ t_rgb	get_cylinder_color(t_cylinder *cylinder, t_hit_record *record)
 	if (cylinder->texture_info.type == NORMAL)
 		return (cylinder->rgb);
 	else if (cylinder->texture_info.type == CHECK)
-		return (get_cylinder_check_color(record));
+		return (get_cylinder_rectangle_check_color(cylinder, record));
 	else
 		return (c_rgb(0, 0, 0));
 }
@@ -56,7 +53,7 @@ static t_bool	update_record(t_cylinder *cylinder, t_ray *ray, \
 		return (False);
 	record->tmax = root;
 	record->p = ray_at(ray, root);
-	cylinder_uv_setting(cylinder ,record);
+	//cylinder_uv_setting(cylinder ,record);
 	record->albedo = get_cylinder_color(cylinder ,record);
 	hit_center = v_plus(cylinder->center, \
 								v_mult(cylinder->normal_vector, hit_height));
