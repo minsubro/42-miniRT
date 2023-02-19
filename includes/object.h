@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/18 19:17:47 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/19 14:53:32 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ struct s_point3
 	double y;
 	double z;
 };
+
+typedef struct s_vector2
+{
+	double	x;
+	double	y;
+}			t_vector2;
 
 typedef struct s_ambient
 {
