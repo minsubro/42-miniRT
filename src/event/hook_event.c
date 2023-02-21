@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_event.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/18 02:11:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/20 22:05:08 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	key_hook(int keycode, t_info *info)
 	}
 	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_Q || keycode == KEY_E)
 		move_camera(keycode, info);
-	if (keycode == KEY_O || keycode == KEY_P || keycode == KEY_K || keycode == KEY_L || keycode == KEY_N || keycode == KEY_M)
+	if (keycode == KEY_LEFT || keycode == KEY_RIGHT || keycode == KEY_UP || keycode == KEY_DOWN)
 		rotate_camera(keycode, info);
-	if (keycode == KEY_UP || keycode == KEY_DOWN)
+	if (keycode == KEY_PLUS || keycode == KEY_MINUS)
 		update_fov(keycode, info);
 	if (keycode == KEY_1) // 옵션추가예정!
 		option_control(keycode, info);

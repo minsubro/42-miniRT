@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/19 14:53:32 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:01:42 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_camera
 {
 	t_point3	point;
 	t_vector3	dir_vector;
+	t_vector3	v_up;
 	t_viewport	viewport;
 	double		fov;
 }				t_camera;

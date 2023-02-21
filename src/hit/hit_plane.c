@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:59:55 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/18 17:34:03 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:54:13 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,11 @@ t_rgb	int_to_rgb(int pixel)
 
 void	get_plane_uv(t_plane *plane, t_hit_record *record)
 {
-	t_vector3	t = v_unit(v_cross(plane->normal_vector, c_vector3(0, 0, 1)));	
+	t_vector3	d = v_cross(plane->normal_vector, c_vector3(0, 0, 1));
+	if (v_len(d) == 0)
+		d = v_cross(plane->normal_vector, c_vector3(0, 1, 0));
+	// 확인 필필요	
+	t_vector3	t = v_unit(d);	
 	t_vector3	b = v_cross(plane->normal_vector, t);
 
 	record->u = v_dot(v_minus(record->p, plane->point), t) / v_dot(t, t);
@@ -237,6 +241,7 @@ static t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, do
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->normal = plane->normal_vector;
+	set_face_normal(ray, record);
 	get_plane_uv(plane, record);
 	if (plane->texture_info.type == NORMAL)
 		record->albedo = plane->rgb;
@@ -244,7 +249,6 @@ static t_bool	update_record(t_plane *plane, t_ray *ray, t_hit_record *record, do
 		record->albedo = get_checker_color_plane(record);
 	else
 		record->albedo = get_texture_color_plane(plane ,record, plane->texture_info.texture);
-	set_face_normal(ray, record);
 	return (True);
 }
 

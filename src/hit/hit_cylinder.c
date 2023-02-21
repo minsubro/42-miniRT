@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:29 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/19 21:08:31 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:44:25 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_rgb	get_cylinder_rectangle_check_color(t_cylinder *cylinder, t_hit_record *record)
 {
 	// double scale = 2;
-	t_vector3	center = v_minus(cylinder->center, v_mult(cylinder->normal_vector, cylinder->height / 2));
+	//t_vector3	center = v_minus(cylinder->center, v_mult(cylinder->normal_vector, cylinder->height / 2));
 	// // t_vector3	center = v_minus(cylinder->center, c_vector3(0, cylinder->height / 2 , 0));
 	// //t_vector3	tmp = v_mult(cylinder->normal_vector, cylinder->height / 2);
 	// //t_vector3	tmp2 = c_vector3(0, cylinder->height / 2 , 0);
@@ -37,7 +37,7 @@ t_rgb	get_cylinder_rectangle_check_color(t_cylinder *cylinder, t_hit_record *rec
 	// double u = atan2(record->p.x, record->p.z) / (2 * M_PI) + 0.5;
 	// double v = record->p.y / cylinder->height;
 
-	//double check_size = 0.5;
+	double check_size = 12;
 	//double check_period = 2.0;
 	
 	// t_vector3 center_to_hit = v_minus(record->p, cylinder->center);
@@ -69,7 +69,7 @@ t_rgb	get_cylinder_rectangle_check_color(t_cylinder *cylinder, t_hit_record *rec
 	// double u = phi / (2.0 * M_PI);
 	// double v = dot_product / cylinder->height;
 
-	double check_size = 12;
+	//double check_size = 12;
 	// double check_value = fmod(floor(u / check_size) + floor(v / check_size), 2.0);
 	
 	// if (check_value < 1.0)
@@ -77,13 +77,33 @@ t_rgb	get_cylinder_rectangle_check_color(t_cylinder *cylinder, t_hit_record *rec
 	// else
 	// 	return (c_rgb(1, 1, 1));
 
-	double angle = acos(v_dot(cylinder->normal_vector, c_vector3(0, 1, 0))) * 180.0 / M_PI;
-	if (cylinder->normal_vector.x > 0) {
-		angle = 360 - angle;
-	}
+	// double angle = acos(v_dot(cylinder->normal_vector, c_vector3(0, 1, 0))) * 180.0 / M_PI;
+	// if (cylinder->normal_vector.x > 0) {
+	// 	angle = 360 - angle;
+	// }
 	
-	double u = (angle / 360.0) + record->p.y / cylinder->height;
-	double v = 0.5 + (record->p.z - center.z) / (2.0 * (cylinder->diameter / 2));
+	// double u = (angle / 360.0) + record->p.y / cylinder->height;
+	// double v = 0.5 + (record->p.z - center.z) / (2.0 * (cylinder->diameter / 2));
+
+	t_vector3 cp = v_minus(record->p, cylinder->center);
+	t_vector3 proj = v_minus(cp, v_mult(cylinder->normal_vector, v_dot(cp, cylinder->normal_vector)));
+	double phi = atan2(proj.z, proj.x);
+	
+	if (phi < 0)
+		phi += 2 * M_PI;
+	double h = cp.y;
+	double u = phi / (2 * M_PI);
+	double v = h / cylinder->height;
+	
+	u *= 0.125;
+	v *= 0.125;
+
+	// double t = sin(u) * sin(v);
+	// if (t > 0)
+	// 	return (c_rgb(0, 0, 0));
+	// else
+	// 	return (c_rgb(1, 1, 1));
+	
 	
 	int check = ((int)(floor(u * check_size)) + (int)(floor(v * check_size))) % 2 == 0;
 	if (check)

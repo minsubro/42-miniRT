@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 21:28:24 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/20 20:13:51 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ static void	*c_camera(char **data)
 	camera->point = c_point3_by_data(data[1]);
 	camera->dir_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
 	camera->fov = check_range(atod(data[3]), 0, 180);
-	camera->viewport = update_viewport(camera);
+	camera->v_up = c_vector3(0, 1, 0);
+	if (v_len(v_cross(camera->v_up, camera->dir_vector)) == 0)
+		camera->v_up = c_vector3(0, 0, 1);
+	///
+	camera->viewport = test_viewport(camera);
+	///
 	return (camera);
 }
 

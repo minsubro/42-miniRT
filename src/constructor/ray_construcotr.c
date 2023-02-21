@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_construcotr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:11:20 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/10 18:49:09 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/21 00:39:54 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ t_ray	c_ray(t_camera *camera, double u, double v)
 
 	viewport = camera->viewport;
 	ray.orig = camera->point;
-	ray.dir_vector = v_unit(v_minus(v_plus(v_plus(viewport.left_bottom, v_mult(viewport.h_vector, u)), v_mult(viewport.v_vector, v)), camera->point));
+	ray.dir_vector = v_unit(v_minus(v_plus(v_plus(viewport.left_bottom, v_mult(viewport.h_vector, u)), v_mult(viewport.v_vector, v)), ray.orig));
 	return (ray);
 }
+
+
 
 t_ray	c_ray_direction(t_point3 origin, t_vector3 dir)
 {

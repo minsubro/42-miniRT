@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/18 02:11:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:32:21 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,10 @@ t_viewport update_viewport(t_camera *camera);
 
 // 파일생성필요해요(죄송합니다ㅠㅠ)
 void	get_sphere_uv(t_vector3 normal, t_hit_record *record);
+
+
+// viewport_constructor.c // test function
+t_viewport	test_viewport(t_camera *camera);
 
 
 #endif

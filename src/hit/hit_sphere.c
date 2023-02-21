@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 14:46:47 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:32:33 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ static t_bool	update_record \
 	record->p = ray_at(ray, root);
 	record->normal = v_unit(v_divide(v_minus(record->p, sphere->center), (sphere->diameter / 2)));
 	outward_normal = v_divide(v_minus(record->p, sphere->center), sphere->diameter / 2);
+	set_face_normal(ray, record);              
 	get_sphere_uv(outward_normal ,record);
 	record->albedo = get_sphere_color(sphere, record);
-	set_face_normal(ray, record);              
 	return (True);
 }
 

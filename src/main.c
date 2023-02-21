@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:39 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/17 15:28:21 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/20 21:30:49 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char *argv[])
 	info = initializer(argv[1], &texture_list);
 	draw_scene(&info);
 	hook_mlx_event(&info);
-	//print_scene(info.scene);
 	mlx_loop(info.mlx_info.mlx_ptr);
 	return (0);
 }
