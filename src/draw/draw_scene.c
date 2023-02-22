@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 11:57:35 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/21 22:02:16 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:28:37 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_ray	test2_c_ray(t_camera *camera, int x, int y)
 
 
 
-t_ray	test3_c_ray(t_camera *camera, double u, double v)
+t_ray	test3_c_ray(t_camera *camera, double x, double y)
 {
 	// double theta = degree_to_radian(camera->fov);
 	// double half_height = tan(theta / 2.0);
@@ -89,15 +89,46 @@ t_ray	test3_c_ray(t_camera *camera, double u, double v)
 	// t_vector3 vvec = v_cross(w, uvec);
 
 	//t_vector3 origin = camera->point;
-	t_viewport	viewport = camera->viewport;
+
+
+	///
+	t_viewport viewport;
 	
-	t_vector3 ray_origin = v_plus(v_plus(viewport.left_bottom, v_mult(viewport.h_vector, u)), v_mult(viewport.v_vector, v));
+	double theta = degree_to_radian(camera->fov);
+	double h = tan(theta / 2);
+	viewport.height = IMG_HEIGHT * h;
+	viewport.width = viewport.height *  ASPECT_RATIO;
+
+	t_vector3 w = v_unit(camera->dir_vector); 
+	t_vector3 u = v_unit(v_cross(camera->v_up, w));
+	t_vector3 v = v_cross(w, u);
+	
+	//t_vector3 origin = camera->point;
+	viewport.h_vector = v_mult(u, viewport.width);
+	viewport.v_vector = v_mult(v, viewport.height);
+	t_vector3	screen_center = v_plus(camera->point, camera->dir_vector);
+	viewport.left_bottom = \
+		v_minus(v_minus(screen_center, v_mult(viewport.h_vector, (IMG_WIDTH / 2))), v_mult(viewport.v_vector, (IMG_HEIGHT / 2)));
+	///
+	
+	// t_viewport	viewport = camera->viewport;
+	// double radian = degree_to_radian(camera->fov / 2);
+	// double focal_len = (double)viewport.width / (2.0 * tan(radian));
+	
+	
 	t_ray ray;
-	ray.orig = ray_origin;
+	
+	// double x_scale = x - (viewport.width / 2);
+	// double y_scale = -y + (viewport.height / 2);
+	// t_vector3 world = c_vector3(x_scale, y_scale, focal_len);
+	
+	
+	
+	ray.orig =  v_plus(v_plus(viewport.left_bottom, v_mult(viewport.h_vector, x)), v_mult(viewport.v_vector, y));
 	ray.dir_vector = camera->dir_vector;
 	return (ray);
 }
-
+ 
 
 
 
@@ -118,7 +149,7 @@ static void	*draw_part_scene(void *input)
 		{
 			u = (double)width / (double)(IMG_WIDTH - 1);
 			v = (double)data->height / (double)(IMG_HEIGHT - 1);
-			data->info.scene.ray = test3_c_ray(data->info.scene.camera, u, v);
+			data->info.scene.ray = test3_c_ray(data->info.scene.camera, width, data->height);
 			//data->info.scene.ray = c_ray(data->info.scene.camera, u, v);
 			img_pix_put(&data->info.image, width, \
 							IMG_HEIGHT - 1 - data->height, \
@@ -131,25 +162,6 @@ static void	*draw_part_scene(void *input)
 	return (0);
 }
 
-// void	object_rescale(t_info *info)
-// {
-// 	t_camera *camera = info->scene.camera;
-// 	t_list	*obj = info->scene.figures;
-
-// 	while (obj)
-// 	{
-// 		if (obj->type == SPHERE)
-// 		{
-// 			t_sphere *sphere = (t_sphere *)obj->obj;
-// 			double distance = v_len(v_minus(sphere->center, camera->point));
-// 			printf("distance = %f\n", distance);
-// 			sphere->diameter =  4.0 / distance; 
-// 			printf("%f\n" ,sphere->diameter);
-// 		}
-// 		obj = obj->next;
-// 	}
-		
-// }
 
 void	draw_scene(t_info *info)
 {
@@ -157,8 +169,6 @@ void	draw_scene(t_info *info)
 	t_thread_data		thread_data[THREAD_CNT];
 	int					idx;
 
-	//set_camera(info);
-	//object_rescale(info);
 	idx = 0;
 	while (idx < THREAD_CNT)
 	{
