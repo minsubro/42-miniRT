@@ -12,8 +12,8 @@
 
 #include "minirt.h"
 
-void	move_scene(t_info *info, t_vector3 dir)
-{
-	move_figure(info->scene.figures, dir);
-	move_light(info->scene.lights, dir);
-}
+// void	move_scene(t_info *info, t_vector3 dir)
+// {
+// 	move_figure(info->scene.figures, dir);
+// 	move_light(info->scene.lights, dir);
+// }

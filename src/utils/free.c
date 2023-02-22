@@ -25,8 +25,8 @@ void	free_dimarr(char **str)
 	free(str);
 }
 
-void	free_list(t_list *list)
+void	free_list(t_node *node)
 {
-	free(list->obj);
-	free(list);
+	free(node->obj);
+	free(node);
 }

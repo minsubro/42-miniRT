@@ -21,12 +21,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_node {
+typedef struct s_node_gnl {
 	char			content[BUFFER_SIZE + 1];
 	int				fd;
 	int				start_idx;
 	int				end_idx;
-	struct s_node	*next;
+	struct s_node_gnl	*next;
 }	t_nodes;
 
 // get_next_line.c file

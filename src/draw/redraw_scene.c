@@ -19,6 +19,6 @@ void	redraw_scene(t_info *info)
 	///
 	info->scene.camera->viewport = test_viewport(info->scene.camera);
 	///
-	printf("%f %f %f\n", info->scene.camera->point.x, info->scene.camera->point.y, info->scene.camera->point.z);
+	//printf("%f %f %f\n", info->scene.camera->point.x, info->scene.camera->point.y, info->scene.camera->point.z);
 	draw_scene(info);
 }

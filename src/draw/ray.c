@@ -73,14 +73,16 @@ static t_rgb	phong_shading(t_scene *scene, t_light *light)
 t_rgb	phong_modeling(t_scene *scene)
 {
 	t_rgb	light_color;
-	t_list	*light_list;
+	t_node	*light;
 
 	light_color = c_rgb(0, 0, 0);
-	light_list = scene->lights;
-	while (light_list)
+	light = scene->lights.head;
+	while (1)
 	{
-		light_color = v_plus(light_color, phong_shading(scene, (t_light *)light_list->obj));
-		light_list = light_list->next;
+		light_color = v_plus(light_color, phong_shading(scene, (t_light *)light->obj));
+		light = light->next;
+		if (light == scene->lights.head)
+			break ;
 	}
 	light_color = v_plus(light_color, scene->ambient->rgb);
 	return (v_min(v_mult_(light_color, scene->record.albedo), c_rgb(1, 1, 1)));

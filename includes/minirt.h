@@ -208,11 +208,11 @@ void		print_error_with_exit(char *msg);
 
 /* [utils] free.c */
 void		free_dimarr(char **str);
-void		free_list(t_list *list);
+void		free_list(t_node *node);
 
 /* [utils] list.c */
-t_list		*create_list(void *value, t_object type);
-void		list_add_back(t_list **list, t_list *new);
+t_node		*create_list(void *value, t_object type);
+void		list_add_back(t_list *list, t_node *new);
 
 /* [utils] random.c */
 double		maths_random_double(double min, double max);
@@ -227,7 +227,7 @@ int 		main(int argc, char *argv[]);
 
 
 /* test.c */
-void		print_list(t_list *s);
+void		print_list(t_node *s);
 void		print_scene(t_scene scene);
 void		print_arr(char **str);
 

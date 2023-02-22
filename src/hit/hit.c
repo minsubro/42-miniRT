@@ -15,25 +15,27 @@
 t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record)
 {
 	t_bool		hit_anything;
-	t_list		*figure_list;
+	t_node		*figure;
 
 	hit_anything = False;
-	figure_list = scene->figures;
-	while (figure_list)
+	figure = scene->figures.head;
+	while (1)
 	{
-		if (figure_list->type == SPHERE && \
-					hit_sphere((t_sphere *)figure_list->obj, ray, record))
+		if (figure->type == SPHERE && \
+					hit_sphere((t_sphere *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == PLANE && \
-					hit_plane((t_plane *)figure_list->obj, ray, record))
+		else if (figure->type == PLANE && \
+					hit_plane((t_plane *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == CYLINDER && \
-					hit_cylinder((t_cylinder *)figure_list->obj, ray, record))
+		else if (figure->type == CYLINDER && \
+					hit_cylinder((t_cylinder *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == CONE && \
-					hit_cone((t_cone *)figure_list->obj, &scene->ray, record))
+		else if (figure->type == CONE && \
+					hit_cone((t_cone *)figure->obj, &scene->ray, record))
 				hit_anything = True;
-		figure_list = figure_list->next;
+		figure = figure->next;
+		if (figure == scene->figures.head)
+			break ;
 	}
 	return (hit_anything);
 }

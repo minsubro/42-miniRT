@@ -22,9 +22,10 @@ int	main(int argc, char *argv[])
 	t_info	info;
 	t_texture_list	texture_list;
 
-	atexit(leaks);
+	//atexit(leaks);
 	check_arguments(argc, argv[1]);
 	info = initializer(argv[1], &texture_list);
+	print_scene(info.scene);
 	draw_scene(&info);
 	hook_mlx_event(&info);
 	mlx_loop(info.mlx_info.mlx_ptr);

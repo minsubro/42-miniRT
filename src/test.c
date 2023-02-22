@@ -1,7 +1,7 @@
 #include "minirt.h"
 
 
-void	print_list(t_list *s)
+void	print_list(t_node *s)
 {
 	while (s)
 	{
@@ -31,16 +31,19 @@ void	print_lights(t_list	*light_list)
 {
 	int i = 1;
 
-	while (light_list)
+	t_node *start = light_list->head;
+	while (1)
 	{
-		t_light *light = (t_light *)light_list->obj;
+		t_light *light = (t_light *)start->obj;
 		printf("-----light%d-----\n", i);
 		printf("point : %f, %f, %f\n", light->point.x, light->point.y, light->point.z);
 		printf("rgb : %f, %f, %f\n", light->rgb.x, light->rgb.y, light->rgb.z);
 		printf("brightness_ratio : %f\n", light->brightness_ratio);
 		printf("-----------------\n");
-		light_list = light_list->next;
+		start = start->next;
 		i++;
+		if (start == light_list->head)
+			break;
 	}
 }
 
@@ -75,16 +78,20 @@ void	print_cylinder(t_cylinder *cylinder)
 
 void	print_obj(t_list *obj_list)
 {
+	t_node *start;
 
-	while (obj_list)
+	start = obj_list->head;
+	while (1)
 	{
-		if (obj_list->type == SPHERE)
-			print_sphere((t_sphere *)obj_list->obj);
-		else if (obj_list->type == PLANE)
-			print_plane((t_plane *)obj_list->obj);
-		else if (obj_list->type == CYLINDER)
-			print_cylinder((t_cylinder *)obj_list->obj);
-		obj_list = obj_list->next;
+		if (start->type == SPHERE)
+			print_sphere((t_sphere *)start->obj);
+		else if (start->type == PLANE)
+			print_plane((t_plane *)start->obj);
+		else if (start->type == CYLINDER)
+			print_cylinder((t_cylinder *)start->obj);
+		start = start->next;
+		if (start == obj_list->head)
+			break;
 	}
 	
 }
@@ -93,8 +100,8 @@ void	print_scene(t_scene scene)
 {
 	print_ambient(scene.ambient);
 	print_camera(scene.camera);
-	print_lights(scene.lights);
-	print_obj(scene.figures);
+	print_lights(&scene.lights);
+	print_obj(&scene.figures);
 }
 
 void	print_arr(char **str)

@@ -34,7 +34,7 @@ void	check_arguments(int argc, char *file_name)
 
 void	check_scene(t_scene scene)
 {
-	if (!scene.ambient || !scene.camera || !scene.lights)
+	if (!scene.ambient || !scene.camera || !scene.lights.head)
 		print_error_with_exit(INVALID_DATA);
 }
 

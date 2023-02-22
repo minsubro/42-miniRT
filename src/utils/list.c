@@ -12,30 +12,34 @@
 
 #include "minirt.h"
 
-t_list	*create_list(void *value, t_object type)
+t_node	*create_list(void *value, t_object type)
 {
-	t_list	*new;
+	t_node	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+	new = (t_node *)malloc(sizeof(t_node));
 	if (!new)
 		print_error_with_exit("malloc fail...");
 	new->obj = value;
 	new->type = type;
 	new->next = NULL;
+	new->pre = NULL;
 	return (new);
 }
 
-void	list_add_back(t_list **list, t_list *new)
+void	list_add_back(t_list *list, t_node *new)
 {
-	t_list	*start;
-
-	start = *list;
-	if (!start)
-		*list = new;
+	if (list->head == NULL)
+	{
+		list->head = new;
+		new->next = list->head;
+		new->pre = new->next;
+	}
 	else
 	{
-		while (start->next)
-			start = start->next;
-		start->next = new;
+		new->next = list->head;
+		new->pre = list->head->pre;
+		new->next->pre = new;
+		new->pre->next = new;
 	}
 }
+

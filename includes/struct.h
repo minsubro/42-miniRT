@@ -19,7 +19,7 @@
 #include <pthread.h>
 
 typedef struct s_viewport t_viewport;
-typedef struct s_list t_list;
+typedef struct s_node t_node;
 
 typedef struct	s_discriminant
 {
@@ -42,12 +42,19 @@ typedef struct s_mlx_info
 	void	*img_ptr;
 }			t_mlx_info;
 
-struct s_list
+struct s_node
 {
 	t_object	type;
 	void		*obj;
-	t_list		*next;
+	t_node		*pre;
+	t_node		*next;
 };
+
+typedef struct s_list
+{
+	t_node	*head;
+	t_node	*tail;
+}		t_list;
 
 typedef struct s_hit_record
 {
@@ -100,8 +107,8 @@ typedef struct s_scene
 {
 	t_ambient		*ambient;
 	t_camera		*camera;
-	t_list			*lights;
-	t_list			*figures;
+	t_list			lights;
+	t_list			figures;
 	t_texture_list	texture_list;
 	t_hit_record	record;
 	t_ray			ray;

@@ -149,8 +149,8 @@ static void	*draw_part_scene(void *input)
 		{
 			u = (double)width / (double)(IMG_WIDTH - 1);
 			v = (double)data->height / (double)(IMG_HEIGHT - 1);
-			data->info.scene.ray = test3_c_ray(data->info.scene.camera, width, data->height);
-			//data->info.scene.ray = c_ray(data->info.scene.camera, u, v);
+			//data->info.scene.ray = test3_c_ray(data->info.scene.camera, width, data->height);
+			data->info.scene.ray = c_ray(data->info.scene.camera, u, v);
 			img_pix_put(&data->info.image, width, \
 							IMG_HEIGHT - 1 - data->height, \
 							convert_rgb(get_color(&data->info.scene)));
