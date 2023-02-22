@@ -144,4 +144,16 @@ void	rotate_camera(int keycode, t_info *info)
 		camera->dir_vector = apply_rotation_matrix(camera->dir_vector, mat);
 		camera->v_up = apply_rotation_matrix(camera->v_up, mat);
 	}
+	else if (keycode == KEY_J) // right
+	{
+		test2_camera_rotation_matrix(c_vector3(0, 0, 1), degree_to_radian(15), mat);
+		camera->dir_vector = apply_rotation_matrix(camera->dir_vector, mat);
+		camera->v_up = apply_rotation_matrix(camera->v_up, mat);
+	}
+	else if (keycode == KEY_K) // right
+	{
+		test2_camera_rotation_matrix(c_vector3(0, 0, -1), degree_to_radian(15), mat);
+		camera->dir_vector = apply_rotation_matrix(camera->dir_vector, mat);
+		camera->v_up = apply_rotation_matrix(camera->v_up, mat);
+	}
 }

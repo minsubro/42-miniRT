@@ -17,6 +17,7 @@ static t_option	init_option(void)
 	t_option	option;
 
 	option.shadow = True;
+	option.input_option = NONE_CONTROL;
 	return (option);
 }
 

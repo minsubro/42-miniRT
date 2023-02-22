@@ -71,7 +71,8 @@ typedef struct s_hit_record
 
 typedef struct s_option
 {
-	t_bool	shadow;
+	t_bool			shadow;
+	t_input_option	input_option;
 }			t_option;
 
 typedef struct s_image

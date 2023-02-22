@@ -40,6 +40,14 @@ typedef enum e_texture_type
 	VENUS
 }	t_texture_type;
 
+typedef enum e_input_option
+{
+	NONE_CONTROL,
+	CAMERA_CONTROL,
+	OBJECT_CONTROL,
+	LIGHT_CONTROL
+}			t_input_option;
+
 typedef enum	e_key {
 	KEY_A = 0,
 	KEY_S = 1,
@@ -51,7 +59,9 @@ typedef enum	e_key {
 	KEY_W = 13,
 	KEY_E = 14,
 	KEY_O = 31,
+	KEY_I = 34,
 	KEY_P = 35,
+	KEY_J = 38,
 	KEY_K = 40,
 	KEY_L = 37,
 	KEY_N = 45,
@@ -65,6 +75,9 @@ typedef enum	e_key {
 	KEY_UP = 126,
 	KEY_1 = 18,
 	KEY_2 = 19,
+	KEY_3 = 20,
+	KEY_4 = 21,
+	KEY_5 = 22,
 }	t_keycode;
 
 typedef enum	e_bool {
