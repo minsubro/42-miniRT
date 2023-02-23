@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:21:44 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 03:16:55 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:51:30 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ t_rgb	int_to_rgb(int pixel)
 
 	rgb.x = (double)((pixel >> 16) & 255) / 255.0;
 	rgb.y = (double)((pixel >> 8) & 255) / 255.0;
-	rgb.y = (double)((pixel >> 0) & 255) / 255.0;
+	rgb.z = (double)((pixel >> 0) & 255) / 255.0;
 	return (rgb);
 }
