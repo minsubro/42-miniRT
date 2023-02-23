@@ -28,26 +28,34 @@ SRCS = main.c									\
 	   constructor/vec3_constructor.c			\
 	   constructor/viewport_construcotr.c		\
 	   constructor/hit_record_constructor.c		\
+	   constructor/sub_camera.c						\
 \
 	   draw/color.c								\
 	   draw/ray.c								\
 	   draw/draw_scene.c						\
 	   draw/redraw_scene.c						\
+	   draw/draw_interface.c					\
+	   draw/sub_monitor.c						\
 \
 	   event/move_camera.c						\
 	   event/rotate_camera.c					\
-	   event/rotate_figure.c					\
 	   event/hook_event.c						\
-	   event/rotate_light.c						\
-	   event/move_scene.c						\
-	   event/move_object.c						\
 	   event/option_control.c					\
 	   event/update_fov.c						\
+	   event/resize_object.c					\
+	   event/move_object.c						\
+	   event/rotate_object.c					\
+	   event/light_control.c					\
+	   event/event_utils.c						\
+	   event/object_control.c					\
+	   event/camera_control.c					\
 \
 	   hit/hit_cone.c							\
 	   hit/hit_cylinder.c						\
 	   hit/hit_plane.c							\
+	   hit/plane_texture.c						\
 	   hit/hit_sphere.c							\
+	   hit/sphere_texture.c						\
 	   hit/hit.c								\
 \
 	   initializer/init_scene.c					\
@@ -59,9 +67,7 @@ SRCS = main.c									\
 	   utils/error.c							\
 	   utils/free.c								\
 	   utils/list.c								\
-	   utils/string_utils.c						\
-	   utils/random.c							\
-	   test.c								
+	   utils/string_utils.c						
 
 SRCS_DIR = src/
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))

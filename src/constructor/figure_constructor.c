@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:13:04 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/18 19:22:30 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 02:20:36 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ static void	*c_plane(char **data, t_texture_list *texture_list)
 
 static void	*c_cylinder(char **data, t_texture_list *texture_list)
 {
-	(void)texture_list;
 	t_cylinder	*cylinder;
 
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
 	cylinder->center = c_point3_by_data(data[1]);
-	cylinder->normal_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
+	cylinder->normal_vector = \
+		check_object_range(c_point3_by_data(data[2]), -1, 1);
 	cylinder->diameter = atod(data[3]);
 	cylinder->height = atod(data[4]);
 	cylinder->rgb = check_object_range(c_rgb_by_data(data[5]), 0, 255);
@@ -51,9 +51,8 @@ static void	*c_cylinder(char **data, t_texture_list *texture_list)
 	return (cylinder);
 }
 
-static void	*c_cone(char **data, t_texture_list *texture_list)
+static void	*c_cone(char **data)
 {
-	(void)texture_list;
 	t_cone	*cone;
 
 	cone = (t_cone *)malloc(sizeof(t_cone));
@@ -74,6 +73,6 @@ void	*c_figures(t_object type, char **data, t_texture_list *texture_list)
 	else if (type == CYLINDER)
 		return (c_cylinder(data, texture_list));
 	else
-		return (c_cone(data, texture_list));
+		return (c_cone(data));
 	return (NULL);
 }

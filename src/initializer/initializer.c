@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/18 15:58:37 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 02:30:47 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ static t_image	init_image(t_mlx_info mlx)
 	return (image);
 }
 
+t_interface	init_interface(t_info *info)
+{
+	t_interface	interface;
+
+	interface.img_ptr = mlx_new_image(info->mlx_info.mlx_ptr, 300, 300);
+	interface.image.addr = mlx_get_data_addr(interface.img_ptr, \
+		&interface.image.bpp, &interface.image.line_len, \
+		&interface.image.endian);
+	return (interface);
+}
+
 t_info	initializer(char *file_name, t_texture_list *texture_list)
 {
 	t_info	info;
@@ -39,5 +50,6 @@ t_info	initializer(char *file_name, t_texture_list *texture_list)
 	init_textures(texture_list, &info.mlx_info);
 	info.image = init_image(info.mlx_info);
 	info.scene = init_scene(file_name, texture_list);
+	info.interface = init_interface(&info);
 	return (info);
 }

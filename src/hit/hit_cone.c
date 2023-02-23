@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 21:35:12 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 02:59:13 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_bool	hit_on_triangle(t_cone *cone, t_ray *ray, t_hit_record *record)
 	t_discriminant	discriminant;
 
 	discriminant = discriminant_cone(cone, ray);
-	if (discriminant.value < 0) // 판별식 제외한 영역 찍어보기
+	if (discriminant.value < 0)
 		return (False);
 	return (update_record(cone, ray, record, discriminant));
 }
@@ -66,7 +66,7 @@ t_bool	hit_on_bottom(t_cone *cone, t_ray *ray, t_hit_record *record)
 	radius = cone->diameter / 2;
 	root = v_dot(v_minus(circle_center, ray->orig), cone->normal_vector) \
 								/ v_dot(ray->dir_vector, cone->normal_vector);
-	diameter = v_len(v_minus(circle_center, ray_at(ray,root)));
+	diameter = v_len(v_minus(circle_center, ray_at(ray, root)));
 	if (radius < diameter)
 		return (False);
 	if (root < record->tmin || record->tmax < root)

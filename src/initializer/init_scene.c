@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:06 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 15:39:17 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 02:31:15 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,11 @@ static t_list	parse_file(char *file_name)
 	return (data_list);
 }
 
-void	list_free(t_list *list)
-{
-	t_node *start;
-	t_node *tmp;
-
-	start = list->head;
-	
-	while (1)
-	{
-		tmp = start;
-		start = start->next;
-		free(tmp->obj);
-		free(tmp);
-		if (start == list->head)
-			break ;
-	}
-	
-}
-
 t_scene	init_scene(char *file_name, t_texture_list *texture_list)
 {
 	t_scene	scene;
 	t_list	data_list;
+	t_node	*start;
 	char	**splited_data;
 
 	scene.ambient = NULL;
@@ -72,8 +54,8 @@ t_scene	init_scene(char *file_name, t_texture_list *texture_list)
 	scene.figures.head = NULL;
 	scene.option = init_option();
 	data_list = parse_file(file_name);
-	t_node *start = data_list.head;
-	while (1)
+	*start = data_list.head;
+	while (start)
 	{
 		splited_data = ft_split((char *)start->obj, ' ');
 		object_constructor(&scene, splited_data, texture_list);

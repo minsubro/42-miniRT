@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:21:44 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 16:18:07 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:16:55 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ int	convert_rgb(t_rgb rgb)
 	color = ((int)(255.0 * rgb.x) << 16) + ((int)(255.0 * rgb.y) << 8) + \
 				((int)(255.0 * rgb.z));
 	return (color);
+}
+
+t_rgb	int_to_rgb(int pixel)
+{
+	t_rgb	rgb;
+
+	rgb.x = (double)((pixel >> 16) & 255) / 255.0;
+	rgb.y = (double)((pixel >> 8) & 255) / 255.0;
+	rgb.y = (double)((pixel >> 0) & 255) / 255.0;
+	return (rgb);
 }

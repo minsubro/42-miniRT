@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 21:36:17 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:12:21 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
 
 	light_len = v_len(light_dir);
 	light_ray = c_ray_direction(v_plus(scene->record.p, \
-							v_mult(scene->record.normal, EPSILON)), light_dir);
+					v_mult(scene->record.normal, EPSILON)), light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
 	if (hit(scene, &light_ray, &rec))
@@ -67,7 +67,8 @@ static t_rgb	phong_shading(t_scene *scene, t_light *light)
 	diffuse = get_diffuse(scene, light);
 	specular = get_specular(scene, light);
 	brightness = light->brightness_ratio * LUMEN;
-	return (v_mult(v_plus(v_plus(scene->ambient->rgb, diffuse), specular), brightness));
+	return (v_mult(v_plus(v_plus(scene->ambient->rgb, \
+		diffuse), specular), brightness));
 }
 
 t_rgb	phong_modeling(t_scene *scene)
@@ -77,9 +78,10 @@ t_rgb	phong_modeling(t_scene *scene)
 
 	light_color = c_rgb(0, 0, 0);
 	light = scene->lights.head;
-	while (1)
+	while (light)
 	{
-		light_color = v_plus(light_color, phong_shading(scene, (t_light *)light->obj));
+		light_color = v_plus(light_color, \
+			phong_shading(scene, (t_light *)light->obj));
 		light = light->next;
 		if (light == scene->lights.head)
 			break ;
