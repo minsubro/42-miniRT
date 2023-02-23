@@ -6,30 +6,24 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/19 14:53:32 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:39:23 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-typedef struct s_point3 t_point3;
-typedef struct s_point3 t_rgb;
-typedef struct s_point3 t_vector3;
-typedef	struct s_texture t_texture;
+typedef struct s_point3		t_point3;
+typedef struct s_point3		t_rgb;
+typedef struct s_point3		t_vector3;
+typedef struct s_texture	t_texture;
 
 struct s_point3
 {
-	double x;
-	double y;
-	double z;
-};
-
-typedef struct s_vector2
-{
 	double	x;
 	double	y;
-}			t_vector2;
+	double	z;
+};
 
 typedef struct s_ambient
 {
@@ -51,6 +45,7 @@ typedef struct s_camera
 {
 	t_point3	point;
 	t_vector3	dir_vector;
+	t_vector3	v_up;
 	t_viewport	viewport;
 	double		fov;
 }				t_camera;

@@ -21,4 +21,11 @@ void	option_control(int keycode, t_info *info)
 		else
 			info->scene.option.shadow = True;
 	}
+	else if (keycode == KEY_2)
+		info->scene.option.input_option = CAMERA_CONTROL;
+	else if (keycode == KEY_3)
+		info->scene.option.input_option = OBJECT_CONTROL;
+	else if (keycode == KEY_4)
+		info->scene.option.input_option = LIGHT_CONTROL;
+	printf("%d\n", info->scene.option.input_option);
 }

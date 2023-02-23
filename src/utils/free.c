@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:03:30 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/06 17:24:15 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 02:23:29 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,19 @@ void	free_dimarr(char **str)
 	free(str);
 }
 
-void	free_list(t_list *list)
+void	list_free(t_list *list)
 {
-	free(list->obj);
-	free(list);
+	t_node	*start;
+	t_node	*tmp;
+
+	start = list->head;
+	while (start)
+	{
+		tmp = start;
+		start = start->next;
+		free(tmp->obj);
+		free(tmp);
+		if (start == list->head)
+			break ;
+	}
 }

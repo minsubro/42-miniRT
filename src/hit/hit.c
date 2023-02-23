@@ -3,37 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:58:53 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 21:33:10 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 01:54:21 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+t_bool	sub_hit(t_interface *interface, t_ray *ray, t_hit_record *record)
+{
+	if (interface->node->type == SPHERE)
+		return (hit_sphere((t_sphere *)interface->node->obj, ray, record));
+	else if (interface->node->type == PLANE)
+		return (hit_plane((t_plane *)interface->node->obj, ray, record));
+	else if (interface->node->type == CYLINDER)
+		return (hit_cylinder((t_cylinder *)interface->node->obj, ray, record));
+	else if (interface->node->type == CONE)
+		return (hit_cone((t_cone *)interface->node->obj, ray, record));
+	return (True);
+}
+
 t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record)
 {
 	t_bool		hit_anything;
-	t_list		*figure_list;
+	t_node		*figure;
 
 	hit_anything = False;
-	figure_list = scene->figures;
-	while (figure_list)
+	figure = scene->figures.head;
+	while (figure)
 	{
-		if (figure_list->type == SPHERE && \
-					hit_sphere((t_sphere *)figure_list->obj, ray, record))
+		if (figure->type == SPHERE && \
+					hit_sphere((t_sphere *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == PLANE && \
-					hit_plane((t_plane *)figure_list->obj, ray, record))
+		else if (figure->type == PLANE && \
+					hit_plane((t_plane *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == CYLINDER && \
-					hit_cylinder((t_cylinder *)figure_list->obj, ray, record))
+		else if (figure->type == CYLINDER && \
+					hit_cylinder((t_cylinder *)figure->obj, ray, record))
 				hit_anything = True;
-		else if (figure_list->type == CONE && \
-					hit_cone((t_cone *)figure_list->obj, &scene->ray, record))
+		else if (figure->type == CONE && \
+					hit_cone((t_cone *)figure->obj, &scene->ray, record))
 				hit_anything = True;
-		figure_list = figure_list->next;
+		figure = figure->next;
+		if (figure == scene->figures.head)
+			break ;
 	}
 	return (hit_anything);
 }

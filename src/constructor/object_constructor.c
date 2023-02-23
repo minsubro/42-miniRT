@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/17 21:28:24 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:32:28 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ static void	*c_camera(char **data)
 
 	camera = (t_camera *)malloc(sizeof(t_camera));
 	camera->point = c_point3_by_data(data[1]);
-	camera->dir_vector = check_object_range(c_point3_by_data(data[2]), -1, 1);
+	camera->dir_vector = \
+		check_object_range(c_point3_by_data(data[2]), -1, 1);
 	camera->fov = check_range(atod(data[3]), 0, 180);
-	camera->viewport = update_viewport(camera);
+	camera->v_up = c_vector3(0, 1, 0);
+	if (v_len(v_cross(camera->v_up, camera->dir_vector)) == 0)
+		camera->v_up = c_vector3(0, 0, 1);
+	camera->viewport = c_viewport(camera);
 	return (camera);
 }
 
@@ -62,12 +66,13 @@ static t_object	find_type(char *data)
 	return (0);
 }
 
-void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_lst)
+void	object_constructor(t_scene *scene, char **data, \
+	t_texture_list *texture_lst)
 {
 	t_object	type;
 
 	type = find_type(data[0]);
-	check_attribute_cnt(type,  count_array(data) - 1);
+	check_attribute_cnt(type, count_array(data) - 1);
 	if (type == AMBIENT_LIGHTNING)
 	{
 		if (scene->ambient)
@@ -83,5 +88,6 @@ void	object_constructor(t_scene *scene, char **data, t_texture_list *texture_lst
 	else if (type == LIGHT)
 		list_add_back(&scene->lights, create_list(c_light(data), type));
 	else
-		list_add_back(&scene->figures, create_list(c_figures(type, data, texture_lst), type));
+		list_add_back(&scene->figures, \
+			create_list(c_figures(type, data, texture_lst), type));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_event.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/18 02:11:01 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:11:29 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,20 @@ void	hook_mlx_event(t_info *info)
 
 int	key_hook(int keycode, t_info *info)
 {
-	(void)info;
 	if (keycode == KEY_ESC)
 	{
 		exit(0);
 	}
-	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D || keycode == KEY_Q || keycode == KEY_E)
-		move_camera(keycode, info);
-	if (keycode == KEY_O || keycode == KEY_P || keycode == KEY_K || keycode == KEY_L || keycode == KEY_N || keycode == KEY_M)
-		rotate_camera(keycode, info);
-	if (keycode == KEY_UP || keycode == KEY_DOWN)
-		update_fov(keycode, info);
-	if (keycode == KEY_1) // 옵션추가예정!
+	if (keycode == KEY_1 || keycode == KEY_2 || \
+			keycode == KEY_3 || keycode == KEY_4)
 		option_control(keycode, info);
+	if (info->scene.option.input_option == CAMERA_CONTROL)
+		camera_control(keycode, info);
+	if (info->scene.option.input_option == OBJECT_CONTROL \
+		&& info->scene.figures.head)
+		object_control(keycode, info);
+	if (info->scene.option.input_option == LIGHT_CONTROL)
+		light_control(keycode, info);
 	redraw_scene(info);
 	return (0);
 }
@@ -40,8 +41,6 @@ int	key_hook(int keycode, t_info *info)
 int	mouse_hook(t_info *info)
 {
 	(void)info;
-	//mlx_destroy_image(ptr->mlx_ptr, ptr->win_ptr);
-	//free_scene();
 	exit(EXIT_SUCCESS);
 	return (0);
 }

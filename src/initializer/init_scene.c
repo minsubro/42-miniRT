@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:06 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 15:39:17 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 03:49:03 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ static t_option	init_option(void)
 	t_option	option;
 
 	option.shadow = True;
+	option.input_option = NONE_CONTROL;
 	return (option);
 }
 
-static t_list	*parse_file(char *file_name)
+static t_list	parse_file(char *file_name)
 {
 	char		*data;
-	t_list		*data_list;
+	t_list		data_list;
 	const int	fd = open(file_name, O_RDONLY);
 
-	data_list = NULL;
+	data_list.head = NULL;
 	while (1)
 	{
 		data = get_next_line(fd);
@@ -43,24 +44,26 @@ static t_list	*parse_file(char *file_name)
 t_scene	init_scene(char *file_name, t_texture_list *texture_list)
 {
 	t_scene	scene;
-	t_list	*tmp;
-	t_list	*data_list;
+	t_list	data_list;
+	t_node	*start;
 	char	**splited_data;
 
 	scene.ambient = NULL;
 	scene.camera = NULL;
-	scene.lights = NULL;
-	scene.figures = NULL;
+	scene.lights.head = NULL;
+	scene.figures.head = NULL;
 	scene.option = init_option();
 	data_list = parse_file(file_name);
-	while (data_list)
+	start = data_list.head;
+	while (start)
 	{
-		splited_data = ft_split((char *)data_list->obj, ' ');
+		splited_data = ft_split((char *)start->obj, ' ');
 		object_constructor(&scene, splited_data, texture_list);
-		tmp = data_list;
-		data_list = data_list->next;
-		free_list(tmp);
+		start = start->next;
 		free_dimarr(splited_data);
+		if (start == data_list.head)
+			break ;
 	}
+	list_free(&data_list);
 	return (scene);
 }

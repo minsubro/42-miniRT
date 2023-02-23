@@ -6,22 +6,21 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/19 14:52:53 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:38:33 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "minirt.h"
-#include "object.h"
+# include "minirt.h"
+# include "object.h"
+# include <pthread.h>
 
-#include <pthread.h>
+typedef struct s_viewport	t_viewport;
+typedef struct s_node		t_node;
 
-typedef struct s_viewport t_viewport;
-typedef struct s_list t_list;
-
-typedef struct	s_discriminant
+typedef struct s_discriminant
 {
 	double	a;
 	double	b;
@@ -42,12 +41,18 @@ typedef struct s_mlx_info
 	void	*img_ptr;
 }			t_mlx_info;
 
-struct s_list
+typedef struct s_node
 {
 	t_object	type;
 	void		*obj;
-	t_list		*next;
-};
+	t_node		*pre;
+	t_node		*next;
+}				t_node;
+
+typedef struct s_list
+{
+	t_node	*head;
+}		t_list;
 
 typedef struct s_hit_record
 {
@@ -64,7 +69,8 @@ typedef struct s_hit_record
 
 typedef struct s_option
 {
-	t_bool	shadow;
+	t_bool			shadow;
+	t_input_option	input_option;
 }			t_option;
 
 typedef struct s_image
@@ -75,13 +81,13 @@ typedef struct s_image
 	int		endian;
 }			t_image;
 
-typedef	struct s_texture
+typedef struct s_texture
 {
-	t_image image;
+	t_image	image;
 	void	*mlx_image;
 	int		width;
 	int		height;
-}	t_texture;
+}			t_texture;
 
 typedef struct s_texture_list
 {
@@ -96,12 +102,22 @@ typedef struct s_texture_list
 	t_texture	venus;
 }				t_texture_list;
 
+typedef struct s_interface
+{
+	void			*img_ptr;
+	t_image			image;
+	t_node			*node;
+	t_camera		camera;
+	t_ray			ray;
+	t_hit_record	record;
+}	t_interface;
+
 typedef struct s_scene
 {
 	t_ambient		*ambient;
 	t_camera		*camera;
-	t_list			*lights;
-	t_list			*figures;
+	t_list			lights;
+	t_list			figures;
 	t_texture_list	texture_list;
 	t_hit_record	record;
 	t_ray			ray;
@@ -113,6 +129,7 @@ typedef struct s_info
 	t_mlx_info		mlx_info;
 	t_image			image;
 	t_scene			scene;
+	t_interface		interface;
 }					t_info;
 
 typedef struct s_thread_data
