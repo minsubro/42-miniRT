@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:49 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 02:30:47 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:40:32 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_info	initializer(char *file_name, t_texture_list *texture_list)
 	init_textures(texture_list, &info.mlx_info);
 	info.image = init_image(info.mlx_info);
 	info.scene = init_scene(file_name, texture_list);
+	check_scene(info.scene);
 	info.interface = init_interface(&info);
 	return (info);
 }

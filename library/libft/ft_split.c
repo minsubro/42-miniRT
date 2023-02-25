@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:40:25 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 04:09:48 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:12:33 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_count(char *str, char *charset)
 	return (count);
 }
 
-char	*ft_strcpy(char *save, char *str, int s, int e)
+static char	*ft_strcpy(char *save, char *str, int s, int e)
 {
 	int		i;
 

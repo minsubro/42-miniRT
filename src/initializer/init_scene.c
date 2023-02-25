@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:06 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 03:49:03 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:40:15 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ t_scene	init_scene(char *file_name, t_texture_list *texture_list)
 	scene.figures.head = NULL;
 	scene.option = init_option();
 	data_list = parse_file(file_name);
+	if (!data_list.head)
+		print_error_with_exit(INVALID_DATA);
 	start = data_list.head;
 	while (start)
 	{
-		splited_data = ft_split((char *)start->obj, ' ');
+		splited_data = ft_split((char *)start->obj, " \n\t\v\r");
 		object_constructor(&scene, splited_data, texture_list);
 		start = start->next;
 		free_dimarr(splited_data);

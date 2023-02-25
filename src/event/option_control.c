@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:46:52 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 16:47:03 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/24 04:20:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	option_control(int keycode, t_info *info)
 		info->scene.option.input_option = OBJECT_CONTROL;
 	else if (keycode == KEY_4)
 		info->scene.option.input_option = LIGHT_CONTROL;
-	printf("%d\n", info->scene.option.input_option);
 }

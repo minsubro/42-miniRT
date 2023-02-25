@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 23:29:51 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/17 11:54:34 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:10:59 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_rgb	c_rgb_by_data(char *data)
 	t_rgb	rgb;
 	char	**splitted_data;
 
-	splitted_data = ft_split(data, ',');
+	splitted_data = ft_split(data, ",");
 	if (count_array(splitted_data) != 3)
 		print_error_with_exit(INVALID_ATTR);
 	rgb.x = atod(splitted_data[0]) / 255.0;
@@ -62,7 +62,7 @@ t_point3	c_point3_by_data(char *data)
 	t_point3	point3;
 	char		**splitted_data;
 
-	splitted_data = ft_split(data, ',');
+	splitted_data = ft_split(data, ",");
 	if (count_array(splitted_data) != 3)
 		print_error_with_exit(INVALID_ATTR);
 	point3.x = atod(splitted_data[0]);
