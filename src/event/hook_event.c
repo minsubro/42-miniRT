@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:25:22 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/24 04:22:10 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:21:28 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	key_hook(int keycode, t_info *info)
 	if (info->scene.option.input_option == LIGHT_CONTROL)
 		light_control(keycode, info);
 	redraw_scene(info);
-	printf("%d\n", keycode);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 03:12:21 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:28:15 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static t_rgb	phong_shading(t_scene *scene, t_light *light)
 	double		brightness;
 
 	diffuse = get_diffuse(scene, light);
+	if (diffuse.x == 0 && diffuse.y == 0 && diffuse.z == 0)
+		return (diffuse);
 	specular = get_specular(scene, light);
 	brightness = light->brightness_ratio * LUMEN;
 	return (v_mult(v_plus(v_plus(scene->ambient->rgb, \

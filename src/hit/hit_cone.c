@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 02:59:13 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:35:31 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static t_bool	update_record(t_cone *cone, t_ray *ray, \
 		return (False);
 	record->tmax = root;
 	record->p = ray_at(ray, root);
-	record->albedo = cone->rgb;
 	hit_center = v_plus(cone->center, \
 							v_mult(cone->normal_vector, hit_height));
 	record->normal = v_unit(v_minus(record->p, hit_center));
+	record->albedo = cone->rgb;
 	set_face_normal(ray, record);
 	return (True);
 }
@@ -74,7 +74,7 @@ t_bool	hit_on_bottom(t_cone *cone, t_ray *ray, t_hit_record *record)
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->albedo = cone->rgb;
-	record->normal = cone->normal_vector;
+	record->normal = v_unit(v_minus(record->p, circle_center));
 	set_face_normal(ray, record);
 	return (True);
 }

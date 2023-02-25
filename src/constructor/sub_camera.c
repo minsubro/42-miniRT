@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:44:21 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 03:31:54 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:36:44 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_vector3	get_obj_point(t_node *obj)
 			c_vector3(0, 0, -(((t_cylinder *)obj->obj)->diameter)*1.5)));
 	else if (obj->type == CONE)
 		return (v_minus(((t_cone *) obj->obj)->center, \
-			c_vector3(0, 0, -(((t_cylinder *)obj->obj)->diameter))));
+			c_vector3(0, 0, -(((t_cylinder *)obj->obj)->height) * 5)));
 	return (c_vector3(0, 0, 0));
 }
 

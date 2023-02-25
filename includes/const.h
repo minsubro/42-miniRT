@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:21:27 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/24 03:34:14 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:39:34 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # define TITLE "miniRT"
 
-# define IMG_WIDTH 800
-# define IMG_HEIGHT 450
+# define IMG_WIDTH 1280
+# define IMG_HEIGHT 720
 
 # define SUB_IMAGE_WIDTH 300
 # define SUB_IMAGE_HEIGHT 300
 
 # define INTERFACE_WIDTH 320
 
-# define WIN_WIDTH 1120
-# define WIN_HEIGHT 450
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 720
 
 # define HOOK_KEY_EVENT 2
 # define HOOK_MOUSE_EVENT 17
