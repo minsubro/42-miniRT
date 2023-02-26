@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/25 19:28:15 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:13:36 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
+static t_bool	  in_shadow(t_scene *scene, t_vector3 light_dir)
 {
 	t_hit_record	rec;
 	t_ray			light_ray;
@@ -65,8 +65,6 @@ static t_rgb	phong_shading(t_scene *scene, t_light *light)
 	double		brightness;
 
 	diffuse = get_diffuse(scene, light);
-	if (diffuse.x == 0 && diffuse.y == 0 && diffuse.z == 0)
-		return (diffuse);
 	specular = get_specular(scene, light);
 	brightness = light->brightness_ratio * LUMEN;
 	return (v_mult(v_plus(v_plus(scene->ambient->rgb, \

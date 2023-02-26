@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:58:53 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 01:54:21 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:19:58 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record)
 					hit_cylinder((t_cylinder *)figure->obj, ray, record))
 				hit_anything = True;
 		else if (figure->type == CONE && \
-					hit_cone((t_cone *)figure->obj, &scene->ray, record))
+					hit_cone((t_cone *)figure->obj, ray, record))
 				hit_anything = True;
 		figure = figure->next;
 		if (figure == scene->figures.head)
