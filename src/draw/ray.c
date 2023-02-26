@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/25 19:28:15 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:07:35 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static t_rgb	get_diffuse(t_scene *scene, t_light *light)
 	if (scene->option.shadow == True)
 	{
 		if (in_shadow(scene, light_dir) == True)
+		{
+			scene->record.in_shadow = True;
 			return (c_rgb(0, 0, 0));
+		}
 	}
 	light_dir = v_unit(light_dir);
 	kd = fmax(v_dot(scene->record.normal, light_dir), 0.0);
@@ -65,8 +68,8 @@ static t_rgb	phong_shading(t_scene *scene, t_light *light)
 	double		brightness;
 
 	diffuse = get_diffuse(scene, light);
-	if (diffuse.x == 0 && diffuse.y == 0 && diffuse.z == 0)
-		return (diffuse);
+	// if (scene->record.in_shadow == True)
+	// 	return (c_rgb(0, 0, 0));
 	specular = get_specular(scene, light);
 	brightness = light->brightness_ratio * LUMEN;
 	return (v_mult(v_plus(v_plus(scene->ambient->rgb, \
@@ -82,6 +85,7 @@ t_rgb	phong_modeling(t_scene *scene)
 	light = scene->lights.head;
 	while (light)
 	{
+		scene->record.in_shadow = False;
 		light_color = v_plus(light_color, \
 			phong_shading(scene, (t_light *)light->obj));
 		light = light->next;

@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/25 19:35:31 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 13:20:35 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,41 @@
 static t_bool	check_height(t_cone *cn, t_point3 p, double *hit_height)
 {
 	double	max_height;
+	t_vector3 center = v_plus(cn->center, v_mult(cn->normal_vector, cn->height));
 
-	*hit_height = v_dot(v_minus(p, cn->center), cn->normal_vector);
+
+	*hit_height = v_dot(v_minus(p, center), cn->normal_vector);
 	max_height = cn->height;
 	if (fabs(*hit_height) > max_height || (*hit_height) < 0)
 		return (False);
 	return (True);
 }
 
+static t_bool	update_record(t_cone *cone, t_ray *ray, \
+						t_hit_record *record, t_discriminant data)
+{
+	double		root;
+	t_point3	hit_center;
+	double		hit_height;
+	t_vector3 center = v_plus(cone->center, v_mult(cone->normal_vector, cone->height));
+
+	root = (-data.b - sqrt(data.value)) / data.a;
+	if (check_min_len(data, record, &root) == False)
+		return (False);
+	if (check_height(cone, ray_at(ray, root), &hit_height) == False)
+		return (False);
+	record->tmax = root;
+	record->p = ray_at(ray, root);
+	hit_center = v_plus(center, \
+							v_mult(cone->normal_vector, hit_height));
+	record->normal = v_unit(v_minus(record->p, hit_center));
+	record->albedo = cone->rgb;
+	set_face_normal(ray, record);
+	return (True);
+}
+
+
+/*
 static t_bool	update_record(t_cone *cone, t_ray *ray, \
 						t_hit_record *record, t_discriminant data)
 {
@@ -43,7 +70,8 @@ static t_bool	update_record(t_cone *cone, t_ray *ray, \
 	record->albedo = cone->rgb;
 	set_face_normal(ray, record);
 	return (True);
-}
+} 
+*/
 
 t_bool	hit_on_triangle(t_cone *cone, t_ray *ray, t_hit_record *record)
 {

@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:12:42 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/24 03:38:33 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:09:07 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_hit_record
 	double		u;
 	double		v;
 	t_bool		front_face;
+	t_bool		in_shadow;
 }	t_hit_record;
 
 typedef struct s_option
