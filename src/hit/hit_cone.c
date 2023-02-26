@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/26 13:20:35 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:20:21 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 static t_bool	check_height(t_cone *cn, t_point3 p, double *hit_height)
 {
 	double	max_height;
-	t_vector3 center = v_plus(cn->center, v_mult(cn->normal_vector, cn->height));
 
 
-	*hit_height = v_dot(v_minus(p, center), cn->normal_vector);
+	*hit_height = v_dot(v_minus(p, cn->center), cn->normal_vector);
 	max_height = cn->height;
 	if (fabs(*hit_height) > max_height || (*hit_height) < 0)
 		return (False);
@@ -42,9 +41,17 @@ static t_bool	update_record(t_cone *cone, t_ray *ray, \
 	record->p = ray_at(ray, root);
 	hit_center = v_plus(center, \
 							v_mult(cone->normal_vector, hit_height));
-	record->normal = v_unit(v_minus(record->p, hit_center));
+	record->normal.x = record->p.x - center.x;
+	record->normal.y = record->p.y - center.y;
+	double r = cone->diameter / 2;
+	double h = cone->height;
+	record->normal.z = r * r * (record->p.z - center.z) / (h * h);
+	record->normal = v_unit(record->normal);
 	record->albedo = cone->rgb;
-	set_face_normal(ray, record);
+	//set_face_normal(ray, record);
+	record->front_face = v_dot(ray->dir_vector, record->normal) < 0;
+	if (record->front_face == False)
+		record->normal = v_mult(record->normal, -1);
 	return (True);
 }
 
@@ -102,8 +109,12 @@ t_bool	hit_on_bottom(t_cone *cone, t_ray *ray, t_hit_record *record)
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->albedo = cone->rgb;
+	//record->normal = v_minus(circle_center, record->p);
 	record->normal = v_unit(v_minus(record->p, circle_center));
-	set_face_normal(ray, record);
+	//set_face_normal(ray, record);
+	record->front_face = v_dot(ray->dir_vector, record->normal) < 0;
+	if (record->front_face == True)
+		record->normal = v_mult(record->normal, -1);
 	return (True);
 }
 

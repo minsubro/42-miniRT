@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:44:29 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 02:48:31 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:48:58 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_rgb	get_sphere_color(t_sphere *sphere, t_hit_record *record)
 		return (sphere->rgb);
 	else if (sphere->texture_info.type == CHECK)
 		return (get_checker_pattern(record));
-	else
+	else 
 		return (get_texture_color_sphere(record, sphere->texture_info.texture));
 }
 

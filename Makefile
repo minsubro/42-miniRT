@@ -28,7 +28,8 @@ SRCS = main.c									\
 	   constructor/vec3_constructor.c			\
 	   constructor/viewport_construcotr.c		\
 	   constructor/hit_record_constructor.c		\
-	   constructor/sub_camera.c						\
+	   constructor/sub_camera.c					\
+	   constructor/light_constructor.c			\
 \
 	   draw/color.c								\
 	   draw/ray.c								\

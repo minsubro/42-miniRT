@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:16:01 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/24 03:39:23 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:32:57 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ typedef struct s_light
 	double		brightness_ratio;
 	t_rgb		rgb;
 }				t_light;
+
+typedef struct s_spotlight
+{
+	t_point3	point;
+	t_vector3	dir;
+	double		brightness_ratio;
+	t_rgb		rgb;
+}				t_spotlight;
 
 typedef struct s_texture_info
 {

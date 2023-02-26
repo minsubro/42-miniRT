@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/26 11:03:56 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:50:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,10 @@ t_viewport		sub_viewport(t_camera *camera);
 
 /* [constructor] sub_camera.c */
 t_camera		sub_camera_init(t_info *info);
+
+/* [constructor] light_constructor.c */
+void			*c_light(char **data);
+void			*c_spotlight(char **data);
 
 /*********************** [draw] ***********************/
 
