@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/26 17:50:01 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:56:27 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ void			*c_figures(t_object type, \
 /* [constructor] hit_record_constructor.c */
 t_hit_record	c_hit_record(void);
 
+/* [constructor] light_constructor.c */
+void			*c_light(char **data);
+void			*c_spotlight(char **data);
+
 /* [constructor] object_constructor.c */
 void			object_constructor(t_scene *scene, \
 					char **data, t_texture_list *texture_list);
@@ -110,6 +114,9 @@ void			object_constructor(t_scene *scene, \
 /* [constructor] ray_constructor.c */
 t_ray			c_ray(t_camera *camera, double u, double v);
 t_ray			c_ray_direction(t_point3 origin, t_vector3 dir);
+
+/* [constructor] sub_camera.c */
+t_camera		sub_camera_init(t_info *info);
 
 /* [constructor] texture_info_constructor.c */
 t_texture_info	c_texture_info(char *type, t_texture_list *texture_list);
@@ -125,13 +132,6 @@ t_vector3		c_vector3(double x, double y, double z);
 t_viewport		c_viewport(t_camera *camera);
 t_viewport		sub_viewport(t_camera *camera);
 
-/* [constructor] sub_camera.c */
-t_camera		sub_camera_init(t_info *info);
-
-/* [constructor] light_constructor.c */
-void			*c_light(char **data);
-void			*c_spotlight(char **data);
-
 /*********************** [draw] ***********************/
 
 /* [draw] color.c */
@@ -139,27 +139,62 @@ t_rgb			get_color(t_scene *scene);
 int				convert_rgb(t_rgb rgb);
 t_rgb			int_to_rgb(int pixel);
 
-/* [draw] redraw_scene.c */
-void			redraw_scene(t_info *info);
+/* [draw] draw_interface.c */
+void			object_control_interface(t_info *info);
+void			draw_interface(t_info *info);
 
 /* [draw] draw_scene.c */
 void			draw_scene(t_info *info);
 void			img_pix_put(t_image *img, int x, int y, int color);
 
-/* [draw] ray.c */
-t_rgb			phong_modeling(t_scene *scene);
+/* [draw] phong_reflection_modeling.c */
+t_bool			in_shadow(t_scene *scene, t_vector3 light_dir);
+t_rgb			phong_reflection_modeling(t_scene *scene);
 
-/* [draw] draw_interface.c */
-void			object_control_interface(t_info *info);
-void			draw_interface(t_info *info);
+/* [draw] point_light.c */
+t_rgb			point_light(t_scene *scene, t_light *light);
 
-/* [draw] draw_submonitor.c */
+/* [draw] redraw_scene.c */
+void			redraw_scene(t_info *info);
+
+/* [draw] spotlight.c */
+t_rgb			spotlight(t_scene *scene, t_spotlight *light);
+
+/* [draw] sub_monitor.c */
 void			sub_object_draw(t_info *info);
 
 /*********************** [event] ***********************/
 
+/* [event] camera_control.c */
+void			camera_control(int keycode, t_info *info);
+
+/* [event] event_utils.c */
+t_vector3		move_value(int keycode);
+
+/* [event] hook_event.c */
+int				key_hook(int keycode, t_info *info);
+int				mouse_hook(t_info *info);
+void			hook_mlx_event(t_info *info);
+
+/* [event] light_control.c */
+void			light_control(int keycode, t_info *info);
+void			light_move(t_vector3 dir, t_info *info);
+void			light_select(int keycode, t_info *info);
+
 /* [event] move_camera.c */
 void			move_camera(int keycode, t_info *info);
+
+/* [event] move_object.c */
+void			object_move(t_vector3 dir, t_info *info);
+
+/* [event] object_control.c */
+void			object_control(int keycode, t_info *info);
+
+/* [event] option_control.c */
+void			option_control(int keycode, t_info *info);
+
+/* [event] resize_object.c */
+void			object_resize(int keycode, t_info *info);
 
 /* [event] rotate_camera.c */
 void			rotate_camera(int keycode, t_info *info);
@@ -167,41 +202,12 @@ void			rotation_matrix(t_vector3 axis, \
 					double angle, double matrix[3][3]);
 t_vector3		apply_rotation_matrix(t_vector3 vector, double matrix[3][3]);
 
-/* [event] hook_event.c */
-int				key_hook(int keycode, t_info *info);
-int				mouse_hook(t_info *info);
-void			hook_mlx_event(t_info *info);
-
-/* [event] option_control.c */
-void			option_control(int keycode, t_info *info);
-
-/* [event] update_fov.c */
-void			update_fov(int keycode, t_info *info);
-
-/* [event] resize_object.c */
-void			object_resize(int keycode, t_info *info);
-
-/* [event] move_object.c */
-void			object_move(t_vector3 dir, t_info *info);
-
 /* [event] rotate_object.c */
 void			object_rotate(int keycode, t_info *info);
 t_vector3		get_rotate_dir(int keycode);
 
-/* [event] light_control.c */
-void			light_control(int keycode, t_info *info);
-void			light_move(t_vector3 dir, t_info *info);
-void			light_select(int keycode, t_info *info);
-
-/* [event] object_control.c */
-void			object_control(int keycode, t_info *info);
-
-/* [event] camera_control.c */
-void			camera_control(int keycode, t_info *info);
-
-/* [event] event_utils.c */
-t_vector3		move_value(int keycode);
-void			object_select(int keycode, t_info *info);
+/* [event] update_fov.c */
+void			update_fov(int keycode, t_info *info);
 
 /*********************** [hit] ***********************/
 /* [hit] hit_cone.c */
@@ -214,21 +220,21 @@ t_bool			hit_cylinder(t_cylinder *cylinder, \
 /* [hit] hit_plane.c */
 t_bool			hit_plane(t_plane *plane, t_ray *ray, t_hit_record *record);
 
-/* [hit] plane_texture.c */
-void			get_plane_uv(t_plane *plane, t_hit_record *record);
-
 /* [hit] hit_sphere.c */
 t_bool			hit_sphere(t_sphere	*sphere, t_ray *ray, t_hit_record *record);
-
-/* [hit] sphere_texture.c */
-void			get_sphere_uv(t_vector3 normal, t_hit_record *record);
-t_rgb			get_texture_color_sphere(\
-					t_hit_record *record, t_texture *texture);
 
 /* [hit] hit.c */
 t_bool			hit(t_scene *scene, t_ray *ray, t_hit_record *record);
 t_bool			sub_hit(t_interface *interface, \
 					t_ray *ray, t_hit_record *record);
+
+/* [hit] plane_texture.c */
+void			get_plane_uv(t_plane *plane, t_hit_record *record);
+
+/* [hit] sphere_texture.c */
+void			get_sphere_uv(t_vector3 normal, t_hit_record *record);
+t_rgb			get_texture_color_sphere(\
+					t_hit_record *record, t_texture *texture);
 
 /*********************** [initializer] ***********************/
 

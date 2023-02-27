@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:21:44 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 03:51:30 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:28:42 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_rgb	get_color(t_scene *scene)
 {
 	scene->record = c_hit_record();
 	if (hit(scene, &scene->ray, &scene->record))
-		return (phong_modeling(scene));
+		return (phong_reflection_modeling(scene));
 	else
 		return (get_background_color(scene));
 }

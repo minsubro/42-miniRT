@@ -32,10 +32,12 @@ SRCS = main.c									\
 	   constructor/light_constructor.c			\
 \
 	   draw/color.c								\
-	   draw/ray.c								\
-	   draw/draw_scene.c						\
-	   draw/redraw_scene.c						\
 	   draw/draw_interface.c					\
+	   draw/draw_scene.c						\
+	   draw/phong_reflection_modeling.c			\
+	   draw/point_light.c						\
+	   draw/redraw_scene.c						\
+	   draw/spotlight.c							\
 	   draw/sub_monitor.c						\
 \
 	   event/move_camera.c						\

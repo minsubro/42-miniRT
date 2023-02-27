@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   object_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 02:16:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 03:09:21 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:49:39 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	object_select(int keycode, t_info *info)
+static void	object_select(int keycode, t_info *info)
 {
 	t_list	*list;
 

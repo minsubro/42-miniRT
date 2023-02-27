@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:25:50 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 20:11:48 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/27 15:01:22 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 	t_nodes			**start_node;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
-		gnl_exit("open fail..."); 
+		gnl_exit("open fail...");
 	start_node = &storage;
 	while (*start_node && (*start_node)->fd != fd)
 		start_node = &((*start_node)->next);

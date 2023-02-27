@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:25:52 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/24 04:13:09 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:01:36 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <stdio.h>
 
 typedef struct s_node_gnl {
-	char			content[BUFFER_SIZE + 1];
-	int				fd;
-	int				start_idx;
-	int				end_idx;
+	char				content[BUFFER_SIZE + 1];
+	int					fd;
+	int					start_idx;
+	int					end_idx;
 	struct s_node_gnl	*next;
 }	t_nodes;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_constructor.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/26 19:45:04 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:26:06 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	*c_camera(char **data)
 	camera->viewport = c_viewport(camera);
 	return (camera);
 }
-
-
 
 static t_object	find_type(char *data)
 {

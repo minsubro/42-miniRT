@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 02:12:12 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/27 14:53:58 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/27 15:25:54 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	light_control(int keycode, t_info *info)
 	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || \
 			keycode == KEY_D || keycode == KEY_Q || keycode == KEY_E)
 		light_move(move_value(keycode), info);
-	else if (info->scene.lights.head->type == SPOTLIGHT && (keycode == KEY_DELETE || keycode == KEY_END || \
-		keycode == KEY_PD || keycode == KEY_PU || \
-		keycode == KEY_INS || keycode == KEY_HOME))
+	else if (info->scene.lights.head->type == SPOTLIGHT \
+			&& (keycode == KEY_DELETE || keycode == KEY_END || \
+			keycode == KEY_PD || keycode == KEY_PU || \
+			keycode == KEY_INS || keycode == KEY_HOME))
 		rotate_light(keycode, info);
 }
