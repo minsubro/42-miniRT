@@ -6,13 +6,13 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:02:39 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/27 12:00:07 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:26:38 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_bool	in_shadow(t_scene *scene, t_vector3 light_dir)
+static t_bool	  in_shadow(t_scene *scene, t_vector3 light_dir)
 {
 	t_hit_record	rec;
 	t_ray			light_ray;

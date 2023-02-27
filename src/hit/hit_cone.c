@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 09:13:48 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/26 15:20:21 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:34:34 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ static t_bool	update_record(t_cone *cone, t_ray *ray, \
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	hit_center = v_plus(cone->center, \
-							v_mult(cone->normal_vector, hit_height));
+	 						v_mult(cone->normal_vector, hit_height));
 	record->normal = v_unit(v_minus(record->p, hit_center));
-	record->albedo = cone->rgb;
 	set_face_normal(ray, record);
+	record->albedo = cone->rgb;
 	return (True);
 } 
 */
@@ -104,17 +104,19 @@ t_bool	hit_on_bottom(t_cone *cone, t_ray *ray, t_hit_record *record)
 	diameter = v_len(v_minus(circle_center, ray_at(ray, root)));
 	if (radius < diameter)
 		return (False);
-	if (root < record->tmin || record->tmax < root)
+	if (root < record->tmin || record->tmax <= root)
 		return (False);
 	record->tmax = root;
 	record->p = ray_at(ray, root);
 	record->albedo = cone->rgb;
 	//record->normal = v_minus(circle_center, record->p);
-	record->normal = v_unit(v_minus(record->p, circle_center));
-	//set_face_normal(ray, record);
-	record->front_face = v_dot(ray->dir_vector, record->normal) < 0;
-	if (record->front_face == True)
-		record->normal = v_mult(record->normal, -1);
+	// record->normal = v_unit(v_minus(record->p, circle_center));
+	// //set_face_normal(ray, record);
+	// record->front_face = v_dot(ray->dir_vector, record->normal) < 0;
+	// if (record->front_face == True)
+	// 	record->normal = v_mult(record->normal, -1);
+	record->normal = cone->normal_vector;
+	set_face_normal(ray, record);
 	return (True);
 }
 

@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:58:53 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/26 14:54:13 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:27:18 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool	hit(t_scene *scene, t_ray *ray, t_hit_record *record)
 					hit_cylinder((t_cylinder *)figure->obj, ray, record))
 				hit_anything = True;
 		else if (figure->type == CONE && \
-					hit_cone((t_cone *)figure->obj, &scene->ray, record))
+					hit_cone((t_cone *)figure->obj, ray, record))
 				hit_anything = True;
 		figure = figure->next;
 		if (figure == scene->figures.head)
