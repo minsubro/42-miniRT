@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_control.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 02:12:12 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/26 19:55:32 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:53:58 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ void	light_select(int keycode, t_info *info)
 
 void	rotate_light(int keycode, t_info *info)
 {
-	t_spotlight *light;
-	double		mat[3][3];
-	const t_vector3	dir = get_rotate_dir(keycode); 
+	t_spotlight		*light;
+	double			mat[3][3];
+	const t_vector3	dir = get_rotate_dir(keycode);
 
 	light = (t_spotlight *)info->scene.lights.head->obj;
 	rotation_matrix(dir, degree_to_radian(15), mat);
 	light->dir = apply_rotation_matrix(light->dir, mat);
-	
 }
 
 void	light_move(t_vector3 dir, t_info *info)
