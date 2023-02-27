@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:21:27 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/25 19:39:34 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:28:25 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@
 # define KS 0.5
 
 # define THREAD_CNT 40
+
+# define CUTOFF 0.9
+# define OUTERCUTOFF 0.6
 
 #endif

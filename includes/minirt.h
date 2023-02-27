@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 17:57:00 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/24 03:46:56 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:50:01 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_bool			check_min_len(t_discriminant data, \
 					t_hit_record *record, double *len);
 t_bool			check_hit_height(t_cylinder *cy, \
 					t_point3 p, double *hit_height);
+void			check_dir_vector(t_vector3 vec);
 
 /* [check] check_file_condition.c*/
 void			check_attribute_cnt(t_object type, int cnt);
@@ -126,6 +127,10 @@ t_viewport		sub_viewport(t_camera *camera);
 
 /* [constructor] sub_camera.c */
 t_camera		sub_camera_init(t_info *info);
+
+/* [constructor] light_constructor.c */
+void			*c_light(char **data);
+void			*c_spotlight(char **data);
 
 /*********************** [draw] ***********************/
 

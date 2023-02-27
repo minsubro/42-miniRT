@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:13:11 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 03:35:00 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:29:27 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum e_type
 	AMBIENT_LIGHTNING,
 	CAMERA,
 	LIGHT,
+	SPOTLIGHT,
 	SPHERE,
 	PLANE,
 	CYLINDER,

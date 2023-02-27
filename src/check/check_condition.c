@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:08:40 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/20 15:29:58 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 13:09:06 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ t_bool	check_hit_height(t_cylinder *cy, t_point3 p, double *hit_height)
 	if (fabs(*hit_height) > max_height)
 		return (False);
 	return (True);
+}
+
+void	check_dir_vector(t_vector3 vec)
+{
+	if (vec.x == 0 && vec.y == 0 && vec.z == 0)
+		print_error_with_exit(INVALID_DATA);
 }

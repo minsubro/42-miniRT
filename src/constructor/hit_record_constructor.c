@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_record_constructor.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 10:55:21 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/13 13:11:09 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/26 13:10:09 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ t_hit_record	c_hit_record(void)
 	hit_record.tmin = EPSILON;
 	hit_record.tmax = INFINITY;
 	hit_record.front_face = False;
+	hit_record.in_shadow = False;
 	return (hit_record);
 }

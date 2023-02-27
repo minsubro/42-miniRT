@@ -6,7 +6,7 @@
 /*   By: minsukan <minsukan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:34:55 by minsukan          #+#    #+#             */
-/*   Updated: 2023/02/24 03:32:28 by minsukan         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:45:04 by minsukan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	*c_camera(char **data)
 	camera->point = c_point3_by_data(data[1]);
 	camera->dir_vector = \
 		check_object_range(c_point3_by_data(data[2]), -1, 1);
+	check_dir_vector(camera->dir_vector);
 	camera->fov = check_range(atod(data[3]), 0, 180);
 	camera->v_up = c_vector3(0, 1, 0);
 	if (v_len(v_cross(camera->v_up, camera->dir_vector)) == 0)
@@ -39,20 +40,11 @@ static void	*c_camera(char **data)
 	return (camera);
 }
 
-static void	*c_light(char **data)
-{
-	t_light	*light;
 
-	light = (t_light *)malloc(sizeof(t_light));
-	light->point = c_point3_by_data(data[1]);
-	light->brightness_ratio = check_range(atod(data[2]), 0, 1);
-	light->rgb = check_object_range(c_rgb_by_data(data[3]), 0, 255);
-	return (light);
-}
 
 static t_object	find_type(char *data)
 {
-	const char	*type[8] = {"A", "C", "L", "sp", "pl", "cy", "cn", NULL};
+	const char	*type[9] = {"A", "C", "L", "SL", "sp", "pl", "cy", "cn", NULL};
 	int			idx;
 
 	idx = 0;
@@ -87,6 +79,8 @@ void	object_constructor(t_scene *scene, char **data, \
 	}
 	else if (type == LIGHT)
 		list_add_back(&scene->lights, create_list(c_light(data), type));
+	else if (type == SPOTLIGHT)
+		list_add_back(&scene->lights, create_list(c_spotlight(data), type));
 	else
 		list_add_back(&scene->figures, \
 			create_list(c_figures(type, data, texture_lst), type));
