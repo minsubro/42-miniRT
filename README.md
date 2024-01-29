@@ -47,7 +47,7 @@
     <tr>
         <td>역할 분담</td>
         <td>
-              - 오브젝트 hit 판별식 구현 <br/>
+              - raytracing 구현 <br/>
               - 멀티 스레딩 구현
         </td>
         <td>
