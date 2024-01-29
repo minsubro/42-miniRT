@@ -47,12 +47,12 @@
     <tr>
         <td>역할 분담</td>
         <td>
-              - 수학 어쩌고 <br/>
-              - 도형 hit 어쩌고
+              - 오브젝트 hit 판별식 구현 <br/>
+              - 멀티 스레딩 구현
         </td>
         <td>
-              - 거의 다했죠? <br />
-              - 3d 렌더링 뭐 어쩌고
+              - phong reflection 구현 <br />
+              - .rt 파일 파싱 및 저장 
         </td>
     </tr>
 </table>
@@ -121,9 +121,10 @@ make
 ## 7. 주요 기능
 
 **7-1.rt파일 설정** \
-miniRT에서 지원하는 오브젝트는 Ambient, Lignt, Spotlight, camera, Sphere, plane, cylinder, Cone이 있다. 각각의 오브젝트들의 속성을 .rt파일에 아래 예시와 같은 형식으로 작성하면 된다.
+miniRT에서 지원하는 오브젝트는 Ambient, Lignt, Spotlight, camera, Sphere, plane, cylinder, Cone이 있다. 각각의 오브젝트들의 속성을 .rt파일에 아래 예시와 같은 형식으로 작성하면 된다. \
+ambient와 camera는 .rt에 하나만 존재해야 한다.
 ```
-ambien: A   0.2   255,255,255
+Ambient: A   0.2   255,255,255
     - identifier: A
     - ambient lighting ratio in range [0.0,1.0]: 0.2
     - R, G, B colors in range [0-255]: 255, 255, 255
@@ -186,26 +187,23 @@ cy 0,30,50  0,0,1.0  14.2  21.42  10,0,255
 ```
 
 
-**7-2.구현 기능 어쩌고** \
-수학 벡터 관련해서는 직접 작성 어쩌고 \
-뭐 질감 어쩌고 반사각 어쩌고 subject보고 작성 어쩌고
-구현하랬던 기능 어케 했는지
-## 구현 과정
-### scene 파일 파싱, 스레드 생성
-프로그램이 시작하면 처음 .rt 파일을 읽어 렌더링 해야 하는 scene의 정보를 구조체에 저장 해놓는다. /
-저장된 scene을 빠르게 렌더링 하기위해 화면을 분할하고 스레드를 생성해 각각의 스레드가 분할된 화면을 렌더링하게 한다.
-### 렌더링 과정
-카메라를 기준으로 카메라가 바라보는 방향에 가상의 뷰포트를 만들고 각 픽셀마다 빛을 쏜다.
-모든 오브젝트를 확인하여 빛이 오브젝트에 hit 했는지를 확인하고 hit 했다면 그 정보를 hit_record에 저장한다. 아무 오브젝트에도 hit하지 않는 다면 해당 픽셀의 색상은 임의로 지정한 배경화면의 색상을 출력한다.
-hit_record에 Phong reflection model을 적용하여 최종 픽셀의 색상을 구한다.
-픽셀의 색상을 이미지 파일에 저장하고 모든 렌더링이 끝나며 이미지를 윈도우에 출력한다.
-### 키보드 입력 이벤트
-mlx_hook에 등록해 놓은 이벤트가 발생하면 지정해놓은 함수를 실행시켜 준다. 예를 들어 카메라의 위치를 바꾸는 입력이 들어오면 카메라 구조체의 좌표를 수정하고 저장해놓은 이미지를 지우고 렌더링을 처음부터 다시하여 이미지를 생성한다. 
+## 7-2.구현 기능
+### 멀티스레드
+화면을 빠르게 렌더링 하기위해서 화면을 분할하고 분할된 화면을 각각의 스레드를 만들어 렌더링하게 하였다.
+### 레이트레이싱
+카메라의 방향벡터를 기준으로 뷰포트를 생성하고 카메라에서 뷰포트로 픽셀 하나하나의 광선을 발사해 광선을 역추적해 픽셀의 색상을 계산한다. 하드웨어의 성능을 고려해 난반사와 산란은 추가하지 않았다.
+
+### Phong shading
+Phong shading은 3D 그래픽스에서 표면의 조명을 부드럽게 표현하는 기술 중 하나이다. 표면의 각 픽셀에 대해 조명의 반사를 계산하여 부드럽고 현실적인 이미지를 생성하는데 사용한다. 
+1. Ambient : 주변 환경 광원에서 받는 광의 일부를 나타낸다. Ambient 반사는 표면이 주변에 둘러싸인 환경 광원에서 비직접적으로 받는 공을 표현한다. 이 광은 주변의 모든 방향에서 고르게 들어오는 광이다. 표면이 주변 광원에서 어떤 정도로 밝게 보일지에 대한 전반적인 조명을 제공하여 그림자 부분이 너무 어두워지지 않도록 한다.
+2. Diffuse : 표면이 직접적인 광원에서 받은 광의 양을 나타낸다. 이는 표면이 광원 방향으로 얼마나 잘 반사되는지를 나타내는데, 표면이 광원 방향에 노출 될수록 강도가 높아진다. 물체의 형태와 표면을 강조하는데 사용된다.
+3. Specular : 광택이나 빛이 반사되는 부분을 나타낸다. 표면에서 광원 방향으로 직접 반사되는 광의 반사를 표현한다.
 
 
 
 
 ## 8. 참고 자료
-- https://en.wikipedia.org/wikiPhong_reflection_model
-- https://learnopengl.com/Lighting/Basic-Lighting
-- https://raytracing.github.io/books/RayTracingInOneWeekend.html
+-   [WIKIPEDIA: Phong reflection model](https://en.wikipedia.org/wiki/Phong_reflection_model)
+- [LEARN OpenGL](https://learnopengl.com/Lighting/Basic-Lighting)
+- [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
+
