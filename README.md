@@ -134,7 +134,7 @@ make
 <br/>
 
 **[Draw Scene]**
-![draw_scene](https://github.com/minsubro/42-miniRT/assets/84271971/babceeea-4d9a-461c-a1b2-deff5c1ba6e6)
+![draw_scene](https://github.com/minsubro/42-miniRT/assets/84271971/7c00a683-8ef8-44b2-bbe5-1db1c6655f69)
 
 ## 7. 주요 기능
 
